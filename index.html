@@ -17,7 +17,7 @@
 /* ============================================================
    かみのて保育園 サイト｜トップページ デザイン案
    ・提案書 02節の構成（11ブロック）をそのまま実装している。
-   ・写真は未撮影のため .ph（撮影予定枠）で位置と比率だけ示す。
+   ・写真は Unsplash のイメージ写真。取材・撮影後に園の実写へ差し替える。
    ============================================================ */
 :root{
   /* 深い緑＝安心・信頼、山吹＝子どもの明るさ。写真の木と紙の色に合わせている */
@@ -136,15 +136,16 @@ a{color:inherit}
 }
 .sec-head p{margin-top:14px; color:var(--ink-2); font-size:.97rem}
 
-/* 写真の入る場所（撮影予定） */
-.ph{
-  background:
-    repeating-linear-gradient(45deg, rgba(47,107,79,.05) 0 10px, rgba(47,107,79,.09) 10px 20px);
-  border:1px dashed rgba(47,107,79,.32); border-radius:14px;
-  display:grid; place-items:center; text-align:center; color:var(--green-d);
-  font-size:.78rem; font-weight:700; letter-spacing:.02em; padding:14px; line-height:1.6;
+/* 写真枠。中身は Unsplash のイメージ写真で、取材時に園の実写へ差し替える。
+   借り物だと分かるよう左上に「イメージ写真」を出しておく（納品時は .stock ごと削除）。 */
+.photo{position:relative; overflow:hidden; border-radius:14px; margin:0}
+.photo img{width:100%; height:100%; object-fit:cover; display:block}
+.photo .stock{
+  position:absolute; top:10px; left:10px; z-index:2;
+  background:rgba(28,26,23,.72); color:#fff; font-size:.68rem; font-weight:700;
+  letter-spacing:.04em; padding:4px 10px; border-radius:999px; line-height:1.5;
+  backdrop-filter:blur(2px);
 }
-.ph small{display:block; font-weight:500; font-size:.72rem; color:var(--ink-3); margin-top:3px}
 
 /* 3つの理由 */
 .reasons{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px}
@@ -160,7 +161,7 @@ a{color:inherit}
 
 /* 大切にしていること */
 .policy{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1fr); gap:44px; align-items:center}
-.policy .ph{min-height:300px; border-radius:22px}
+.policy .photo{border-radius:22px; aspect-ratio:4/3}
 .policy h2{font-family:var(--f-round); font-weight:700; font-size:clamp(1.35rem,4.2vw,1.85rem); line-height:1.6; margin-bottom:18px}
 .policy .lead{color:var(--ink-2)}
 .policy ul{margin-top:22px; display:grid; gap:14px}
@@ -173,7 +174,7 @@ a{color:inherit}
 /* 園のご紹介 */
 .parks{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px}
 .park{background:var(--white); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column}
-.park .ph{border:0; border-radius:0; aspect-ratio:16/10; border-bottom:1px dashed rgba(47,107,79,.32)}
+.park .photo{border-radius:0; aspect-ratio:16/10}
 .park-body{padding:24px 22px 26px; display:flex; flex-direction:column; flex:1}
 .park h3{font-family:var(--f-round); font-size:1.2rem; margin-bottom:6px}
 .park .where{font-size:.8rem; color:var(--ink-3); font-weight:500; margin-bottom:14px}
@@ -224,7 +225,7 @@ a{color:inherit}
 .news-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px}
 .news{background:var(--white); border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
   text-decoration:none; display:flex; flex-direction:column}
-.news .ph{border:0; border-radius:0; aspect-ratio:16/9; border-bottom:1px dashed rgba(47,107,79,.32)}
+.news .photo{border-radius:0; aspect-ratio:16/9}
 .news-body{padding:18px 18px 22px}
 .news-meta{display:flex; align-items:center; gap:10px; margin-bottom:8px}
 .news time{font-size:.78rem; color:var(--ink-3); font-weight:700; letter-spacing:.04em}
@@ -266,7 +267,7 @@ a{color:inherit}
   .hero-in{grid-template-columns:minmax(0,1fr); gap:32px; padding-block:36px 44px}
   .hero-photo{order:-1}
   .policy{grid-template-columns:minmax(0,1fr); gap:28px}
-  .policy .ph{min-height:210px}
+  .policy .photo{aspect-ratio:3/2}
   .recruit-in{grid-template-columns:minmax(0,1fr); padding:34px 26px}
   .foot-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .nav{display:none}
@@ -297,7 +298,7 @@ a{color:inherit}
 <body>
 
 <div class="demobar">
-  <b>デザイン案</b>　保育園サイトのトップページです。文章・写真・電話番号などは<b>すべて仮</b>のもので、これから取材・撮影して差し替えます。
+  <b>デザイン案</b>　保育園サイトのトップページです。写真は雰囲気をつかむための<b>イメージ写真</b>、文章・電話番号なども<b>すべて仮</b>で、これから取材・撮影して差し替えます。
 </div>
 
 <header class="head">
@@ -399,7 +400,10 @@ a{color:inherit}
 <!-- ============ かみのての保育 ============ -->
 <section class="sec" id="policy">
   <div class="wrap policy">
-    <div class="ph">写真：保育のようす<small>（先生とこどもの関わりが見える1枚・撮影予定）</small></div>
+    <figure class="photo policy-photo">
+      <span class="stock">イメージ写真</span>
+      <img src="img/policy.jpg" alt="保育室であそぶこどもたち" loading="lazy">
+    </figure>
     <div>
       <span class="sec-label">OUR POLICY</span>
       <h2>かみのての保育 ―<br>大切にしていること</h2>
@@ -427,7 +431,10 @@ a{color:inherit}
     </div>
     <div class="parks">
       <article class="park">
-        <div class="ph">写真：かみのて保育園の園舎<small>（外観または保育室・撮影予定）</small></div>
+        <figure class="photo park-photo">
+          <span class="stock">イメージ写真</span>
+          <img src="img/park-1.jpg" alt="通園するこどもたち" loading="lazy">
+        </figure>
         <div class="park-body">
           <h3>かみのて保育園</h3>
           <p class="where">住所（取材時に確認）</p>
@@ -440,7 +447,10 @@ a{color:inherit}
         </div>
       </article>
       <article class="park">
-        <div class="ph">写真：かみのて今渡保育園の園舎<small>（外観または保育室・撮影予定）</small></div>
+        <figure class="photo park-photo">
+          <span class="stock">イメージ写真</span>
+          <img src="img/park-2.jpg" alt="保育室であそぶこども" loading="lazy">
+        </figure>
         <div class="park-body">
           <h3>かみのて今渡保育園</h3>
           <p class="where">住所（取材時に確認）</p>
@@ -533,21 +543,30 @@ a{color:inherit}
     </div>
     <div class="news-grid">
       <a class="news" href="#">
-        <div class="ph">写真<small>（記事のサムネイル）</small></div>
+        <figure class="photo news-photo">
+          <span class="stock">イメージ写真</span>
+          <img src="img/news-1.jpg" alt="夏まつりの風船" loading="lazy">
+        </figure>
         <div class="news-body">
           <div class="news-meta"><time>2026.07.24</time><span class="cat">お知らせ</span></div>
           <h3>夏まつりを開催しました（見出しは仮です）</h3>
         </div>
       </a>
       <a class="news" href="#">
-        <div class="ph">写真<small>（記事のサムネイル）</small></div>
+        <figure class="photo news-photo">
+          <span class="stock">イメージ写真</span>
+          <img src="img/news-2.jpg" alt="絵の具で製作あそびをしたこども" loading="lazy">
+        </figure>
         <div class="news-body">
           <div class="news-meta"><time>2026.07.18</time><span class="cat diary">園の日記</span></div>
           <h3>はじめての泥んこあそび（見出しは仮です）</h3>
         </div>
       </a>
       <a class="news" href="#">
-        <div class="ph">写真<small>（記事のサムネイル）</small></div>
+        <figure class="photo news-photo">
+          <span class="stock">イメージ写真</span>
+          <img src="img/news-3.jpg" alt="リュックを背負った園児" loading="lazy">
+        </figure>
         <div class="news-body">
           <div class="news-meta"><time>2026.07.05</time><span class="cat">お知らせ</span></div>
           <h3>2027年度の入園受付についてのご案内（見出しは仮です）</h3>
