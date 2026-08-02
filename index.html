@@ -17,7 +17,8 @@
    かみのて保育園 サイト｜トップページ デザイン案
    ・提案書 02節の構成（11ブロック）をそのままの順で実装している。
    ・かみのてKIDSサンプル（kids-support-sample）とテイストを揃えている。
-     配色・書体・ヒーローの作り・波の区切り・浮遊する飾りが共通言語。
+     配色・書体・ヒーローの作り・波の区切りが共通言語。
+     ※サンプルにある浮遊する絵文字の飾りは、指示により入れていない。
      3サイトに分けても同じグループだと分かるようにするため。
    ・写真は Unsplash のイメージ写真。取材・撮影後に園の実写へ差し替える。
    ============================================================ */
@@ -54,11 +55,9 @@ a{color:inherit}
 @keyframes fadeUp{from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)}}
 .reveal{opacity:0}
 .reveal.show{animation:fadeUp .9s ease forwards}
-@keyframes floaty{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
 /* 動きを減らす設定の人には出さない */
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1; animation:none !important}
-  .blob{animation:none !important}
 }
 
 .wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:24px}
@@ -126,11 +125,6 @@ section{scroll-margin-top:76px}
 .tag{font-size:.78rem; font-weight:700; background:var(--white); color:var(--mint-dark);
   padding:6px 16px; border-radius:40px; box-shadow:0 3px 10px rgba(87,77,67,.07); text-shadow:none}
 .hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
-.blob{position:absolute; font-size:2.4rem; opacity:.85; animation:floaty 5s ease-in-out infinite; z-index:1}
-.blob.b1{top:13%; left:9%}
-.blob.b2{top:22%; right:11%; animation-delay:1.2s}
-.blob.b3{bottom:15%; left:15%; animation-delay:2s}
-.blob.b4{bottom:21%; right:13%; animation-delay:.6s}
 .hero .stock{position:absolute; left:16px; bottom:14px; z-index:3;
   background:rgba(87,77,67,.6); color:#fff; font-size:.66rem; font-weight:700;
   padding:4px 12px; border-radius:40px; line-height:1.6; text-shadow:none}
@@ -313,11 +307,6 @@ section{scroll-margin-top:76px}
   .head-cta{display:none}
   .burger{display:flex}
   .hero{padding:64px 20px 78px}
-  /* 飾りは本文に重なるので、狭い画面では上下の端だけに残す */
-  .blob{font-size:1.7rem; opacity:.7}
-  .blob.b1{top:3%; left:5%}
-  .blob.b2{top:3%; right:5%}
-  .blob.b3,.blob.b4{display:none}
   .hero-actions .btn{flex:1 1 100%; justify-content:center}
   .strip-item{flex:1 1 100%; min-width:0}
   .reasons{grid-template-columns:minmax(0,1fr); gap:18px}
@@ -364,10 +353,6 @@ section{scroll-margin-top:76px}
 
 <!-- ============ ヒーロー ============ -->
 <section class="hero">
-  <span class="blob b1" aria-hidden="true">🌷</span>
-  <span class="blob b2" aria-hidden="true">⭐</span>
-  <span class="blob b3" aria-hidden="true">🧸</span>
-  <span class="blob b4" aria-hidden="true">🎈</span>
   <span class="stock">イメージ写真</span>
   <div class="hero-inner">
     <span class="hero-badge">企業主導型保育園 ・ 2園＋病児保育室</span>
@@ -382,7 +367,7 @@ section{scroll-margin-top:76px}
       <span class="tag">多言語対応</span>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#contact">🌱 見学のお申し込み</a>
+      <a class="btn btn-primary" href="#contact">見学のお申し込み</a>
       <a class="btn btn-ghost" href="#admission">入園案内を見る</a>
     </div>
   </div>
