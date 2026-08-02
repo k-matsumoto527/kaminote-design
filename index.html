@@ -80,11 +80,12 @@ section{scroll-margin-top:76px}
   font-weight:900; font-size:1.2rem; display:grid; place-items:center; flex:none;
   box-shadow:0 5px 14px rgba(127,198,160,.4);
 }
-.logo-txt{font-weight:900; font-size:1.1rem; line-height:1.35}
+.logo-txt{font-weight:900; font-size:1.1rem; line-height:1.35; white-space:nowrap}
 .logo-sub{display:block; font-family:'Baloo 2',sans-serif; font-size:.66rem; font-weight:600;
   color:var(--mint-dark); letter-spacing:.12em}
-.nav{display:flex; gap:24px; font-size:.92rem; font-weight:700}
-.nav a{text-decoration:none; position:relative; padding:4px 0}
+/* 6項目あるので折り返すと崩れる。入りきらない幅ではメニューごと隠す（下の1040px） */
+.nav{display:flex; gap:22px; font-size:.9rem; font-weight:700}
+.nav a{text-decoration:none; position:relative; padding:4px 0; white-space:nowrap}
 .nav a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
   background:var(--orange); border-radius:3px; transform:scaleX(0); transition:transform .18s}
 .nav a:hover::after{transform:scaleX(1)}
@@ -292,9 +293,13 @@ section{scroll-margin-top:76px}
   display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:space-between;
   font-size:.78rem; color:#a89c90}
 
+/* ナビ6項目＋ロゴ＋CTAは約1040pxを切ると入らない。折り返させずここで畳む */
+@media (max-width:1040px){
+  .nav{display:none}
+  .burger{display:flex}
+}
 /* ---------- タブレット ---------- */
 @media (max-width:900px){
-  .nav{display:none}
   .policy{grid-template-columns:minmax(0,1fr); gap:32px}
   .recruit-in{grid-template-columns:minmax(0,1fr); padding:36px 28px}
   .foot-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -341,7 +346,9 @@ section{scroll-margin-top:76px}
       <span class="logo-mark">か</span>
       <span class="logo-txt">かみのて保育園<span class="logo-sub">KAMINOTE NURSERY</span></span>
     </a>
+    <!-- 並びは提案書の保育園サイト ページ一覧の順。#のものは別ページ（このデザイン案には無い） -->
     <nav class="nav">
+      <a href="#">私たちについて</a>
       <a href="#policy">かみのての保育</a>
       <a href="#parks">園のご紹介</a>
       <a href="#byoji">病児保育</a>
@@ -429,7 +436,7 @@ section{scroll-margin-top:76px}
       <img src="img/policy.jpg" alt="保育室であそぶこどもたち" loading="lazy">
     </figure>
     <div>
-      <span class="sec-label">🌱 わたしたちについて</span>
+      <span class="sec-label">🌱 かみのての保育</span>
       <h2>かみのての保育 ―<br><span class="mint">大切にしていること</span></h2>
       <p class="lead">
         こどもは、教えられて育つのではなく、自分でためして育っていきます。
@@ -641,10 +648,13 @@ section{scroll-margin-top:76px}
       <div>
         <h4>園について</h4>
         <ul>
+          <li><a href="#">私たちについて</a></li>
           <li><a href="#policy">かみのての保育</a></li>
           <li><a href="#parks">園のご紹介</a></li>
-          <li><a href="#byoji">病児保育</a></li>
+          <li><a href="#byoji">病児保育のご案内</a></li>
+          <li><a href="#">園での生活</a></li>
           <li><a href="#admission">入園案内・保育料</a></li>
+          <li><a href="#">お知らせ・園の日記</a></li>
         </ul>
       </div>
       <div>
