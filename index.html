@@ -6,292 +6,326 @@
 <title>かみのて保育園｜デザイン案（トップページ）</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="株式会社 A and K さま 保育園サイト トップページのデザイン案です。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232f6b4f'/><text x='50' y='71' font-size='58' font-weight='bold' text-anchor='middle' font-family='sans-serif' fill='%23f2c14e'>か</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%237fc6a0'/><text x='50' y='71' font-size='58' font-weight='bold' text-anchor='middle' font-family='sans-serif' fill='%23fff'>か</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700&display=swap"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
    かみのて保育園 サイト｜トップページ デザイン案
-   ・提案書 02節の構成（11ブロック）をそのまま実装している。
+   ・提案書 02節の構成（11ブロック）をそのままの順で実装している。
+   ・かみのてKIDSサンプル（kids-support-sample）とテイストを揃えている。
+     配色・書体・ヒーローの作り・波の区切り・浮遊する飾りが共通言語。
+     3サイトに分けても同じグループだと分かるようにするため。
    ・写真は Unsplash のイメージ写真。取材・撮影後に園の実写へ差し替える。
    ============================================================ */
+*,*::before,*::after{box-sizing:border-box; margin:0; padding:0}
+
 :root{
-  /* 深い緑＝安心・信頼、山吹＝子どもの明るさ。写真の木と紙の色に合わせている */
-  --green:#2f6b4f;
-  --green-d:#24543f;
-  --green-l:#e8f0ea;
-  --amber:#e8a33d;
-  --amber-l:#fdf2df;
-  --coral:#e0715a;
-  --cream:#fdfaf4;
-  --ink:#2c2a26;
-  --ink-2:#5d574e;
-  --ink-3:#8b8478;
-  --line:#e7e0d4;
+  --cream:#fdfaf2;
+  --cream-deep:#fef4e4;
+  --mint:#7fc6a0;
+  --mint-dark:#5fb487;
+  --mint-soft:#e6f4ec;
+  --orange:#f5a25a;
+  --orange-dark:#ef8f3e;
+  --orange-soft:#fdead6;
+  --sky:#8fcfe0;
+  --sky-soft:#e2f3f8;
+  --ink:#574d43;
+  --ink-soft:#8a7e72;
   --white:#fff;
-  --f:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",YuGothic,"メイリオ",Meiryo,sans-serif;
-  --f-round:"Zen Maru Gothic","Noto Sans JP","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
   --wrap:1080px;
-  --r:18px;
 }
-*,*::before,*::after{box-sizing:border-box}
-*{margin:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--f); color:var(--ink); background:var(--cream);
-  line-height:1.9; font-size:16px; -webkit-text-size-adjust:100%;
+  font-family:'Zen Maru Gothic',"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI",sans-serif;
+  background:var(--cream); color:var(--ink); line-height:1.9;
+  -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:100%;
   overflow-x:hidden;
 }
+.en{font-family:'Baloo 2',sans-serif}
 img{max-width:100%; display:block; height:auto}
-ul,ol{padding:0; list-style:none}
+ul,ol{list-style:none}
 a{color:inherit}
 
-.wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:20px}
+@keyframes fadeUp{from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)}}
+.reveal{opacity:0}
+.reveal.show{animation:fadeUp .9s ease forwards}
+@keyframes floaty{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
+/* 動きを減らす設定の人には出さない */
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1; animation:none !important}
+  .blob{animation:none !important}
+}
+
+.wrap{max-width:var(--wrap); margin-inline:auto; padding-inline:24px}
+section{scroll-margin-top:76px}
 
 /* ---------- 案内バー（納品サイトには入りません） ---------- */
 .demobar{
-  background:var(--ink); color:#fff; font-size:.78rem; line-height:1.6;
-  padding:9px 20px; text-align:center; letter-spacing:.02em;
+  background:var(--ink); color:#fff; font-size:.78rem; line-height:1.7;
+  padding:9px 20px; text-align:center;
 }
-.demobar b{color:var(--amber); font-weight:700}
+.demobar b{color:var(--orange); font-weight:700}
 
 /* ---------- ヘッダー ---------- */
-.head{
-  position:sticky; top:0; z-index:50; background:rgba(253,250,244,.92);
-  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
-}
-.head-in{display:flex; align-items:center; gap:16px; min-height:70px}
-.logo{display:flex; align-items:center; gap:10px; text-decoration:none; margin-right:auto}
+.head{position:sticky; top:0; z-index:60; background:rgba(253,250,242,.94); backdrop-filter:blur(8px)}
+.head-in{display:flex; align-items:center; gap:16px; min-height:74px}
+.logo{display:flex; align-items:center; gap:11px; text-decoration:none; margin-right:auto}
 .logo-mark{
-  width:38px; height:38px; border-radius:12px; background:var(--green);
-  color:var(--amber); font-family:var(--f-round); font-weight:700; font-size:1.15rem;
-  display:grid; place-items:center; flex:none;
+  width:42px; height:42px; border-radius:50%; background:var(--mint); color:#fff;
+  font-weight:900; font-size:1.2rem; display:grid; place-items:center; flex:none;
+  box-shadow:0 5px 14px rgba(127,198,160,.4);
 }
-.logo-txt{font-family:var(--f-round); font-weight:700; font-size:1.08rem; letter-spacing:.02em; line-height:1.3}
-.logo-sub{display:block; font-family:var(--f); font-size:.66rem; font-weight:500; color:var(--ink-3); letter-spacing:.08em}
-.nav{display:flex; gap:26px; font-size:.9rem; font-weight:500}
-.nav a{text-decoration:none; padding:4px 0; border-bottom:2px solid transparent}
-.nav a:hover{border-bottom-color:var(--amber)}
+.logo-txt{font-weight:900; font-size:1.1rem; line-height:1.35}
+.logo-sub{display:block; font-family:'Baloo 2',sans-serif; font-size:.66rem; font-weight:600;
+  color:var(--mint-dark); letter-spacing:.12em}
+.nav{display:flex; gap:24px; font-size:.92rem; font-weight:700}
+.nav a{text-decoration:none; position:relative; padding:4px 0}
+.nav a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+  background:var(--orange); border-radius:3px; transform:scaleX(0); transition:transform .18s}
+.nav a:hover::after{transform:scaleX(1)}
 .head-cta{
-  background:var(--amber); color:#3a2c10; text-decoration:none; font-weight:700; font-size:.88rem;
-  padding:11px 22px; border-radius:999px; white-space:nowrap; flex:none;
-  box-shadow:0 2px 0 #c9862a;
+  background:var(--orange); color:#fff; text-decoration:none; font-weight:700; font-size:.9rem;
+  padding:12px 26px; border-radius:44px; white-space:nowrap; flex:none;
+  box-shadow:0 8px 20px rgba(245,162,90,.35); transition:transform .15s, box-shadow .2s;
 }
-.burger{display:none; width:44px; height:44px; border:1px solid var(--line); background:var(--white);
-  border-radius:12px; cursor:pointer; flex:none; padding:0; align-items:center; justify-content:center}
-.burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative}
-.burger span::before,.burger span::after{content:""; position:absolute; left:0; width:18px; height:2px; background:var(--ink)}
+.head-cta:hover{transform:translateY(-3px); box-shadow:0 12px 26px rgba(245,162,90,.45)}
+.burger{display:none; width:46px; height:46px; border:0; background:var(--white); border-radius:50%;
+  cursor:pointer; flex:none; align-items:center; justify-content:center;
+  box-shadow:0 5px 14px rgba(87,77,67,.1)}
+.burger span{display:block; width:18px; height:2.5px; background:var(--ink); border-radius:2px; position:relative}
+.burger span::before,.burger span::after{content:""; position:absolute; left:0; width:18px; height:2.5px;
+  background:var(--ink); border-radius:2px}
 .burger span::before{top:-6px} .burger span::after{top:6px}
 
 /* ---------- ヒーロー ---------- */
-.hero{position:relative; padding:0 0 10px}
-.hero-in{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:44px; align-items:center;
-  padding-block:72px 64px}
-.hero h1{
-  font-family:var(--f-round); font-weight:700; font-size:clamp(1.85rem,5.4vw,2.9rem);
-  line-height:1.5; letter-spacing:.01em; text-wrap:balance;
+.hero{
+  position:relative; overflow:hidden; padding:108px 24px 124px;
+  background:
+    linear-gradient(rgba(253,250,242,.84) 0%, rgba(253,250,242,.66) 55%, rgba(253,250,242,.84) 100%),
+    url('img/hero-field.jpg') center/cover no-repeat;
 }
-.hero h1 em{font-style:normal; color:var(--green); position:relative; white-space:nowrap}
-.hero h1 em::after{
-  content:""; position:absolute; left:0; right:0; bottom:.06em; height:.32em;
-  background:var(--amber); opacity:.32; border-radius:3px; z-index:-1;
+.hero-inner{max-width:880px; margin:0 auto; text-align:center; position:relative; z-index:2;
+  text-shadow:0 1px 10px rgba(253,250,242,.75)}
+.hero-badge{
+  display:inline-block; background:var(--white); color:var(--mint-dark);
+  font-weight:700; font-size:.82rem; padding:7px 20px; border-radius:40px;
+  box-shadow:0 4px 12px rgba(87,77,67,.08); margin-bottom:24px; text-shadow:none;
 }
-.hero p{margin-top:20px; color:var(--ink-2); font-size:1.02rem}
-.hero-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:24px}
-.tag{
-  font-size:.8rem; font-weight:700; background:var(--green-l); color:var(--green-d);
-  padding:6px 14px; border-radius:999px;
-}
-.hero-btns{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px}
-.btn{
-  display:inline-block; text-decoration:none; font-weight:700; text-align:center;
-  padding:15px 30px; border-radius:999px; font-size:.97rem;
-}
-.btn-main{background:var(--green); color:#fff; box-shadow:0 3px 0 var(--green-d)}
-.btn-sub{background:var(--white); color:var(--green-d); border:2px solid var(--green); padding:13px 28px}
-.hero-photo{border-radius:26px; overflow:hidden; box-shadow:0 18px 40px -22px rgba(44,42,38,.5); position:relative}
-.hero-photo img{width:100%; aspect-ratio:4/3; object-fit:cover}
+.hero h1{font-size:clamp(1.85rem,5.2vw,3.1rem); font-weight:900; line-height:1.55;
+  letter-spacing:.02em; margin-bottom:20px}
+.hero h1 .hl{background:linear-gradient(transparent 62%, var(--orange-soft) 62%); padding:0 4px}
+.hero h1 .mint{color:var(--mint-dark)}
+.hero .lead{font-size:1rem; color:var(--ink-soft); max-width:580px; margin:0 auto 30px}
+.hero-tags{display:flex; flex-wrap:wrap; gap:9px; justify-content:center; margin-bottom:32px}
+.tag{font-size:.78rem; font-weight:700; background:var(--white); color:var(--mint-dark);
+  padding:6px 16px; border-radius:40px; box-shadow:0 3px 10px rgba(87,77,67,.07); text-shadow:none}
+.hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+.blob{position:absolute; font-size:2.4rem; opacity:.85; animation:floaty 5s ease-in-out infinite; z-index:1}
+.blob.b1{top:13%; left:9%}
+.blob.b2{top:22%; right:11%; animation-delay:1.2s}
+.blob.b3{bottom:15%; left:15%; animation-delay:2s}
+.blob.b4{bottom:21%; right:13%; animation-delay:.6s}
+.hero .stock{position:absolute; left:16px; bottom:14px; z-index:3;
+  background:rgba(87,77,67,.6); color:#fff; font-size:.66rem; font-weight:700;
+  padding:4px 12px; border-radius:40px; line-height:1.6; text-shadow:none}
+.wave{display:block; width:100%; height:60px; margin-top:-1px}
 
-/* 帯（開園時間） */
-.strip{background:var(--green); color:#fff}
-.strip-in{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 40px; padding:18px 20px; text-align:center}
-.strip b{font-family:var(--f-round); font-size:1.05rem}
-.strip span{font-size:.86rem; opacity:.9}
+/* ---------- ボタン ---------- */
+.btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  font-family:inherit; font-weight:700; font-size:.95rem; padding:15px 34px; border-radius:44px;
+  cursor:pointer; border:none; transition:transform .15s, box-shadow .2s, background .2s}
+.btn-primary{background:var(--orange); color:#fff; box-shadow:0 8px 20px rgba(245,162,90,.35)}
+.btn-primary:hover{background:var(--orange-dark); transform:translateY(-3px); box-shadow:0 12px 26px rgba(245,162,90,.45)}
+.btn-ghost{background:var(--white); color:var(--mint-dark); box-shadow:0 6px 16px rgba(87,77,67,.08)}
+.btn-ghost:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(87,77,67,.12)}
+.btn-mint{background:var(--mint); color:#fff; box-shadow:0 8px 20px rgba(127,198,160,.4)}
+.btn-mint:hover{background:var(--mint-dark); transform:translateY(-3px)}
 
-/* ---------- 共通セクション ---------- */
-.sec{padding-block:78px}
-.sec.alt{background:var(--white)}
-.sec-head{text-align:center; margin-bottom:44px}
-.sec-label{
-  font-size:.74rem; font-weight:700; letter-spacing:.22em; color:var(--amber);
-  display:block; margin-bottom:10px;
-}
-.sec-head h2{
-  font-family:var(--f-round); font-weight:700; font-size:clamp(1.4rem,4.4vw,1.95rem);
-  line-height:1.5; text-wrap:balance;
-}
-.sec-head p{margin-top:14px; color:var(--ink-2); font-size:.97rem}
+/* ---------- 帯（開園時間など） ---------- */
+.strip{background:var(--cream-deep); padding:30px 0}
+.strip-in{display:flex; flex-wrap:wrap; justify-content:center; gap:14px 18px}
+.strip-item{background:var(--white); border-radius:24px; padding:14px 26px; text-align:center;
+  box-shadow:0 5px 16px rgba(87,77,67,.06); min-width:180px}
+.strip-item b{display:block; font-family:'Baloo 2',sans-serif; font-size:1.3rem; font-weight:700;
+  color:var(--mint-dark); line-height:1.4}
+.strip-item span{font-size:.8rem; color:var(--ink-soft); font-weight:700}
+
+/* ---------- セクション共通 ---------- */
+.sec{padding:78px 0}
+.sec.white{background:var(--white)}
+.sec.deep{background:var(--cream-deep)}
+.sec-head{text-align:center; margin-bottom:48px}
+.sec-label{display:inline-block; font-weight:700; font-size:.85rem; letter-spacing:.08em;
+  color:var(--orange-dark); margin-bottom:8px}
+.sec-title{font-size:clamp(1.5rem,3.4vw,2.1rem); font-weight:900; letter-spacing:.02em; line-height:1.55}
+.sec-title .en{display:block; font-size:.72rem; color:var(--mint); letter-spacing:.18em;
+  margin-top:6px; font-weight:600}
+.sec-head .note{margin-top:14px; color:var(--ink-soft); font-size:.95rem}
 
 /* 写真枠。中身は Unsplash のイメージ写真で、取材時に園の実写へ差し替える。
-   借り物だと分かるよう左上に「イメージ写真」を出しておく（納品時は .stock ごと削除）。 */
-.photo{position:relative; overflow:hidden; border-radius:14px; margin:0}
-.photo img{width:100%; height:100%; object-fit:cover; display:block}
-.photo .stock{
-  position:absolute; top:10px; left:10px; z-index:2;
-  background:rgba(28,26,23,.72); color:#fff; font-size:.68rem; font-weight:700;
-  letter-spacing:.04em; padding:4px 10px; border-radius:999px; line-height:1.5;
-  backdrop-filter:blur(2px);
-}
+   借り物と分かるよう左上に「イメージ写真」を出す（納品時は .stock ごと削除）。 */
+.photo{position:relative; overflow:hidden; border-radius:24px; margin:0}
+.photo img{width:100%; height:100%; object-fit:cover}
+.photo .stock{position:absolute; top:12px; left:12px; z-index:2;
+  background:rgba(87,77,67,.72); color:#fff; font-size:.68rem; font-weight:700;
+  padding:4px 12px; border-radius:40px; line-height:1.6}
 
-/* 3つの理由 */
-.reasons{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px}
-.reason{background:var(--white); border:1px solid var(--line); border-radius:var(--r); padding:26px 22px 28px; text-align:center}
-.sec.alt .reason{background:var(--cream)}
-.reason .icon{
-  width:62px; height:62px; margin:0 auto 16px; border-radius:20px; display:grid; place-items:center;
-  background:var(--amber-l);
-}
-.reason .icon svg{width:30px; height:30px}
-.reason h3{font-family:var(--f-round); font-size:1.08rem; line-height:1.6; margin-bottom:8px}
-.reason p{font-size:.9rem; color:var(--ink-2); line-height:1.85; text-align:left}
+/* ---------- 選ばれている3つの理由 ---------- */
+.reasons{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px}
+.reason{background:var(--cream); border-radius:28px; padding:34px 26px 32px; text-align:center;
+  box-shadow:0 8px 24px rgba(87,77,67,.06)}
+.reason .icon{width:76px; height:76px; margin:0 auto 18px; border-radius:50%;
+  display:grid; place-items:center; font-size:2rem}
+.reason:nth-child(1) .icon{background:var(--orange-soft)}
+.reason:nth-child(2) .icon{background:var(--sky-soft)}
+.reason:nth-child(3) .icon{background:var(--mint-soft)}
+.reason h3{font-size:1.1rem; font-weight:900; line-height:1.65; margin-bottom:10px}
+.reason p{font-size:.92rem; color:var(--ink-soft); text-align:left; line-height:1.9}
 
-/* 大切にしていること */
-.policy{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1fr); gap:44px; align-items:center}
-.policy .photo{border-radius:22px; aspect-ratio:4/3}
-.policy h2{font-family:var(--f-round); font-weight:700; font-size:clamp(1.35rem,4.2vw,1.85rem); line-height:1.6; margin-bottom:18px}
-.policy .lead{color:var(--ink-2)}
-.policy ul{margin-top:22px; display:grid; gap:14px}
-.policy li{display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; align-items:start; font-size:.95rem}
-.policy li::before{
-  content:""; width:9px; height:9px; border-radius:50%; background:var(--amber); margin-top:.62em;
-}
-.policy li b{font-family:var(--f-round)}
+/* ---------- かみのての保育 ---------- */
+.policy{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1fr); gap:50px; align-items:center}
+.policy .photo{aspect-ratio:4/3}
+.policy h2{font-size:clamp(1.4rem,3vw,2rem); font-weight:900; line-height:1.6; margin-bottom:20px}
+.policy h2 .mint{color:var(--mint-dark)}
+.policy .lead{color:var(--ink-soft); margin-bottom:22px}
+.policy ul{display:grid; gap:16px}
+.policy li{display:grid; grid-template-columns:auto minmax(0,1fr); gap:13px; align-items:start;
+  font-size:.95rem; background:var(--white); border-radius:20px; padding:16px 20px;
+  box-shadow:0 5px 16px rgba(87,77,67,.05)}
+.policy li i{font-style:normal; font-size:1.15rem; line-height:1.6}
+.policy li b{color:var(--mint-dark)}
 
-/* 園のご紹介 */
-.parks{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px}
-.park{background:var(--white); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column}
+/* ---------- 園のご紹介 ---------- */
+.parks{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px}
+.park{background:var(--cream); border-radius:28px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 8px 24px rgba(87,77,67,.06)}
 .park .photo{border-radius:0; aspect-ratio:16/10}
-.park-body{padding:24px 22px 26px; display:flex; flex-direction:column; flex:1}
-.park h3{font-family:var(--f-round); font-size:1.2rem; margin-bottom:6px}
-.park .where{font-size:.8rem; color:var(--ink-3); font-weight:500; margin-bottom:14px}
-.park dl{display:grid; grid-template-columns:auto minmax(0,1fr); gap:8px 14px; font-size:.88rem; margin-bottom:20px}
-.park dt{color:var(--ink-3); font-weight:700; white-space:nowrap}
-.park dd{margin:0; color:var(--ink-2)}
-.link-more{margin-top:auto; text-decoration:none; font-weight:700; font-size:.92rem; color:var(--green-d);
-  display:inline-flex; align-items:center; gap:7px}
+.park-body{padding:26px 26px 30px; display:flex; flex-direction:column; flex:1}
+.park h3{font-size:1.25rem; font-weight:900; margin-bottom:4px}
+.park .where{font-size:.8rem; color:var(--ink-soft); font-weight:700; margin-bottom:16px}
+.park dl{display:grid; grid-template-columns:auto minmax(0,1fr); gap:9px 16px; font-size:.88rem; margin-bottom:22px}
+.park dt{color:var(--mint-dark); font-weight:700; white-space:nowrap}
+.park dd{color:var(--ink-soft)}
+.link-more{margin-top:auto; text-decoration:none; font-weight:700; font-size:.92rem;
+  color:var(--orange-dark); display:inline-flex; align-items:center; gap:8px}
 .link-more::after{content:"→"; transition:transform .15s}
 .link-more:hover::after{transform:translateX(4px)}
 
-/* 病児保育 */
-.byoji{
-  background:linear-gradient(180deg,#fff6ef,#fdece2); border:1px solid #f3d9c9;
-  border-radius:24px; padding:40px; display:grid; grid-template-columns:minmax(0,1fr) auto;
-  gap:32px; align-items:center;
-}
-.byoji h2{font-family:var(--f-round); font-size:clamp(1.3rem,4vw,1.7rem); line-height:1.55; margin-bottom:12px}
-.byoji h2 span{display:block; font-size:.76rem; letter-spacing:.2em; color:var(--coral); font-family:var(--f); font-weight:700; margin-bottom:8px}
-.byoji p{color:var(--ink-2); font-size:.96rem}
-.byoji .btn-main{background:var(--coral); box-shadow:0 3px 0 #b8543f; white-space:nowrap}
+/* ---------- 病児保育 ---------- */
+.byoji{background:var(--orange-soft); border-radius:32px; padding:44px;
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:34px; align-items:center}
+.byoji .sec-label{margin-bottom:4px}
+.byoji h2{font-size:clamp(1.3rem,3vw,1.8rem); font-weight:900; line-height:1.6; margin-bottom:12px}
+.byoji p{color:var(--ink-soft); font-size:.95rem}
+.byoji .btn{white-space:nowrap}
 
-/* 入園案内 */
-.admis{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px}
-.admis-card{border:1px solid var(--line); border-radius:var(--r); padding:30px 26px 32px; background:var(--white)}
-.admis-card.hi{background:var(--green); color:#fff; border-color:var(--green)}
-.admis-card h3{font-family:var(--f-round); font-size:1.15rem; margin-bottom:10px}
-.admis-card p{font-size:.92rem; color:var(--ink-2); margin-bottom:20px}
-.admis-card.hi p{color:rgba(255,255,255,.9)}
-.admis-card.hi .link-more{color:var(--amber)}
-.flow{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px}
-.flow li{font-size:.8rem; background:var(--green-l); color:var(--green-d); font-weight:700;
-  padding:6px 13px; border-radius:999px}
+/* ---------- 入園案内 ---------- */
+.admis{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px}
+.admis-card{background:var(--cream); border-radius:28px; padding:34px 30px 36px;
+  box-shadow:0 8px 24px rgba(87,77,67,.06)}
+.admis-card.hi{background:var(--mint-soft)}
+.admis-card h3{font-size:1.18rem; font-weight:900; margin-bottom:10px}
+.admis-card p{font-size:.92rem; color:var(--ink-soft); margin-bottom:22px}
+.flow{display:flex; flex-wrap:wrap; gap:9px; margin-bottom:24px}
+.flow li{font-size:.8rem; background:var(--white); color:var(--mint-dark); font-weight:700;
+  padding:7px 15px; border-radius:40px}
 
-/* 採用 */
-.recruit{position:relative; background:var(--green-d); color:#fff; border-radius:26px; overflow:hidden}
-.recruit-in{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:36px; align-items:center; padding:44px}
-.recruit .sec-label{color:var(--amber)}
-.recruit h2{font-family:var(--f-round); font-size:clamp(1.4rem,4.4vw,2rem); line-height:1.5; margin-bottom:16px}
-.recruit p{color:rgba(255,255,255,.88); font-size:.97rem}
-.recruit .btn-main{background:var(--amber); color:#3a2c10; box-shadow:0 3px 0 #c9862a; margin-top:26px}
-.nums{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
-.num{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:18px 16px; text-align:center}
-.num b{display:block; font-family:var(--f-round); font-size:1.5rem; line-height:1.3; color:var(--amber)}
-.num span{font-size:.76rem; color:rgba(255,255,255,.82)}
+/* ---------- 採用 ---------- */
+.recruit{background:var(--mint); color:#fff; border-radius:32px; overflow:hidden}
+.recruit-in{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:40px;
+  align-items:center; padding:48px}
+.recruit .sec-label{color:#fff8ec}
+.recruit h2{font-size:clamp(1.4rem,3.4vw,2rem); font-weight:900; line-height:1.55; margin-bottom:16px}
+.recruit p{color:rgba(255,255,255,.94); font-size:.96rem}
+.recruit .btn{margin-top:26px}
+.nums{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+.num{background:rgba(255,255,255,.2); border-radius:22px; padding:20px 16px; text-align:center}
+.num b{display:block; font-family:'Baloo 2',sans-serif; font-size:1.55rem; font-weight:700;
+  line-height:1.35; color:#fff}
+.num span{font-size:.76rem; color:rgba(255,255,255,.9); font-weight:700}
 
-/* お知らせ */
-.news-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px}
-.news{background:var(--white); border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
-  text-decoration:none; display:flex; flex-direction:column}
+/* ---------- お知らせ ---------- */
+.news-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px}
+.news{background:var(--cream); border-radius:28px; overflow:hidden; text-decoration:none;
+  display:flex; flex-direction:column; box-shadow:0 8px 24px rgba(87,77,67,.06);
+  transition:transform .15s, box-shadow .2s}
+.news:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(87,77,67,.1)}
 .news .photo{border-radius:0; aspect-ratio:16/9}
-.news-body{padding:18px 18px 22px}
+.news-body{padding:20px 22px 26px}
 .news-meta{display:flex; align-items:center; gap:10px; margin-bottom:8px}
-.news time{font-size:.78rem; color:var(--ink-3); font-weight:700; letter-spacing:.04em}
-.cat{font-size:.7rem; font-weight:700; padding:3px 10px; border-radius:999px; background:var(--green-l); color:var(--green-d)}
-.cat.diary{background:var(--amber-l); color:#8a5f14}
-.news h3{font-size:.96rem; line-height:1.7; font-weight:500}
-.news-more{text-align:center; margin-top:36px}
+.news time{font-family:'Baloo 2',sans-serif; font-size:.8rem; color:var(--ink-soft); font-weight:600}
+.cat{font-size:.7rem; font-weight:700; padding:4px 12px; border-radius:40px;
+  background:var(--mint-soft); color:var(--mint-dark)}
+.cat.diary{background:var(--orange-soft); color:var(--orange-dark)}
+.news h3{font-size:.96rem; line-height:1.75; font-weight:700}
+.news-more{text-align:center; margin-top:38px}
 
-/* お問い合わせ */
-.contact{text-align:center}
-.contact-box{
-  background:var(--white); border:1px solid var(--line); border-radius:24px; padding:44px 30px 48px;
-  max-width:760px; margin-inline:auto;
-}
-.contact h2{font-family:var(--f-round); font-size:clamp(1.35rem,4.2vw,1.85rem); line-height:1.55; margin-bottom:12px}
-.contact p{color:var(--ink-2); font-size:.96rem}
-.contact-btns{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:28px}
-.tel{margin-top:26px; padding-top:24px; border-top:1px dashed var(--line)}
-.tel span{font-size:.8rem; color:var(--ink-3); font-weight:700; letter-spacing:.06em}
-.tel b{display:block; font-family:var(--f-round); font-size:1.9rem; line-height:1.4; color:var(--green-d)}
-.tel small{font-size:.8rem; color:var(--ink-3)}
+/* ---------- お問い合わせ ---------- */
+.contact-box{background:var(--white); border-radius:36px; padding:50px 34px 52px;
+  max-width:780px; margin-inline:auto; text-align:center; box-shadow:0 10px 30px rgba(87,77,67,.07)}
+.contact-box h2{font-size:clamp(1.35rem,3.2vw,1.9rem); font-weight:900; line-height:1.6; margin-bottom:14px}
+.contact-box p{color:var(--ink-soft); font-size:.95rem}
+.contact-btns{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:30px}
+.tel{margin-top:30px; padding-top:26px; border-top:2px dotted var(--cream-deep)}
+.tel span{font-size:.8rem; color:var(--ink-soft); font-weight:700}
+.tel b{display:block; font-family:'Baloo 2',sans-serif; font-size:2rem; font-weight:700;
+  line-height:1.4; color:var(--mint-dark)}
+.tel small{font-size:.78rem; color:var(--ink-soft)}
 
-/* フッター */
-.foot{background:var(--ink); color:rgba(255,255,255,.78); padding:52px 0 34px; font-size:.88rem}
-.foot-in{display:grid; grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr)); gap:34px}
-.foot .logo-mark{background:var(--amber); color:var(--ink)}
+/* ---------- フッター ---------- */
+.foot{background:var(--ink); color:#e4dcd2; padding:56px 0 34px; font-size:.88rem}
+.foot-in{display:grid; grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr)); gap:36px}
+.foot .logo-mark{background:var(--orange); box-shadow:none}
 .foot .logo-txt{color:#fff}
-.foot-org{margin-top:16px; line-height:1.9; font-size:.84rem}
-.foot h4{font-size:.82rem; color:var(--amber); letter-spacing:.1em; margin-bottom:12px; font-weight:700}
-.foot li{margin-bottom:9px}
-.foot a{text-decoration:none}
-.foot a:hover{text-decoration:underline}
-.foot-btm{margin-top:38px; padding-top:20px; border-top:1px solid rgba(255,255,255,.14);
-  display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:space-between; font-size:.78rem; color:rgba(255,255,255,.55)}
+.foot .logo-sub{color:#c9bfb4}
+.foot-org{margin-top:16px; line-height:1.95; font-size:.84rem; color:#c9bfb4}
+.foot h4{font-size:.82rem; color:var(--orange); letter-spacing:.1em; margin-bottom:13px; font-weight:700}
+.foot li{margin-bottom:10px}
+.foot a{text-decoration:none; color:#d9d0c6}
+.foot a:hover{color:#fff}
+.foot-btm{margin-top:40px; padding-top:22px; border-top:1px solid rgba(255,255,255,.14);
+  display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:space-between;
+  font-size:.78rem; color:#a89c90}
 
 /* ---------- タブレット ---------- */
 @media (max-width:900px){
-  /* 1カラムになったら写真を先頭へ。園の雰囲気を最初に見せたい */
-  .hero-in{grid-template-columns:minmax(0,1fr); gap:32px; padding-block:36px 44px}
-  .hero-photo{order:-1}
-  .policy{grid-template-columns:minmax(0,1fr); gap:28px}
-  .policy .photo{aspect-ratio:3/2}
-  .recruit-in{grid-template-columns:minmax(0,1fr); padding:34px 26px}
-  .foot-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .nav{display:none}
+  .policy{grid-template-columns:minmax(0,1fr); gap:32px}
+  .recruit-in{grid-template-columns:minmax(0,1fr); padding:36px 28px}
+  .foot-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 }
 /* ---------- スマートフォン ---------- */
 @media (max-width:680px){
-  body{font-size:15.5px}
-  .sec{padding-block:56px}
-  .sec-head{margin-bottom:32px}
+  .sec{padding:58px 0}
+  .sec-head{margin-bottom:34px}
   .head-cta{display:none}
   .burger{display:flex}
-  .reasons{grid-template-columns:minmax(0,1fr); gap:16px}
-  /* 横並びにする。見出しと本文は .reason-body でひとまとめにしてあるので2セルに収まる */
-  .reason{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; text-align:left; padding:20px; align-items:start}
-  .reason .icon{margin:0; width:52px; height:52px; border-radius:16px}
-  .reason .icon svg{width:26px; height:26px}
+  .hero{padding:64px 20px 78px}
+  /* 飾りは本文に重なるので、狭い画面では上下の端だけに残す */
+  .blob{font-size:1.7rem; opacity:.7}
+  .blob.b1{top:3%; left:5%}
+  .blob.b2{top:3%; right:5%}
+  .blob.b3,.blob.b4{display:none}
+  .hero-actions .btn{flex:1 1 100%; justify-content:center}
+  .strip-item{flex:1 1 100%; min-width:0}
+  .reasons{grid-template-columns:minmax(0,1fr); gap:18px}
+  /* アイコンと本文の横並び。見出しと本文は .reason-body でひとまとめにしてある */
+  .reason{display:grid; grid-template-columns:auto minmax(0,1fr); gap:18px; text-align:left;
+    padding:24px 22px; align-items:start}
+  .reason .icon{margin:0; width:58px; height:58px; font-size:1.5rem}
+  .policy .photo{aspect-ratio:3/2}
   .parks,.admis,.news-grid{grid-template-columns:minmax(0,1fr)}
-  .byoji{grid-template-columns:minmax(0,1fr); padding:30px 24px; gap:22px; text-align:left}
-  .byoji .btn-main{width:100%}
-  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .foot-in{grid-template-columns:minmax(0,1fr); gap:26px}
-  .hero-btns .btn{flex:1 1 100%}
-  .contact-box{padding:32px 20px 36px}
-  .tel b{font-size:1.6rem}
+  .byoji{grid-template-columns:minmax(0,1fr); padding:32px 24px; gap:24px}
+  .byoji .btn{width:100%; justify-content:center}
+  .contact-box{padding:36px 22px 40px}
+  .contact-btns .btn{flex:1 1 100%; justify-content:center}
+  .tel b{font-size:1.7rem}
+  .foot-in{grid-template-columns:minmax(0,1fr); gap:28px}
 }
 </style>
 </head>
@@ -314,80 +348,70 @@ a{color:inherit}
       <a href="#admission">入園案内</a>
       <a href="#recruit">採用情報</a>
     </nav>
-    <a class="head-cta" href="#contact">見学のお申し込み</a>
-    <button class="burger" type="button" aria-label="メニュー"><span></span></button>
+    <a class="head-cta" href="#contact">見学・ご相談はこちら</a>
+    <button class="burger" type="button" aria-label="メニューを開く"><span></span></button>
   </div>
 </header>
 
 <!-- ============ ヒーロー ============ -->
 <section class="hero">
-  <div class="wrap hero-in">
-    <div>
-      <h1>こどもの「やってみたい」を、<br><em>まんなかに。</em></h1>
-      <p>
-        朝も夕方も、体調をくずした日も。<br>
-        はたらくご家庭のとなりで、こどもの一日をあずかります。
-      </p>
-      <div class="hero-tags">
-        <span class="tag">企業主導型保育園</span>
-        <span class="tag">2園＋病児保育室</span>
-        <span class="tag">多言語対応</span>
-      </div>
-      <div class="hero-btns">
-        <a class="btn btn-main" href="#contact">見学のお申し込み</a>
-        <a class="btn btn-sub" href="#admission">入園案内を見る</a>
-      </div>
+  <span class="blob b1" aria-hidden="true">🌷</span>
+  <span class="blob b2" aria-hidden="true">⭐</span>
+  <span class="blob b3" aria-hidden="true">🧸</span>
+  <span class="blob b4" aria-hidden="true">🎈</span>
+  <span class="stock">イメージ写真</span>
+  <div class="hero-inner">
+    <span class="hero-badge">企業主導型保育園 ・ 2園＋病児保育室</span>
+    <h1>こどもの<span class="hl">「やってみたい」</span>を、<br><span class="mint">まんなかに。</span></h1>
+    <p class="lead">
+      朝も夕方も、体調をくずした日も。<br>
+      はたらくご家庭のとなりで、こどもの一日をあずかります。
+    </p>
+    <div class="hero-tags">
+      <span class="tag">7:00 − 20:00</span>
+      <span class="tag">病児保育あり</span>
+      <span class="tag">多言語対応</span>
     </div>
-    <div class="hero-photo">
-      <img src="img/hero.jpg" alt="製作あそびに取り組むこどもの手もと" width="1451" height="1039">
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">🌱 見学のお申し込み</a>
+      <a class="btn btn-ghost" href="#admission">入園案内を見る</a>
     </div>
   </div>
 </section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#fef4e4" d="M0,40 C240,70 480,10 720,30 C960,50 1200,15 1440,35 L1440,60 L0,60 Z"></path></svg>
 
 <div class="strip">
-  <div class="strip-in">
-    <div><b>7:00 − 20:00</b> <span>／ 開園時間</span></div>
-    <div><b>2園＋病児保育室</b> <span>／ 運営施設</span></div>
-    <div><b>4か国語</b> <span>／ 対応言語</span></div>
+  <div class="wrap strip-in">
+    <div class="strip-item"><b>7:00 − 20:00</b><span>開園時間</span></div>
+    <div class="strip-item"><b>2 + 1</b><span>2つの園と病児保育室</span></div>
+    <div class="strip-item"><b>4</b><span>対応している言語</span></div>
   </div>
 </div>
 
 <!-- ============ 選ばれている3つの理由 ============ -->
-<section class="sec alt">
+<section class="sec white">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-label">REASON</span>
-      <h2>かみのてが選ばれている、3つの理由</h2>
+    <div class="sec-head reveal">
+      <span class="sec-label">🌱 かみのての3つの安心</span>
+      <h2 class="sec-title">かみのてが選ばれている、3つの理由<span class="en">THREE REASONS</span></h2>
     </div>
-    <div class="reasons">
+    <div class="reasons reveal">
       <div class="reason">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#e8a33d" stroke-width="2" stroke-linecap="round">
-            <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path>
-          </svg>
-        </div>
+        <div class="icon" aria-hidden="true">🕖</div>
         <div class="reason-body">
           <h3>朝7時から、夜8時まで</h3>
           <p>早番も遅番も、シフト勤務も。ご家庭のはたらき方に合わせてお預かりします。急な残業のご相談にも対応しています。</p>
         </div>
       </div>
       <div class="reason">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#e8a33d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path>
-          </svg>
-        </div>
+        <div class="icon" aria-hidden="true">🩺</div>
         <div class="reason-body">
           <h3>熱が出た日も、あずかります</h3>
           <p>併設の病児保育室で、体調をくずしたお子さまをお預かりします。「仕事を休めない日」の支えになります。</p>
         </div>
       </div>
       <div class="reason">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#e8a33d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"></path>
-          </svg>
-        </div>
+        <div class="icon" aria-hidden="true">🌏</div>
         <div class="reason-body">
           <h3>いろんな言葉で、迎えます</h3>
           <p>外国にルーツのあるご家庭も安心して通えるよう、4か国語で対応。文化のちがいを前提にした保育をしています。</p>
@@ -399,39 +423,39 @@ a{color:inherit}
 
 <!-- ============ かみのての保育 ============ -->
 <section class="sec" id="policy">
-  <div class="wrap policy">
-    <figure class="photo policy-photo">
+  <div class="wrap policy reveal">
+    <figure class="photo">
       <span class="stock">イメージ写真</span>
       <img src="img/policy.jpg" alt="保育室であそぶこどもたち" loading="lazy">
     </figure>
     <div>
-      <span class="sec-label">OUR POLICY</span>
-      <h2>かみのての保育 ―<br>大切にしていること</h2>
+      <span class="sec-label">🌱 わたしたちについて</span>
+      <h2>かみのての保育 ―<br><span class="mint">大切にしていること</span></h2>
       <p class="lead">
         こどもは、教えられて育つのではなく、自分でためして育っていきます。
         わたしたちの仕事は、その「やってみたい」が生まれる場所をつくり、
         できるまで待つことだと考えています。
       </p>
       <ul>
-        <li><span><b>待つ保育。</b>先まわりして手を出さず、自分でできた瞬間をいっしょに喜びます。</span></li>
-        <li><span><b>ちがいを、あたりまえに。</b>言葉も文化も育ちのペースもちがう。そのままで過ごせる場所にします。</span></li>
-        <li><span><b>ご家庭と、ひとつのチームで。</b>園での姿を毎日おつたえし、いっしょに考えていきます。</span></li>
+        <li><i aria-hidden="true">🌱</i><span><b>待つ保育。</b>先まわりして手を出さず、自分でできた瞬間をいっしょに喜びます。</span></li>
+        <li><i aria-hidden="true">🤝</i><span><b>ちがいを、あたりまえに。</b>言葉も文化も育ちのペースもちがう。そのままで過ごせる場所にします。</span></li>
+        <li><i aria-hidden="true">🏠</i><span><b>ご家庭と、ひとつのチームで。</b>園での姿を毎日おつたえし、いっしょに考えていきます。</span></li>
       </ul>
     </div>
   </div>
 </section>
 
 <!-- ============ 園のご紹介 ============ -->
-<section class="sec alt" id="parks">
+<section class="sec white" id="parks">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-label">OUR NURSERY</span>
-      <h2>園のご紹介</h2>
-      <p>2つの園を運営しています。どちらも見学を受け付けています。</p>
+    <div class="sec-head reveal">
+      <span class="sec-label">🌱 園のご紹介</span>
+      <h2 class="sec-title">2つの園を運営しています<span class="en">OUR NURSERY</span></h2>
+      <p class="note">どちらも見学を受け付けています。</p>
     </div>
-    <div class="parks">
+    <div class="parks reveal">
       <article class="park">
-        <figure class="photo park-photo">
+        <figure class="photo">
           <span class="stock">イメージ写真</span>
           <img src="img/park-1.jpg" alt="通園するこどもたち" loading="lazy">
         </figure>
@@ -447,7 +471,7 @@ a{color:inherit}
         </div>
       </article>
       <article class="park">
-        <figure class="photo park-photo">
+        <figure class="photo">
           <span class="stock">イメージ写真</span>
           <img src="img/park-2.jpg" alt="保育室であそぶこども" loading="lazy">
         </figure>
@@ -469,28 +493,29 @@ a{color:inherit}
 <!-- ============ 病児保育 ============ -->
 <section class="sec" id="byoji">
   <div class="wrap">
-    <div class="byoji">
+    <div class="byoji reveal">
       <div>
-        <h2><span>SICK CHILD CARE</span>熱が出た日の、もうひとつの選択肢</h2>
+        <span class="sec-label">🩺 病児保育</span>
+        <h2>熱が出た日の、もうひとつの選択肢</h2>
         <p>
           「今日はどうしても休めない」。そんな日に、看護師と保育士がお子さまをお預かりします。
           ご利用には事前の登録が必要です。かかりつけ医の連絡票、当日の流れ、料金は専用ページでご案内しています。
         </p>
       </div>
-      <a class="btn btn-main" href="#">病児保育のご案内</a>
+      <a class="btn btn-primary" href="#">病児保育のご案内</a>
     </div>
   </div>
 </section>
 
 <!-- ============ 入園案内・保育料 ============ -->
-<section class="sec alt" id="admission">
+<section class="sec white" id="admission">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-label">ADMISSION</span>
-      <h2>入園案内・保育料</h2>
-      <p>かみのては<strong>企業主導型保育園</strong>です。自治体を通さず、園に直接お申し込みいただけます。</p>
+    <div class="sec-head reveal">
+      <span class="sec-label">🌱 入園案内</span>
+      <h2 class="sec-title">入園案内・保育料<span class="en">ADMISSION</span></h2>
+      <p class="note">かみのては<strong>企業主導型保育園</strong>です。自治体を通さず、園に直接お申し込みいただけます。</p>
     </div>
-    <div class="admis">
+    <div class="admis reveal">
       <div class="admis-card">
         <h3>はじめての方へ</h3>
         <p>お住まいの地域や勤務先を問わず、地域枠でお申し込みいただけます。まずは見学からどうぞ。</p>
@@ -511,22 +536,22 @@ a{color:inherit}
 <!-- ============ かみのてで働く人（採用への導線） ============ -->
 <section class="sec" id="recruit">
   <div class="wrap">
-    <div class="recruit">
+    <div class="recruit reveal">
       <div class="recruit-in">
         <div>
-          <span class="sec-label">RECRUIT</span>
+          <span class="sec-label">🌱 採用情報</span>
           <h2>かみのてで働く人</h2>
           <p>
             こどもの毎日を支えているのは、ここではたらく人たちです。
             どんな人が、どんな思いで働いているのか。一日の仕事の流れや、職員へのインタビューをまとめました。
           </p>
-          <a class="btn btn-main" href="#">採用情報を見る</a>
+          <a class="btn btn-ghost" href="#">採用情報を見る</a>
         </div>
         <div class="nums">
-          <div class="num"><b>120日+</b><span>年間休日</span></div>
-          <div class="num"><b>4か国語</b><span>職員の対応言語</span></div>
-          <div class="num"><b>7:00-20:00</b><span>シフト制</span></div>
-          <div class="num"><b>2園+1室</b><span>はたらく場所</span></div>
+          <div class="num"><b>120<small>日+</small></b><span>年間休日</span></div>
+          <div class="num"><b>4</b><span>職員の対応言語</span></div>
+          <div class="num"><b>7-20</b><span>シフト制（時）</span></div>
+          <div class="num"><b>2+1</b><span>はたらく場所</span></div>
         </div>
       </div>
     </div>
@@ -534,16 +559,15 @@ a{color:inherit}
 </section>
 
 <!-- ============ お知らせ・園の日記 ============ -->
-<section class="sec alt">
+<section class="sec white">
   <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-label">NEWS &amp; DIARY</span>
-      <h2>お知らせ・園の日記</h2>
-      <p>園からのお知らせと、日々のようすをおとどけします。</p>
+    <div class="sec-head reveal">
+      <span class="sec-label">🌱 お知らせ・園の日記</span>
+      <h2 class="sec-title">園のいま、おとどけします<span class="en">NEWS &amp; DIARY</span></h2>
     </div>
-    <div class="news-grid">
+    <div class="news-grid reveal">
       <a class="news" href="#">
-        <figure class="photo news-photo">
+        <figure class="photo">
           <span class="stock">イメージ写真</span>
           <img src="img/news-1.jpg" alt="夏まつりの風船" loading="lazy">
         </figure>
@@ -553,7 +577,7 @@ a{color:inherit}
         </div>
       </a>
       <a class="news" href="#">
-        <figure class="photo news-photo">
+        <figure class="photo">
           <span class="stock">イメージ写真</span>
           <img src="img/news-2.jpg" alt="絵の具で製作あそびをしたこども" loading="lazy">
         </figure>
@@ -563,7 +587,7 @@ a{color:inherit}
         </div>
       </a>
       <a class="news" href="#">
-        <figure class="photo news-photo">
+        <figure class="photo">
           <span class="stock">イメージ写真</span>
           <img src="img/news-3.jpg" alt="リュックを背負った園児" loading="lazy">
         </figure>
@@ -573,23 +597,23 @@ a{color:inherit}
         </div>
       </a>
     </div>
-    <div class="news-more"><a class="btn btn-sub" href="#">お知らせ一覧を見る</a></div>
+    <div class="news-more"><a class="btn btn-ghost" href="#">お知らせ一覧を見る</a></div>
   </div>
 </section>
 
 <!-- ============ 見学・お問い合わせ ============ -->
-<section class="sec contact" id="contact">
+<section class="sec deep" id="contact">
   <div class="wrap">
-    <div class="contact-box">
-      <span class="sec-label">CONTACT</span>
+    <div class="contact-box reveal">
+      <span class="sec-label">🌱 見学・お問い合わせ</span>
       <h2>まずは、園を見にきてください</h2>
       <p>
         こどもたちの過ごし方や、先生とのやりとり。実際に見ていただくのがいちばんです。<br>
         入園のご予定がなくても、ご相談だけでもかまいません。
       </p>
       <div class="contact-btns">
-        <a class="btn btn-main" href="#">見学を申し込む</a>
-        <a class="btn btn-sub" href="#">メールで問い合わせる</a>
+        <a class="btn btn-primary" href="#">🌱 見学を申し込む</a>
+        <a class="btn btn-ghost" href="#">メールで問い合わせる</a>
       </div>
       <div class="tel">
         <span>お電話でのお問い合わせ</span>
@@ -634,11 +658,27 @@ a{color:inherit}
       </div>
     </div>
     <div class="foot-btm">
-      <span>© 2026 A and K Co., Ltd.</span>
+      <span class="en">© 2026 A and K Co., Ltd.</span>
       <span>プライバシーポリシー</span>
     </div>
   </div>
 </footer>
 
+<script>
+// スクロールしてきた要素をふわっと出す（サンプルと同じ演出）
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('show'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
