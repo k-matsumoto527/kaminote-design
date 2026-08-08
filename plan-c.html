@@ -6,202 +6,222 @@
 <meta name="robots" content="noindex,nofollow">
 <title>デザイン案C｜かみのて保育園</title>
 <meta property="og:title" content="デザイン案C｜かみのて保育園">
-<meta property="og:description" content="余白と整列で、落ち着いた信頼感を出した案です。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231f4b52'/><text x='50' y='70' font-size='56' font-weight='bold' text-anchor='middle' font-family='serif' fill='%23fff'>か</text></svg>">
+<meta property="og:description" content="写真を全画面に敷き、縦書きの言葉と手描きのアイコンでまとめた案です。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23e8734a'/><text x='50' y='70' font-size='54' font-weight='bold' text-anchor='middle' font-family='sans-serif' fill='%23fff'>か</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Baloo+2:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500&family=Baloo+2:wght@500;600&display=swap" rel="stylesheet">
 <style>
 /* ===========================================================
-   デザイン案C「余白と整列で、信頼感」
-   案A・Bが装飾で親しみを出すのに対し、こちらは引き算:
-   ・飾りを持たず、余白・線・整列だけで組み立てる
-   ・明朝の見出し＋深い藍緑の1色。写真は角を落とさず直角のまま
-   ・認可保育園としての落ち着き、保護者が情報を追いやすい静かさ
+   デザイン案C「写真を全画面に、言葉は縦書きで」
+   参考イメージ（ひより保育園）の骨格をかみのて用に翻案:
+   ・白い帯のヘッダーを置かず、写真の上にロゴとメニューを浮かせる
+   ・ロゴは中央、メニューは左右に振り分け、上に手描きの白い線画アイコン
+   ・園の言葉は縦書きで写真の中央に置く
+   ・写真の下端をくの字に切り抜き、そこから白い本文へつなぐ
+   ・左端に縦書きのコピーライト、右端にアクセス等の小さなタブ
    =========================================================== */
 *{box-sizing:border-box}
 :root{
-  --deep:#1f4b52;      /* 主色：深い藍緑（1色だけ使う） */
-  --deep-l:#3b6f77;
-  --deep-soft:#eef4f4;
-  --accent:#c08a3e;    /* 差し色：金茶。ごく少量 */
-  --ink:#26282a;
-  --ink-soft:#6f7477;
-  --line:#e2e5e5;
-  --paper:#fbfbfa;
+  --brand:#e8734a;      /* 主色：やわらかい朱 */
+  --brand-d:#c25631;
+  --brand-soft:#fdeee7;
+  --leaf:#6fae86;       /* 副：葉の緑 */
+  --sky:#7fb8cd;        /* 副：空 */
+  --ink:#3a352f;
+  --ink-soft:#7d766c;
+  --line:#e8e3da;
+  --paper:#fdfbf7;
   --white:#fff;
   --wrap:1060px;
 }
 html,body{margin:0;padding:0}
-body{font-family:'Zen Kaku Gothic New',"Hiragino Sans","Yu Gothic UI",sans-serif;
-  color:var(--ink);background:var(--white);line-height:2;font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:'Zen Maru Gothic',"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  color:var(--ink);background:var(--white);line-height:1.95;font-size:16px;-webkit-text-size-adjust:100%}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 ul{margin:0;padding:0;list-style:none}
 h1,h2,h3,p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
 .mincho{font-family:'Zen Old Mincho',"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:500}
-.note{background:var(--ink);color:#fff;font-size:13px;padding:9px 24px;text-align:center;line-height:1.7}
-.note b{color:#e8c98d}
+.note{position:absolute;left:0;right:0;top:0;z-index:60;background:rgba(58,53,47,.86);color:#fff;
+  font-size:12.5px;padding:8px 24px;text-align:center;line-height:1.7}
+.note b{color:#ffd9a8}
 
-/* ---- ヘッダー：細く、線一本で区切る ---- */
-.head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
-.head-in{max-width:1240px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:22px}
-.brand{display:flex;align-items:baseline;gap:12px;min-width:0}
-.brand .name{font-size:20px;letter-spacing:.16em;white-space:nowrap;font-family:'Zen Old Mincho',serif;font-weight:500}
-.brand .en{font-size:9.5px;letter-spacing:.26em;color:var(--ink-soft);font-family:'Baloo 2',sans-serif;white-space:nowrap}
-.gnav{display:flex;gap:26px;margin-left:auto;font-size:13.5px}
-.gnav a{padding-bottom:3px;border-bottom:1px solid transparent}
-.gnav a:hover{border-bottom-color:var(--deep)}
-.cta{flex:none;border:1px solid var(--deep);color:var(--deep);font-size:13.5px;padding:11px 22px;letter-spacing:.06em}
-.cta:hover{background:var(--deep);color:#fff}
-.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);padding:8px 12px;cursor:pointer;font-family:inherit}
+/* ============ ヒーロー：写真を全画面に敷く ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  background:#cfc7bd;overflow:hidden;
+  /* 下端をくの字に切り抜き、白い本文へつなぐ */
+  clip-path:polygon(0 0,100% 0,100% 88%,50% 100%,0 88%)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,26,22,.42) 0%,rgba(30,26,22,.16) 34%,rgba(30,26,22,.30) 100%)}
 
-/* ---- ヒーロー：写真は直角のまま、左に静かな見出し ---- */
-.hero{border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:0;align-items:stretch}
-.hero-copy{padding:84px 56px 84px 0;display:flex;flex-direction:column;justify-content:center}
-.hero .eyebrow-line{font-size:12px;letter-spacing:.2em;color:var(--ink-soft);margin-bottom:22px}
-.hero h1{font-size:clamp(28px,4.2vw,44px);line-height:1.85;letter-spacing:.08em}
-.hero p.lead{margin-top:24px;color:var(--ink-soft);font-size:14.5px;line-height:2.15}
-.hero-tags{display:flex;gap:0;flex-wrap:wrap;margin-top:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.hero-tags span{font-size:12.5px;color:var(--ink-soft);padding:11px 18px 11px 0;border-right:1px solid var(--line);margin-right:18px}
-.hero-tags span:last-child{border-right:0}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.btn{display:inline-flex;align-items:center;padding:15px 30px;font-size:14.5px;letter-spacing:.06em}
-.btn-main{background:var(--deep);color:#fff}
-.btn-main:hover{background:var(--deep-l)}
-.btn-sub{border:1px solid var(--line);color:var(--ink)}
-.btn-sub:hover{border-color:var(--deep)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;min-height:420px}
+/* ---- ロゴとメニュー（写真の上に浮かせる） ---- */
+.topbar{position:relative;z-index:5;padding:46px 24px 0;color:#fff}
+.topline{display:flex;align-items:flex-start;justify-content:center;gap:clamp(18px,3.4vw,48px)}
+.mnav{display:flex;gap:clamp(16px,2.6vw,40px);align-items:flex-start;padding-top:34px}
+.mnav a{display:flex;flex-direction:column;align-items:center;gap:9px;font-size:13.5px;font-weight:500;
+  letter-spacing:.06em;white-space:nowrap;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+.mnav svg{width:38px;height:38px;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mnav a:hover{opacity:.75}
+.logo{flex:none;text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.logo svg{width:clamp(50px,5.4vw,66px);height:auto;margin:0 auto 12px;display:block;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.logo .nm{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:.1em;line-height:1.3}
+.logo .en{font-size:10.5px;letter-spacing:.24em;font-family:'Baloo 2',sans-serif;opacity:.92}
+.burger{display:none;position:absolute;right:18px;top:52px;z-index:8;background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.6);color:#fff;border-radius:10px;padding:8px 12px;font-family:inherit;cursor:pointer}
 
-/* ---- 数字：罫線で区切る ---- */
-.stats{border-bottom:1px solid var(--line)}
-.stats .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:0;text-align:center}
-.stats .wrap>div{padding:30px 12px;border-right:1px solid var(--line)}
-.stats .wrap>div:last-child{border-right:0}
-.stats .n{font-family:'Baloo 2',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:600;color:var(--deep);line-height:1.3}
-.stats .c1,.stats .c2,.stats .c3{color:var(--deep)}
+/* ---- 縦書きの見出し ---- */
+/* 下の余白は、写真に重ねたボタンの居場所。ここを削ると縦書きの末尾がボタンに隠れる。 */
+.hero-copy{position:relative;z-index:5;flex:1;display:flex;align-items:center;justify-content:center;
+  padding:26px 24px 180px}
+/* 折り返しは <br> で決め打ちする。max-height に任せると「まんなかに。」が
+   「ま／んなかに。」のように語の途中で列が分かれる。 */
+.vtext{writing-mode:vertical-rl;text-orientation:upright;color:#fff;
+  font-size:clamp(21px,2.6vw,30px);letter-spacing:.24em;line-height:1.85;
+  text-shadow:0 2px 14px rgba(0,0,0,.45);max-height:100%}
+.vsub{writing-mode:vertical-rl;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:.2em;
+  margin-right:22px;text-shadow:0 1px 8px rgba(0,0,0,.4);align-self:center}
+
+/* ---- 左端のコピーライト（縦） ---- */
+.side-copy{position:absolute;left:14px;top:50%;transform:translateY(-50%);z-index:6;
+  writing-mode:vertical-rl;font-size:9.5px;letter-spacing:.24em;color:rgba(255,255,255,.75);
+  font-family:'Baloo 2',sans-serif}
+
+/* ---- 右端の小さなタブ ---- */
+.side-tabs{position:absolute;right:0;top:46%;z-index:7;display:flex;flex-direction:column;gap:10px}
+.side-tabs a{writing-mode:vertical-rl;padding:20px 10px;border-radius:10px 0 0 10px;font-size:12.5px;
+  letter-spacing:.14em;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.side-tabs svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7}
+.tab-dark{background:#3a352f;color:#fff}
+.tab-pink{background:var(--brand-soft);color:var(--brand-d);position:relative}
+.tab-pink .new{position:absolute;left:-30px;top:6px;background:#fff;color:var(--brand-d);border-radius:999px;
+  font-size:10px;font-family:'Baloo 2',sans-serif;font-weight:600;padding:3px 9px;box-shadow:0 2px 8px rgba(0,0,0,.14);writing-mode:horizontal-tb}
+
+/* ---- ヒーロー下のボタン ---- */
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+/* ヒーローのボタンだけ写真の下部に重ねる（本文側のボタンは通常配置のまま） */
+.hero-actions.on-photo{position:absolute;left:50%;transform:translateX(-50%);bottom:min(11vh,100px);z-index:6}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:14.5px}
+.btn-main{background:var(--brand);color:#fff;box-shadow:0 8px 20px rgba(232,115,74,.36)}
+.btn-main:hover{background:var(--brand-d)}
+.btn-sub{background:rgba(255,255,255,.92);color:var(--ink)}
+
+/* ============ 以下、本文 ============ */
+.stats{background:var(--white);padding-top:26px}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:24px;text-align:center}
+.stats .n{font-family:'Baloo 2',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:600}
+.stats .c1{color:var(--brand-d)}.stats .c2{color:var(--leaf)}.stats .c3{color:var(--sky)}
 .stats .l{font-size:12px;color:var(--ink-soft);line-height:1.7}
 
-/* ---- セクション ---- */
-.sec{padding:92px 0}
+.sec{padding:76px 0}
 .sec.alt{background:var(--paper)}
-.sec-head{margin-bottom:52px;text-align:center}
-.eyebrow{display:inline-block;font-size:11.5px;letter-spacing:.22em;color:var(--accent);margin-bottom:14px}
-.eyebrow svg{display:none}
-.sec-head h2{font-size:clamp(21px,3.1vw,29px);line-height:1.8;letter-spacing:.08em;font-family:'Zen Old Mincho',serif;font-weight:500}
-.sec-head .en{display:block;font-family:'Baloo 2',sans-serif;font-size:11px;letter-spacing:.3em;color:var(--ink-soft);margin-top:10px}
-.sec-head p{margin-top:16px;color:var(--ink-soft);font-size:14px}
+.sec-head{text-align:center;margin-bottom:44px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--brand-d);font-weight:700;margin-bottom:10px}
+.eyebrow svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7}
+.sec-head h2{font-size:clamp(22px,3.2vw,30px);line-height:1.7;font-weight:500;letter-spacing:.06em;
+  font-family:'Zen Old Mincho',serif}
+.sec-head .en{display:block;font-family:'Baloo 2',sans-serif;font-size:11.5px;letter-spacing:.28em;color:var(--ink-soft);margin-top:8px}
+.sec-head p{margin-top:14px;color:var(--ink-soft);font-size:14.5px}
 
-/* ---- 3つの理由：線で仕切るだけ ---- */
-.reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
-.reason{padding:0 30px;border-left:1px solid var(--line);text-align:left}
-.reason:first-child{border-left:0;padding-left:0}
-.reason:last-child{padding-right:0}
-.reason .ic{display:none}
-.reason h3{font-size:16.5px;font-weight:700;line-height:1.75;margin-bottom:12px;padding-top:18px;border-top:2px solid var(--deep);display:inline-block}
-.reason p{font-size:13.5px;color:var(--ink-soft);line-height:2.1}
+.reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.reason{text-align:center;padding:0 8px}
+.reason .ic{width:74px;height:74px;margin:0 auto 14px;stroke:var(--brand);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.reason h3{font-size:16.5px;font-weight:700;line-height:1.65;margin-bottom:10px}
+.reason p{font-size:13.5px;color:var(--ink-soft);line-height:2}
 
-/* ---- 保育 ---- */
-.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
-.ph-round{overflow:hidden;aspect-ratio:4/3}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.ph-round{overflow:hidden;aspect-ratio:4/3;border-radius:0}
 .ph-round img{width:100%;height:100%;object-fit:cover}
-.marks{display:grid;gap:0;margin-top:26px}
-.marks li{display:block;padding:18px 0;border-top:1px solid var(--line);background:none!important}
-.marks li:last-child{border-bottom:1px solid var(--line)}
+.marks{display:grid;gap:0;margin-top:24px}
+.marks li{display:block;padding:16px 0;border-bottom:1px dashed var(--line);background:none!important}
+.marks li:first-child{border-top:1px dashed var(--line)}
 .marks .dot{display:none}
-.marks b{display:block;font-size:15px;margin-bottom:2px}
-.marks span{font-size:13.5px;color:var(--ink-soft);line-height:2}
+.marks b{display:block;font-size:15.5px;margin-bottom:2px}
+.marks span{font-size:13.5px;color:var(--ink-soft);line-height:1.95}
 
-/* ---- 2つの園 ---- */
-.parks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
-.park{background:none!important;border:1px solid var(--line);display:flex;flex-direction:column}
+.parks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.park{background:var(--white)!important;border:1px solid var(--line);display:flex;flex-direction:column}
 .park .ph{aspect-ratio:16/10;overflow:hidden}
 .park .ph img{width:100%;height:100%;object-fit:cover}
-.park-body{padding:30px 28px;flex:1;display:flex;flex-direction:column}
-.park h3{font-size:19px;font-family:'Zen Old Mincho',serif;font-weight:500;letter-spacing:.06em}
-.park .kind{display:block;font-size:12px;color:var(--ink-soft);margin:8px 0 18px;background:none;padding:0}
-.park dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;font-size:13.5px;margin:0 0 22px}
+.park-body{padding:26px 26px;flex:1;display:flex;flex-direction:column}
+.park h3{font-size:19px;font-weight:700}
+.park .kind{display:inline-block;background:var(--brand-soft);color:var(--brand-d);border-radius:999px;padding:4px 12px;font-size:12px;margin:8px 0 16px}
+.park dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:13.5px;margin:0 0 20px}
 .park dt{color:var(--ink-soft);white-space:nowrap}
 .park dd{margin:0}
-.link-a{margin-top:auto;font-size:13.5px;color:var(--deep);border-bottom:1px solid var(--deep);align-self:flex-start;padding-bottom:2px}
+.link-a{margin-top:auto;font-weight:700;font-size:14px;color:var(--brand-d);align-self:flex-start}
 
-/* ---- 病児保育 ---- */
-.byoji{background:var(--deep-soft);overflow:hidden}
+.byoji{background:var(--white);border:1px solid var(--line);overflow:hidden}
 .byoji .split{gap:0}
-.byoji .ph-round{aspect-ratio:auto;height:100%;min-height:300px}
-.byoji-body{padding:52px 46px}
-.byoji-body h2{font-size:clamp(20px,2.9vw,27px);line-height:1.8;font-family:'Zen Old Mincho',serif;font-weight:500;margin-bottom:18px;letter-spacing:.06em}
-.byoji-body p{font-size:14px;color:#44585b;line-height:2.15}
-.byoji-body .fine{font-size:12.5px;margin-top:14px;color:#5f7276}
+.byoji .ph-round{aspect-ratio:auto;height:100%;min-height:290px}
+.byoji-body{padding:44px 40px}
+.byoji-body h2{font-size:clamp(21px,3vw,28px);line-height:1.7;font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
+.byoji-body p{font-size:14.5px;color:var(--ink-soft);line-height:2.05}
+.byoji-body .fine{font-size:13px;margin-top:12px}
 
-/* ---- 入園案内 ---- */
-.adm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
-.adm-card{background:none!important;border-top:2px solid var(--deep);padding:26px 0 0}
-.adm-card h3{font-size:17px;font-weight:700;margin-bottom:14px}
-.adm-card p{font-size:13.5px;color:var(--ink-soft);line-height:2.15}
-.steps{display:flex;gap:0;margin:20px 0;flex-wrap:wrap}
-.steps li{background:none;color:var(--ink-soft);border:0;border-left:1px solid var(--line);padding:2px 14px;font-size:12.5px}
-.steps li:first-child{border-left:0;padding-left:0}
-.notice{margin-top:34px;background:none;border:1px solid var(--line);padding:24px 26px;font-size:13.5px;line-height:2.1}
-.notice b{display:block;color:var(--deep)}
+.adm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.adm-card{background:none!important;border-top:3px solid var(--brand);padding:24px 0 0}
+.adm-card h3{font-size:17.5px;font-weight:700;margin-bottom:12px}
+.adm-card p{font-size:14px;color:var(--ink-soft);line-height:2}
+.steps{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
+.steps li{background:var(--brand-soft);color:var(--brand-d);border-radius:999px;padding:7px 14px;font-size:12.5px}
+.notice{margin-top:26px;background:var(--paper);border:1px dashed var(--line);padding:22px 26px;font-size:13.5px;line-height:2}
+.notice b{display:block}
 
-/* ---- 採用 ---- */
-.recruit{background:var(--deep);color:#fff;padding:64px 52px;text-align:left;border-radius:0}
-.recruit .eyebrow{color:#dfc08a}
-.recruit h2{font-size:clamp(21px,3vw,29px);font-family:'Zen Old Mincho',serif;font-weight:500;letter-spacing:.08em;margin-bottom:18px}
-.recruit p{color:#c3d2d3;font-size:14px;line-height:2.15;max-width:44em}
-.rnums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:34px 0}
-.rnums div{background:none;border-left:1px solid rgba(255,255,255,.22);padding:10px 20px;border-radius:0;text-align:left}
-.rnums div:first-child{border-left:0;padding-left:0}
+.recruit{background:var(--ink);color:#fff;padding:52px 44px;text-align:center;border-radius:0}
+.recruit .eyebrow{color:#f0b493}
+.recruit h2{font-size:clamp(22px,3.2vw,30px);font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
+.recruit p{color:#cfc7bd;font-size:14.5px;line-height:2.05}
+.rnums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:30px 0}
+.rnums div{background:rgba(255,255,255,.08);border-radius:0;padding:18px 10px}
 .rnums .n{font-family:'Baloo 2',sans-serif;font-size:24px;font-weight:600;color:#fff}
-.rnums .l{font-size:11.5px;color:#a8bcbd}
-.recruit .btn-main{background:#fff;color:var(--deep)}
+.rnums .l{font-size:11.5px;color:#b9b0a5}
 
-/* ---- お知らせ ---- */
-.news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .news .ph{aspect-ratio:16/10;overflow:hidden}
 .news .ph img{width:100%;height:100%;object-fit:cover}
-.news .meta{display:flex;gap:12px;align-items:center;margin:14px 0 6px;font-size:11.5px}
+.news .meta{display:flex;gap:10px;align-items:center;margin:13px 0 5px;font-size:12px}
 .news .date{font-family:'Baloo 2',sans-serif;color:var(--ink-soft)}
-.news .tag{background:none;color:var(--deep);border:1px solid var(--line);border-radius:0;padding:1px 9px;font-weight:400;font-size:11px}
-.news .tag.d{background:none;color:var(--accent)}
-.news h3{font-size:15px;line-height:1.9;font-weight:500}
+.news .tag{background:var(--brand-soft);color:var(--brand-d);border-radius:999px;padding:2px 10px;font-size:11px}
+.news .tag.d{background:#e6f2ea;color:#3f7a56}
+.news h3{font-size:15.5px;line-height:1.85;font-weight:500}
 
-/* ---- お問い合わせ ---- */
-.contact{background:var(--paper);border:1px solid var(--line);padding:64px 40px;text-align:center;border-radius:0}
-.contact h2{font-size:clamp(22px,3.2vw,30px);font-family:'Zen Old Mincho',serif;font-weight:500;letter-spacing:.08em;margin-bottom:18px}
-.contact p{color:var(--ink-soft);font-size:14px;line-height:2.15}
-.tel{margin-top:30px;font-family:'Baloo 2',sans-serif;font-size:clamp(25px,3.8vw,34px);font-weight:600;color:var(--deep)}
-.tel small{display:block;font-family:inherit;font-size:12px;color:var(--ink-soft);font-weight:400}
+.contact{background:var(--brand-soft);padding:54px 40px;text-align:center;border-radius:0}
+.contact h2{font-size:clamp(23px,3.4vw,32px);font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
+.contact p{color:#8a6250;font-size:14.5px;line-height:2.05}
+.tel{margin-top:26px;font-family:'Baloo 2',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:600;color:var(--brand-d)}
+.tel small{display:block;font-family:inherit;font-size:12px;color:#9a7b6c;font-weight:400}
 
-/* ---- フッター ---- */
-.foot{background:var(--ink);color:#b9bfc0;padding:60px 0 26px;font-size:13.5px}
-.foot-grid{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr));gap:36px}
-.foot h4{color:#fff;font-size:12px;letter-spacing:.16em;margin-bottom:14px}
-.foot li{margin-bottom:9px}
+
+.foot{background:var(--ink);color:#c3bab0;padding:54px 0 26px;font-size:13.5px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr));gap:34px}
+.foot h4{color:#fff;font-size:13px;margin-bottom:12px}
+.foot li{margin-bottom:8px}
 .foot a:hover{color:#fff}
-.foot .name{color:#fff;font-size:19px;font-family:'Zen Old Mincho',serif;letter-spacing:.14em}
-.foot .en{color:#8d9496;font-size:10px;letter-spacing:.26em;font-family:'Baloo 2',sans-serif}
-.foot-addr{margin-top:16px;line-height:2.1;color:#8d9496;font-size:12.5px}
-.copy{border-top:1px solid #3b3f41;margin-top:44px;padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;color:#7e8587}
+.foot .name{color:#fff;font-size:19px;font-weight:700;letter-spacing:.08em}
+.foot .en{color:#948b81;font-size:10px;letter-spacing:.24em;font-family:'Baloo 2',sans-serif}
+.foot-addr{margin-top:14px;line-height:2;color:#948b81;font-size:12.5px}
+.copy{border-top:1px solid #4d473f;margin-top:38px;padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#8b8278}
 
 @media (max-width:900px){
-  .gnav{display:none}.burger{display:block}.head-in .cta{display:none}
-  .hero-grid,.split,.parks,.adm,.news,.foot-grid{grid-template-columns:minmax(0,1fr)}
-  .reasons{grid-template-columns:minmax(0,1fr)}
-  .reason{border-left:0;padding:0 0 26px}
+  .hero{clip-path:polygon(0 0,100% 0,100% 93%,50% 100%,0 93%)}
+  .mnav,.side-copy,.side-tabs{display:none}
+  .burger{display:block;top:22px}
+  /* 注記はスマホだと3行になり、写真に重ねるとロゴとハンバーガーを隠してしまう。
+     幅が狭いあいだは通常の帯として写真の上に積む。 */
+  .note{position:static}
+  .topbar{padding-top:28px}
+  .hero-copy{padding-bottom:150px}
+  .vtext{font-size:20px}
+  .hero-actions.on-photo{bottom:12vh}
+  .split,.parks,.adm,.news,.reasons,.foot-grid{grid-template-columns:minmax(0,1fr)}
   .byoji .split{grid-template-columns:minmax(0,1fr)}
-  .byoji-body{padding:34px 24px}
+  .byoji-body{padding:32px 24px}
   .rnums{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .rnums div{border-left:0;padding-left:0}
-  .sec{padding:60px 0}
-  .recruit,.contact{padding:40px 24px}
-  .hero-copy{padding:52px 0 44px}
-  .stats .wrap>div{border-right:0;border-bottom:1px solid var(--line);padding:22px 12px}
-  .brand .name{font-size:17px;letter-spacing:.1em}
-  .brand .en{display:none}
+  .sec{padding:56px 0}
+  .recruit,.contact{padding:38px 22px}
 }
 </style>
 </head>
@@ -209,31 +229,48 @@ h1,h2,h3,p{margin:0}
 
 <div class="note">これは<b>デザイン案C</b>です。写真は雰囲気をつかむための<b>イメージ写真</b>、園の情報は現行サイトからの引用です。文章と写真は差し替えます。</div>
 
-<header class="head">
-  <div class="head-in">
-    <a class="brand" href="#"><span class="name">かみのて保育園</span><span class="en">KAMINOTE NURSERY</span></a>
-    <nav class="gnav">
-      <a href="#reasons">3つの理由</a><a href="#policy">かみのての保育</a><a href="#parks">園のご紹介</a>
-      <a href="#byoji">病児保育</a><a href="#admission">入園案内</a><a href="#recruit">採用情報</a>
-    </nav>
-    <a class="cta" href="#contact">見学・ご相談</a>
-    <button class="burger" type="button" aria-label="メニュー">☰</button>
-  </div>
-</header>
-
+<!-- ============ ヒーロー ============ -->
 <section class="hero">
-  <div class="wrap hero-grid" style="max-width:1240px">
-    <div class="hero-copy">
-      <div class="eyebrow-line">岐阜県可児市　かみのて保育園／かみのて今渡保育園</div>
-      <h1 class="mincho">こどもの「やってみたい」を、<br>まんなかに。</h1>
-      <p class="lead">朝も夕方も、体調をくずした日も。<br>はたらくご家庭のとなりで、こどもの一日をあずかります。</p>
-      <div class="hero-tags"><span>2園＋病児保育室</span><span>企業主導型＋認可</span><span>多言語対応</span></div>
-      <div class="hero-actions">
-        <a class="btn btn-main" href="#contact">見学のお申し込み</a>
-        <a class="btn btn-sub" href="#admission">入園案内を見る</a>
-      </div>
+  <div class="hero-bg"><img src="img/hero-toys.jpg" alt="イメージ写真"></div>
+
+  <div class="side-copy">COPYRIGHT © A AND K CO., LTD. ALL RIGHTS RESERVED.</div>
+
+  <div class="side-tabs">
+    <a class="tab-dark" href="#parks"><svg viewBox="0 0 24 24"><path d="M4 16h16M6 16v-4l2-4h8l2 4v4"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg>アクセス</a>
+    <a class="tab-pink" href="#news"><span class="new">NEW</span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/></svg>園の日記</a>
+  </div>
+
+  <div class="topbar">
+    <button class="burger" type="button" aria-label="メニュー">☰</button>
+    <div class="topline">
+      <nav class="mnav">
+        <a href="#policy"><svg viewBox="0 0 40 40"><path d="M8 32V17l12-8 12 8v15"/><path d="M15 32V23h10v9"/><path d="M6 17 20 7l14 10"/></svg>園のこと</a>
+        <a href="#admission"><svg viewBox="0 0 40 40"><path d="M20 12c-3-3-8-3-11-2v18c3-1 8-1 11 2 3-3 8-3 11-2V10c-3-1-8-1-11 2Z"/><path d="M20 12v18"/></svg>入園案内</a>
+        <a href="#recruit"><svg viewBox="0 0 40 40"><circle cx="14" cy="15" r="5"/><circle cx="26" cy="15" r="5"/><path d="M6 32c0-5 4-8 8-8s8 3 8 8"/><path d="M18 32c0-5 4-8 8-8s8 3 8 8"/></svg>職員紹介</a>
+      </nav>
+
+      <a class="logo" href="#">
+        <svg viewBox="0 0 80 44" aria-hidden="true"><path d="M6 40 40 8l34 32"/><path d="M40 4v8"/><path d="M31 40V27h18v13"/></svg>
+        <div class="nm">かみのて保育園</div>
+        <div class="en">KAMINOTE HOIKUEN</div>
+      </a>
+
+      <nav class="mnav">
+        <a href="#byoji"><svg viewBox="0 0 40 40"><path d="M20 33s-12-7-12-15a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 8-12 15-12 15Z"/><path d="M20 16v8M16 20h8"/></svg>病児保育</a>
+        <a href="#news"><svg viewBox="0 0 40 40"><path d="M9 8h22v24H9z"/><path d="M14 15h12M14 21h12M14 27h7"/></svg>園の日記</a>
+        <a href="#contact"><svg viewBox="0 0 40 40"><rect x="7" y="11" width="26" height="18" rx="2"/><path d="m7 13 13 9 13-9"/></svg>お問い合わせ</a>
+      </nav>
     </div>
-    <div class="hero-photo"><img src="img/hero-toys.jpg" alt="イメージ写真"></div>
+  </div>
+
+  <div class="hero-copy">
+    <div class="vtext mincho">こどもの「やってみたい」を、<br>まんなかに。</div>
+    <div class="vsub">岐阜県可児市　かみのて保育園／かみのて今渡保育園</div>
+  </div>
+
+  <div class="hero-actions on-photo">
+    <a class="btn btn-main" href="#contact">見学のお申し込み</a>
+    <a class="btn btn-sub" href="#admission">入園案内を見る</a>
   </div>
 </section>
 
