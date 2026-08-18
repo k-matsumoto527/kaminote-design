@@ -544,30 +544,36 @@ h1,h2,h3,p{margin:0}
      ・JSが動かない場合は class="anim" が付かず、最初から全部見えている
      ・OSの「動きを減らす」設定と印刷のときは動かさない                      -->
 <style>
-  .anim .rv { opacity: 0; transform: translateY(12px);
-              transition: opacity .6s ease-out, transform .6s cubic-bezier(.2,.7,.3,1); }
-  .anim .rv.on { opacity: 1; transform: none; }
+  /* 変化のさせ方は「アニメーション」を使う。クラスを付けた時点で必ず動くので、
+     読み込みの早さや処理の順番で動いたり動かなかったりしない。 */
+  @keyframes rise    { from { opacity: 0; transform: translateY(14px); }
+                       to   { opacity: 1; transform: none; } }
+  @keyframes riseSp  { from { opacity: 0; transform: translateY(9px); }
+                       to   { opacity: 1; transform: none; } }
+  @keyframes zoomOut { from { transform: scale(1.06); } to { transform: none; } }
+  @keyframes popIn   { from { opacity: 0; transform: scale(.94); }
+                       to   { opacity: .95; transform: none; } }
 
-  /* ヒーロー: 写真がゆっくり寄りから引き、言葉が下から順に出る */
-  .anim .hero-bg img { transform: scale(1.06); transition: transform 1.8s cubic-bezier(.2,.7,.3,1); }
-  .anim .hero.on .hero-bg img { transform: none; }
-  .anim .hero-cluster { opacity: 0; transform: scale(.94);
-                        transition: opacity 1s ease-out, transform 1s cubic-bezier(.2,.7,.3,1);
-                        transition-delay: .45s; }
-  .anim .hero.on .hero-cluster { opacity: .95; transform: none; }
+  .anim .rv { opacity: 0; }
+  .anim .rv.on { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
 
+  /* ヒーロー: 写真がゆっくり引き、言葉が下から順に出る */
+  .anim .hero.on .hero-bg img { animation: zoomOut 1.8s cubic-bezier(.2,.7,.3,1) both; }
+  .anim .hero-cluster { opacity: 0; }
+  .anim .hero.on .hero-cluster { animation: popIn 1s cubic-bezier(.2,.7,.3,1) .45s both; }
+
+  @media (max-width: 700px) {            /* スマホは動きを控えめに */
+    .anim .rv.on { animation-name: riseSp; }
+  }
+  /* 「動きを減らす」設定の端末と、印刷・PDF保存のときは動かさず、最初から見せる */
   @media (prefers-reduced-motion: reduce) {
-    .anim .rv, .anim .hero-bg img, .anim .hero-cluster { transition: none; }
-    .anim .rv { opacity: 1; transform: none; }
-    .anim .hero-bg img { transform: none; }
-    .anim .hero-cluster { opacity: .95; transform: none; }
+    .anim .rv, .anim .hero-cluster { opacity: 1; }
+    .anim .rv.on, .anim .hero.on .hero-bg img, .anim .hero.on .hero-cluster { animation: none; }
+    .anim .hero-cluster { opacity: .95; }
   }
   @media print {
-    .anim .rv { opacity: 1 !important; transform: none !important; }
-    .anim .hero-cluster { opacity: .95 !important; transform: none !important; }
-  }
-  @media (max-width: 700px) {            /* スマホは移動量を控えめに */
-    .anim .rv { transform: translateY(8px); }
+    .anim .rv, .anim .hero-cluster { opacity: 1 !important; }
+    .anim .rv.on, .anim .hero.on .hero-bg img, .anim .hero.on .hero-cluster { animation: none !important; }
   }
 </style>
 <script>
@@ -583,17 +589,13 @@ h1,h2,h3,p{margin:0}
     if (copy) {
       [].slice.call(copy.children).forEach(function (el, i) {
         el.classList.add('rv');
-        el.style.transitionDelay = (0.15 + i * 0.15) + 's';
+        el.style.animationDelay = (0.15 + i * 0.15) + 's';
       });
     }
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        hero.classList.add('on');
-        if (copy) {
-          [].slice.call(copy.children).forEach(function (el) { el.classList.add('on'); });
-        }
-      });
-    });
+    hero.classList.add('on');
+    if (copy) {
+      [].slice.call(copy.children).forEach(function (el) { el.classList.add('on'); });
+    }
   }
 
   // --- 各セクション: 画面に入ったら、上から順にふわっと ---
@@ -629,10 +631,12 @@ h1,h2,h3,p{margin:0}
         units.splice(i, 1);                            // 一度出したら見張らない
       }
     }
+    if (!shown.length) { return; }
     shown.sort(function (a, b) {
       return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
-    }).forEach(function (el, i) {
-      el.style.transitionDelay = (i * 0.06) + 's';
+    });
+    shown.forEach(function (el, i) {
+      el.style.animationDelay = (i * 0.06) + 's';
       el.classList.add('on');
     });
     if (!units.length) {
