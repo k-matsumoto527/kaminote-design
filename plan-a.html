@@ -539,5 +539,126 @@ h1,h2,h3,p{margin:0}
   </div>
 </footer>
 
+<!-- ============ 開いたときの動き ============
+     ・動かすのは透明度と位置だけ（レイアウトは動かさないのでカクつかない）
+     ・JSが動かない場合は class="anim" が付かず、最初から全部見えている
+     ・OSの「動きを減らす」設定と印刷のときは動かさない                      -->
+<style>
+  .anim .rv { opacity: 0; transform: translateY(12px);
+              transition: opacity .6s ease-out, transform .6s cubic-bezier(.2,.7,.3,1); }
+  .anim .rv.on { opacity: 1; transform: none; }
+
+  /* ヒーロー: 写真がゆっくり寄りから引き、言葉が下から順に出る */
+  .anim .hero-bg img { transform: scale(1.06); transition: transform 1.8s cubic-bezier(.2,.7,.3,1); }
+  .anim .hero.on .hero-bg img { transform: none; }
+  .anim .hero-cluster { opacity: 0; transform: scale(.94);
+                        transition: opacity 1s ease-out, transform 1s cubic-bezier(.2,.7,.3,1);
+                        transition-delay: .45s; }
+  .anim .hero.on .hero-cluster { opacity: .95; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim .rv, .anim .hero-bg img, .anim .hero-cluster { transition: none; }
+    .anim .rv { opacity: 1; transform: none; }
+    .anim .hero-bg img { transform: none; }
+    .anim .hero-cluster { opacity: .95; transform: none; }
+  }
+  @media print {
+    .anim .rv { opacity: 1 !important; transform: none !important; }
+    .anim .hero-cluster { opacity: .95 !important; transform: none !important; }
+  }
+  @media (max-width: 700px) {            /* スマホは移動量を控えめに */
+    .anim .rv { transform: translateY(8px); }
+  }
+</style>
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('anim');            // ここから先は隠してから出す
+
+  // --- ヒーロー: 読み込み直後に動きだす ---
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    // 言葉は上から順に、少しずつ遅らせて出す
+    var copy = hero.querySelector('.hero-copy');
+    if (copy) {
+      [].slice.call(copy.children).forEach(function (el, i) {
+        el.classList.add('rv');
+        el.style.transitionDelay = (0.15 + i * 0.15) + 's';
+      });
+    }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        hero.classList.add('on');
+        if (copy) {
+          [].slice.call(copy.children).forEach(function (el) { el.classList.add('on'); });
+        }
+      });
+    });
+  }
+
+  // --- 各セクション: 画面に入ったら、上から順にふわっと ---
+  // カードが並ぶところは1枚ずつずらす。それ以外はかたまりで出す。
+  var GRIDS = '.reasons, .parks, .news, .rnums';
+  var units = [];
+  function add(el) { if (units.indexOf(el) < 0) { units.push(el); } }
+
+  document.querySelectorAll('.stats > .wrap > *').forEach(add);   // 数字の帯は3つの項目ごと
+  document.querySelectorAll('.sec > .wrap').forEach(function (wrap) {
+    [].slice.call(wrap.children).forEach(function (kid) {
+      if (kid.matches(GRIDS) && kid.children.length) {
+        [].slice.call(kid.children).forEach(add);                 // カードは1枚ずつずらす
+      } else {
+        add(kid);                                                 // それ以外はかたまりで
+      }
+    });
+  });
+
+  units.forEach(function (el) { el.classList.add('rv'); });
+
+  // 画面に入ったものを、上にあるものから順に出す。
+  // IntersectionObserver は環境によって通知が来ないことがあり、そのときは
+  // 文字が消えたままになってしまうので、スクロールを見る素直な作りにする。
+  function sweep() {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var shown = [];
+    for (var i = units.length - 1; i >= 0; i--) {
+      var el = units[i];
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > 0) {
+        shown.push(el);
+        units.splice(i, 1);                            // 一度出したら見張らない
+      }
+    }
+    shown.sort(function (a, b) {
+      return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+    }).forEach(function (el, i) {
+      el.style.transitionDelay = (i * 0.06) + 's';
+      el.classList.add('on');
+    });
+    if (!units.length) {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    }
+  }
+
+  var waiting = false;
+  function onScroll() {
+    if (waiting) { return; }
+    waiting = true;
+    requestAnimationFrame(function () { waiting = false; sweep(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  sweep();                                             // 最初から見えている分
+  window.addEventListener('load', sweep);              // 画像が入って位置が確定したあと
+
+  // 保険: 何かの理由でスクロールを拾えない環境でも、文字が消えたままにはしない
+  setTimeout(function () {
+    units.forEach(function (el) { el.classList.add('on'); });
+    units.length = 0;
+  }, 5000);
+})();
+</script>
+
 </body>
 </html>
