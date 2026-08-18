@@ -54,7 +54,7 @@ h1,h2,h3,p{margin:0}
 .note b{color:var(--sun)}
 
 /* ---- ヘッダー ---- */
-.head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
 .head-in{max-width:1280px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:26px}
 /* 園名は letter-spacing が広いので、狭い画面では縮められるようにしておく
    （flex:none のままだと押し広げて横スクロールが出る） */
@@ -270,7 +270,7 @@ h1,h2,h3,p{margin:0}
 
 <!-- ============ ヒーロー ============ -->
 <section class="hero">
-  <div class="hero-bg"><img src="img/hero-toys.jpg" alt="イメージ写真"></div>
+  <div class="hero-bg"><img fetchpriority="high" decoding="async" src="img/hero-toys.jpg" alt="イメージ写真"></div>
 
   <!-- 右上の飾り群（参考イメージの花・粒のかたまり） -->
   <svg class="hero-cluster" viewBox="0 0 200 200" aria-hidden="true">
@@ -342,7 +342,7 @@ h1,h2,h3,p{margin:0}
 <!-- ============ かみのての保育 ============ -->
 <section class="sec tint" id="policy">
   <div class="wrap split">
-    <div class="ph"><img src="img/policy.jpg" alt="イメージ写真（保育室であそぶこどもたち）"></div>
+    <div class="ph"><img loading="lazy" decoding="async" src="img/policy.jpg" alt="イメージ写真（保育室であそぶこどもたち）"></div>
     <div>
       <span class="eyebrow"><svg viewBox="0 0 24 24"><path d="M12 5v14M12 9c0-3 3-5 6-4-1 4-3 5-6 4Z" stroke="#3fa39a" stroke-width="2" fill="none"/></svg>かみのての保育</span>
       <h2 class="mincho" style="font-size:clamp(22px,3.2vw,30px);line-height:1.65;font-weight:500">かみのての保育 ―<br>大切にしていること</h2>
@@ -369,7 +369,7 @@ h1,h2,h3,p{margin:0}
     </div>
     <div class="parks">
       <div class="park">
-        <div class="ph"><img src="img/park-1.jpg" alt="イメージ写真（通園するこどもたち）"></div>
+        <div class="ph"><img loading="lazy" decoding="async" src="img/park-1.jpg" alt="イメージ写真（通園するこどもたち）"></div>
         <div class="park-body">
           <h3>かみのて保育園</h3>
           <div class="kind">企業主導型保育園 ／ 岐阜県可児市今渡3番5</div>
@@ -383,7 +383,7 @@ h1,h2,h3,p{margin:0}
         </div>
       </div>
       <div class="park">
-        <div class="ph"><img src="img/park-2.jpg" alt="イメージ写真（保育室であそぶこども）"></div>
+        <div class="ph"><img loading="lazy" decoding="async" src="img/park-2.jpg" alt="イメージ写真（保育室であそぶこども）"></div>
         <div class="park-body">
           <h3>かみのて今渡保育園</h3>
           <div class="kind">可児市の認可保育園 ／ 岐阜県可児市今渡3-11</div>
@@ -405,7 +405,7 @@ h1,h2,h3,p{margin:0}
   <div class="wrap">
     <div class="byoji">
       <div class="split">
-        <div class="ph"><img src="img/byoji.jpg" alt="イメージ写真（こどもの手をとる大人の手）"></div>
+        <div class="ph"><img loading="lazy" decoding="async" src="img/byoji.jpg" alt="イメージ写真（こどもの手をとる大人の手）"></div>
         <div class="byoji-body">
           <span class="eyebrow"><svg viewBox="0 0 24 24"><path d="M12 19s-8-5-8-10a5 5 0 0 1 8-3 5 5 0 0 1 8 3c0 5-8 10-8 10Z" fill="#3fa39a"/></svg>病児保育</span>
           <h2 class="mincho">熱が出た日の、もうひとつの選択肢</h2>
@@ -470,13 +470,13 @@ h1,h2,h3,p{margin:0}
       <h2>園のいま、おとどけします<span class="en">NEWS &amp; DIARY</span></h2>
     </div>
     <div class="news">
-      <a href="#"><div class="ph"><img src="img/news-1.jpg" alt="イメージ写真（夏まつりの風船）"></div>
+      <a href="#"><div class="ph"><img loading="lazy" decoding="async" src="img/news-1.jpg" alt="イメージ写真（夏まつりの風船）"></div>
         <div class="meta"><span class="date">2026.07.24</span><span class="tag">お知らせ</span></div>
         <h3>夏まつりを開催しました（見出しは仮です）</h3></a>
-      <a href="#"><div class="ph"><img src="img/news-2.jpg" alt="イメージ写真（絵の具で製作あそびをしたこども）"></div>
+      <a href="#"><div class="ph"><img loading="lazy" decoding="async" src="img/news-2.jpg" alt="イメージ写真（絵の具で製作あそびをしたこども）"></div>
         <div class="meta"><span class="date">2026.07.18</span><span class="tag d">園の日記</span></div>
         <h3>はじめての泥んこあそび（見出しは仮です）</h3></a>
-      <a href="#"><div class="ph"><img src="img/news-3.jpg" alt="イメージ写真（リュックを背負った園児）"></div>
+      <a href="#"><div class="ph"><img loading="lazy" decoding="async" src="img/news-3.jpg" alt="イメージ写真（リュックを背負った園児）"></div>
         <div class="meta"><span class="date">2026.07.05</span><span class="tag">お知らせ</span></div>
         <h3>2027年度の入園受付についてのご案内（見出しは仮です）</h3></a>
     </div>
