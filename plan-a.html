@@ -229,11 +229,11 @@ h1,h2,h3,p{margin:0}
   .head-in{gap:12px;padding:10px 16px}
 }
 </style>
+
 <!-- ============ 開いたときの動き（前半：先に隠す） ============
      ここは <head> に置く。ページの一番下に置くと、いったん文字が普通に
      描かれてから隠れることになり、一瞬ちらついてから動き出してしまう。
-     ・動かすのは透明度と位置だけ
-     ・JSが動かない場合は class="anim" が付かず、最初から全部見えている
+     ・動かすのは透明度と位置だけ（レイアウトは動かさない）
      ・「動きを減らす」設定と印刷のときは動かさない                       -->
 <style>
   @keyframes rise    { from { opacity: 0; transform: translateY(14px); }
@@ -244,39 +244,47 @@ h1,h2,h3,p{margin:0}
   @keyframes popIn   { from { opacity: 0; transform: scale(.94); }
                        to   { opacity: .95; transform: none; } }
 
-  /* ヒーローはJSを使わず、CSSだけで動かす。JSがクラスを付けるのを待つと、
-     待っている間に文字が見えてしまう（環境が遅いほど長く見える）。
-     アニメーションは最初の1コマ目から効くので、一瞬も見えない。 */
+  /* ヒーローはJSを使わずCSSだけで動かす。JSがクラスを付けるのを待つと、
+     待っている間に文字が見えてしまう（環境が遅いほど長く見える）。 */
   .hero-bg img   { animation: zoomOut 1.8s cubic-bezier(.2,.7,.3,1) both; }
   .hero-copy > * { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
-  .hero-copy > *:nth-child(1) { animation-delay: .15s; }
-  .hero-copy > *:nth-child(2) { animation-delay: .30s; }
-  .hero-copy > *:nth-child(3) { animation-delay: .45s; }
-  .hero-copy > *:nth-child(4) { animation-delay: .60s; }
-  .hero-copy > *:nth-child(5) { animation-delay: .75s; }
+  .hero-copy > *:nth-child(1) { animation-delay: 0.15s; }
+  .hero-copy > *:nth-child(2) { animation-delay: 0.30s; }
+  .hero-copy > *:nth-child(3) { animation-delay: 0.45s; }
+  .hero-copy > *:nth-child(4) { animation-delay: 0.60s; }
+  .hero-copy > *:nth-child(5) { animation-delay: 0.75s; }
   .hero-cluster  { animation: popIn 1s cubic-bezier(.2,.7,.3,1) .45s both; }
 
   /* スクロールで出てくる分だけ、JSがあるとき（.anim）に隠しておく。
      ★ここの並びは下のJSの ANIM_SEL と必ず同じにすること
      （食い違うと、隠れたまま出てこない要素ができてしまう） */
   .anim .stats > .wrap > *,
-  .anim .sec > .wrap > *:not(.reasons):not(.parks):not(.news):not(.rnums),
-  .anim .reasons > *, .anim .parks > *, .anim .news > *, .anim .rnums > * { opacity: 0; }
+  .anim .sec > .wrap > *:not(.reasons):not(.parks):not(.adm):not(.news),
+  .anim .reasons > *,
+  .anim .parks > *,
+  .anim .adm > *,
+  .anim .news > * { opacity: 0; }
 
   .anim .on { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
 
   @media (max-width: 700px) { .anim .on { animation-name: riseSp; } }
 
   @media (prefers-reduced-motion: reduce) {
-    .anim .stats > .wrap > *, .anim .sec > .wrap > *,
-    .anim .reasons > *, .anim .parks > *,
-    .anim .news > *, .anim .rnums > * { opacity: 1; }
+    .anim .stats > .wrap > *,
+    .anim .sec > .wrap > *:not(.reasons):not(.parks):not(.adm):not(.news),
+    .anim .reasons > *,
+    .anim .parks > *,
+    .anim .adm > *,
+    .anim .news > * { opacity: 1; }
     .anim .on, .hero-bg img, .hero-copy > *, .hero-cluster { animation: none; }
   }
   @media print {
-    .anim .stats > .wrap > *, .anim .sec > .wrap > *,
-    .anim .reasons > *, .anim .parks > *,
-    .anim .news > *, .anim .rnums > * { opacity: 1 !important; }
+    .anim .stats > .wrap > *,
+    .anim .sec > .wrap > *:not(.reasons):not(.parks):not(.adm):not(.news),
+    .anim .reasons > *,
+    .anim .parks > *,
+    .anim .adm > *,
+    .anim .news > * { opacity: 1 !important; }
     .anim .on, .hero-bg img, .hero-copy > *, .hero-cluster { animation: none !important; }
   }
 </style>
@@ -598,18 +606,20 @@ h1,h2,h3,p{margin:0}
   </div>
 </footer>
 
+
+
 <!-- ============ 開いたときの動き（後半：順に出す） ============
      隠す指定と対象の並びは <head> 側にある。ここでは出す順番だけを決める。 -->
 <script>
 (function () {
   // ★ここの並びは <head> の隠す指定と必ず同じにすること
   var ANIM_SEL = '.stats > .wrap > *,'
-               + '.sec > .wrap > *:not(.reasons):not(.parks):not(.news):not(.rnums),'
-               + '.reasons > *, .parks > *, .news > *, .rnums > *';
+               + '.sec > .wrap > *:not(.reasons):not(.parks):not(.adm):not(.news),'
+               + '.reasons > *,'
+               + '.parks > *,'
+               + '.adm > *,'
+               + '.news > *';
 
-  // ヒーローはCSSだけで動く（このJSは関与しない）
-
-  // --- 各セクション: 画面に入ったら、上にあるものから順に ---
   var units = [].slice.call(document.querySelectorAll(ANIM_SEL));
 
   function sweep() {
