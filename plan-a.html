@@ -229,6 +229,61 @@ h1,h2,h3,p{margin:0}
   .head-in{gap:12px;padding:10px 16px}
 }
 </style>
+<!-- ============ 開いたときの動き（前半：先に隠す） ============
+     ここは <head> に置く。ページの一番下に置くと、いったん文字が普通に
+     描かれてから隠れることになり、一瞬ちらついてから動き出してしまう。
+     ・動かすのは透明度と位置だけ
+     ・JSが動かない場合は class="anim" が付かず、最初から全部見えている
+     ・「動きを減らす」設定と印刷のときは動かさない                       -->
+<style>
+  @keyframes rise    { from { opacity: 0; transform: translateY(14px); }
+                       to   { opacity: 1; transform: none; } }
+  @keyframes riseSp  { from { opacity: 0; transform: translateY(9px); }
+                       to   { opacity: 1; transform: none; } }
+  @keyframes zoomOut { from { transform: scale(1.06); } to { transform: none; } }
+  @keyframes popIn   { from { opacity: 0; transform: scale(.94); }
+                       to   { opacity: .95; transform: none; } }
+
+  /* 出てくる対象。★ここの並びは下のJSの ANIM_SEL と必ず同じにすること
+     （食い違うと、隠れたまま出てこない要素ができてしまう） */
+  .anim .hero-copy > *,
+  .anim .stats > .wrap > *,
+  .anim .sec > .wrap > *:not(.reasons):not(.parks):not(.news):not(.rnums),
+  .anim .reasons > *, .anim .parks > *, .anim .news > *, .anim .rnums > * { opacity: 0; }
+
+  .anim .on { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
+
+  /* ヒーロー: 写真がゆっくり引き、言葉が下から順に出る */
+  .anim .hero.on { animation: none; }
+  .anim .hero.on .hero-bg img { animation: zoomOut 1.8s cubic-bezier(.2,.7,.3,1) both; }
+  .anim .hero-cluster { opacity: 0; }
+  .anim .hero.on .hero-cluster { animation: popIn 1s cubic-bezier(.2,.7,.3,1) .45s both; }
+
+  @media (max-width: 700px) { .anim .on { animation-name: riseSp; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim .hero-copy > *, .anim .stats > .wrap > *,
+    .anim .sec > .wrap > *, .anim .reasons > *, .anim .parks > *,
+    .anim .news > *, .anim .rnums > * { opacity: 1; }
+    .anim .hero-cluster { opacity: .95; }
+    .anim .on, .anim .hero.on .hero-bg img, .anim .hero.on .hero-cluster { animation: none; }
+  }
+  @media print {
+    .anim .hero-copy > *, .anim .stats > .wrap > *,
+    .anim .sec > .wrap > *, .anim .reasons > *, .anim .parks > *,
+    .anim .news > *, .anim .rnums > * { opacity: 1 !important; }
+    .anim .hero-cluster { opacity: .95 !important; }
+    .anim .on, .anim .hero.on .hero-bg img, .anim .hero.on .hero-cluster { animation: none !important; }
+  }
+</style>
+<script>
+  // 最初の描画より前に付ける（あとから付けると、見えていたものが消えてから動く）
+  document.documentElement.classList.add('anim');
+  // 保険: 下のJSが動かなかったときは、隠したままにしない
+  setTimeout(function () {
+    if (!window.__animReady) { document.documentElement.classList.remove('anim'); }
+  }, 4000);
+</script>
 </head>
 <body>
 
@@ -539,104 +594,47 @@ h1,h2,h3,p{margin:0}
   </div>
 </footer>
 
-<!-- ============ 開いたときの動き ============
-     ・動かすのは透明度と位置だけ（レイアウトは動かさないのでカクつかない）
-     ・JSが動かない場合は class="anim" が付かず、最初から全部見えている
-     ・OSの「動きを減らす」設定と印刷のときは動かさない                      -->
-<style>
-  /* 変化のさせ方は「アニメーション」を使う。クラスを付けた時点で必ず動くので、
-     読み込みの早さや処理の順番で動いたり動かなかったりしない。 */
-  @keyframes rise    { from { opacity: 0; transform: translateY(14px); }
-                       to   { opacity: 1; transform: none; } }
-  @keyframes riseSp  { from { opacity: 0; transform: translateY(9px); }
-                       to   { opacity: 1; transform: none; } }
-  @keyframes zoomOut { from { transform: scale(1.06); } to { transform: none; } }
-  @keyframes popIn   { from { opacity: 0; transform: scale(.94); }
-                       to   { opacity: .95; transform: none; } }
-
-  .anim .rv { opacity: 0; }
-  .anim .rv.on { animation: rise .7s cubic-bezier(.2,.7,.3,1) both; }
-
-  /* ヒーロー: 写真がゆっくり引き、言葉が下から順に出る */
-  .anim .hero.on .hero-bg img { animation: zoomOut 1.8s cubic-bezier(.2,.7,.3,1) both; }
-  .anim .hero-cluster { opacity: 0; }
-  .anim .hero.on .hero-cluster { animation: popIn 1s cubic-bezier(.2,.7,.3,1) .45s both; }
-
-  @media (max-width: 700px) {            /* スマホは動きを控えめに */
-    .anim .rv.on { animation-name: riseSp; }
-  }
-  /* 「動きを減らす」設定の端末と、印刷・PDF保存のときは動かさず、最初から見せる */
-  @media (prefers-reduced-motion: reduce) {
-    .anim .rv, .anim .hero-cluster { opacity: 1; }
-    .anim .rv.on, .anim .hero.on .hero-bg img, .anim .hero.on .hero-cluster { animation: none; }
-    .anim .hero-cluster { opacity: .95; }
-  }
-  @media print {
-    .anim .rv, .anim .hero-cluster { opacity: 1 !important; }
-    .anim .rv.on, .anim .hero.on .hero-bg img, .anim .hero.on .hero-cluster { animation: none !important; }
-  }
-</style>
+<!-- ============ 開いたときの動き（後半：順に出す） ============
+     隠す指定と対象の並びは <head> 側にある。ここでは出す順番だけを決める。 -->
 <script>
 (function () {
-  var root = document.documentElement;
-  root.classList.add('anim');            // ここから先は隠してから出す
+  // ★ここの並びは <head> の隠す指定と必ず同じにすること
+  var ANIM_SEL = '.stats > .wrap > *,'
+               + '.sec > .wrap > *:not(.reasons):not(.parks):not(.news):not(.rnums),'
+               + '.reasons > *, .parks > *, .news > *, .rnums > *';
 
-  // --- ヒーロー: 読み込み直後に動きだす ---
+  // --- ヒーロー: 開いた直後に動きだす ---
   var hero = document.querySelector('.hero');
   if (hero) {
-    // 言葉は上から順に、少しずつ遅らせて出す
     var copy = hero.querySelector('.hero-copy');
     if (copy) {
+      // 園名 → 見出し → リード → タグ → ボタン の順に少しずつ遅らせる
       [].slice.call(copy.children).forEach(function (el, i) {
-        el.classList.add('rv');
         el.style.animationDelay = (0.15 + i * 0.15) + 's';
+        el.classList.add('on');
       });
     }
     hero.classList.add('on');
-    if (copy) {
-      [].slice.call(copy.children).forEach(function (el) { el.classList.add('on'); });
-    }
   }
 
-  // --- 各セクション: 画面に入ったら、上から順にふわっと ---
-  // カードが並ぶところは1枚ずつずらす。それ以外はかたまりで出す。
-  var GRIDS = '.reasons, .parks, .news, .rnums';
-  var units = [];
-  function add(el) { if (units.indexOf(el) < 0) { units.push(el); } }
+  // --- 各セクション: 画面に入ったら、上にあるものから順に ---
+  var units = [].slice.call(document.querySelectorAll(ANIM_SEL));
 
-  document.querySelectorAll('.stats > .wrap > *').forEach(add);   // 数字の帯は3つの項目ごと
-  document.querySelectorAll('.sec > .wrap').forEach(function (wrap) {
-    [].slice.call(wrap.children).forEach(function (kid) {
-      if (kid.matches(GRIDS) && kid.children.length) {
-        [].slice.call(kid.children).forEach(add);                 // カードは1枚ずつずらす
-      } else {
-        add(kid);                                                 // それ以外はかたまりで
-      }
-    });
-  });
-
-  units.forEach(function (el) { el.classList.add('rv'); });
-
-  // 画面に入ったものを、上にあるものから順に出す。
-  // IntersectionObserver は環境によって通知が来ないことがあり、そのときは
-  // 文字が消えたままになってしまうので、スクロールを見る素直な作りにする。
   function sweep() {
     var vh = window.innerHeight || document.documentElement.clientHeight;
     var shown = [];
     for (var i = units.length - 1; i >= 0; i--) {
-      var el = units[i];
-      var r = el.getBoundingClientRect();
+      var r = units[i].getBoundingClientRect();
       if (r.top < vh * 0.92 && r.bottom > 0) {
-        shown.push(el);
+        shown.push(units[i]);
         units.splice(i, 1);                            // 一度出したら見張らない
       }
     }
     if (!shown.length) { return; }
     shown.sort(function (a, b) {
       return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
-    });
-    shown.forEach(function (el, i) {
-      el.style.animationDelay = (i * 0.06) + 's';
+    }).forEach(function (el, i) {
+      el.style.animationDelay = (i * 0.06) + 's';      // 並んでいるものは少しずつずらす
       el.classList.add('on');
     });
     if (!units.length) {
@@ -656,7 +654,9 @@ h1,h2,h3,p{margin:0}
   sweep();                                             // 最初から見えている分
   window.addEventListener('load', sweep);              // 画像が入って位置が確定したあと
 
-  // 保険: 何かの理由でスクロールを拾えない環境でも、文字が消えたままにはしない
+  window.__animReady = true;                           // <head> の保険に「動いた」と伝える
+
+  // 保険: スクロールを拾えない環境でも、文字が消えたままにはしない
   setTimeout(function () {
     units.forEach(function (el) { el.classList.add('on'); });
     units.length = 0;
