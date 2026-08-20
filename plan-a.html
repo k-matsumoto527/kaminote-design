@@ -36,7 +36,9 @@
   --ink:#2f2a26;
   --ink-soft:#7b7169;
   --line:#e9e3da;
-  --cream:#fdfaf3;
+  --ground:#eef7fd;   /* 地色：薄い青 */
+  --cream:#dcedf8;    /* 帯のセクション＝いただいた見本そのまま（名前は履歴のまま） */
+  --blue-panel:#cbe2f3; /* 帯の上に置く面・ピル。帯と同色だと消えるので一段濃く */
   --white:#fff;
   --wrap:1120px;
   --rail:56px;        /* 左レールの幅（PCのみ） */
@@ -44,7 +46,7 @@
 html,body{margin:0;padding:0}
 body{
   font-family:'Zen Kaku Gothic New',"Hiragino Sans","Yu Gothic UI",sans-serif;
-  color:var(--ink);background:var(--white);line-height:1.9;font-size:16px;
+  color:var(--ink);background:var(--ground);line-height:1.9;font-size:16px;
   -webkit-text-size-adjust:100%;
 }
 img{max-width:100%;height:auto;display:block}
@@ -174,7 +176,7 @@ h1,h2,h3,p{margin:0}
 .adm-card h3{font-size:17.5px;font-weight:700;margin-bottom:12px}
 .adm-card p{font-size:14px;color:var(--ink-soft);line-height:2}
 .steps{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
-.steps li{background:var(--cream);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500}
+.steps li{background:var(--blue-panel);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500}
 .notice{margin-top:26px;background:#fff8e6;border:1px solid #f3dfae;border-radius:16px;padding:20px 24px;font-size:13.5px;line-height:2}
 .notice b{display:block;margin-bottom:4px}
 
@@ -197,7 +199,7 @@ h1,h2,h3,p{margin:0}
 .news h3{font-size:15.5px;line-height:1.75;font-weight:500}
 
 /* ---- お問い合わせ ---- */
-.contact{background:linear-gradient(150deg,#eef6fc,#dcedf8);border-radius:26px;padding:56px 40px;text-align:center}
+.contact{background:linear-gradient(150deg,#dceef9,#c9e1f3);border-radius:26px;padding:56px 40px;text-align:center}
 .contact h2{font-size:clamp(23px,3.4vw,32px);font-weight:500;line-height:1.6;margin-bottom:16px}
 .contact p{color:#7a5f52;font-size:14.5px;line-height:2}
 .tel{margin-top:28px;font-family:'Baloo 2',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:var(--blue-d)}

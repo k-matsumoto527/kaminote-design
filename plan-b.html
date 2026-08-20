@@ -35,14 +35,15 @@
   --ink:#43423c;
   --ink-soft:#807d73;
   --line:#e6e2d6;
-  --cream:#fdfbf4;
-  --cream-d:#f7f2e5;
+  --ground:#eef7fd;   /* 地色：薄い青 */
+  --cream:#dcedf8;    /* カードの面＝いただいた見本そのまま（名前は履歴のまま） */
+  --cream-d:#cbe2f3;  /* ひとつ濃い段 */
   --white:#fff;
   --wrap:1080px;
 }
 html,body{margin:0;padding:0}
 body{font-family:'Zen Maru Gothic',"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
-  color:var(--ink);background:var(--cream);line-height:1.95;font-size:16px;-webkit-text-size-adjust:100%}
+  color:var(--ink);background:var(--ground);line-height:1.95;font-size:16px;-webkit-text-size-adjust:100%}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 ul{margin:0;padding:0;list-style:none}
@@ -52,7 +53,7 @@ h1,h2,h3,p{margin:0}
 .note b{color:var(--sun)}
 
 /* ---- ヘッダー ---- */
-.head{position:sticky;top:0;z-index:50;background:rgba(253,251,244,.95)}
+.head{position:sticky;top:0;z-index:50;background:rgba(238,247,253,.95)}
 .head-in{max-width:1200px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
 .brand{display:flex;align-items:center;gap:11px;min-width:0}
 .brand .mark{width:46px;height:46px;flex:none}

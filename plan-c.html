@@ -37,13 +37,15 @@
   --ink:#3a352f;
   --ink-soft:#7d766c;
   --line:#e8e3da;
-  --paper:#fdfbf7;
+  --ground:#eef7fd;   /* 地色：薄い青 */
+  --paper:#dcedf8;    /* 帯のセクション＝いただいた見本そのまま（名前は履歴のまま） */
+  --blue-panel:#cbe2f3; /* 帯の上に置く面。帯と同色だと消えるので一段濃く */
   --white:#fff;
   --wrap:1060px;
 }
 html,body{margin:0;padding:0}
 body{font-family:'Zen Maru Gothic',"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
-  color:var(--ink);background:var(--white);line-height:1.95;font-size:16px;-webkit-text-size-adjust:100%}
+  color:var(--ink);background:var(--ground);line-height:1.95;font-size:16px;-webkit-text-size-adjust:100%}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 ul{margin:0;padding:0;list-style:none}
@@ -172,8 +174,8 @@ h1,h2,h3,p{margin:0}
 .adm-card h3{font-size:17.5px;font-weight:700;margin-bottom:12px}
 .adm-card p{font-size:14px;color:var(--ink-soft);line-height:2}
 .steps{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
-.steps li{background:var(--brand-soft);color:var(--brand-d);border-radius:999px;padding:7px 14px;font-size:12.5px}
-.notice{margin-top:26px;background:var(--paper);border:1px dashed var(--line);padding:22px 26px;font-size:13.5px;line-height:2}
+.steps li{background:var(--blue-panel);color:var(--brand-d);border-radius:999px;padding:7px 14px;font-size:12.5px}
+.notice{margin-top:26px;background:var(--blue-panel);border:1px dashed var(--line);padding:22px 26px;font-size:13.5px;line-height:2}
 .notice b{display:block}
 
 .recruit{background:var(--ink);color:#fff;padding:52px 44px;text-align:center;border-radius:0}
@@ -194,7 +196,7 @@ h1,h2,h3,p{margin:0}
 .news .tag.d{background:#e6f2ea;color:#3f7a56}
 .news h3{font-size:15.5px;line-height:1.85;font-weight:500}
 
-.contact{background:var(--brand-soft);padding:54px 40px;text-align:center;border-radius:0}
+.contact{background:var(--blue-panel);padding:54px 40px;text-align:center;border-radius:0}
 .contact h2{font-size:clamp(23px,3.4vw,32px);font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
 .contact p{color:#8a6250;font-size:14.5px;line-height:2.05}
 .tel{margin-top:26px;font-family:'Baloo 2',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:600;color:var(--brand-d)}
