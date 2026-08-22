@@ -143,19 +143,11 @@ h1,h2,h3,p{margin:0}
 .tw4{width:13px;height:13px;background:var(--cta);right:11%;bottom:58%}
 .tw5{width:15px;height:15px;background:#7fd3dd;right:3%;bottom:46%}
 
-/* ---- スライドの点（参考イメージの見た目に合わせた飾り） ---- */
-/* 点はボタンの上に置く。ボタンの高さ（約50px）＋下の余白ぶんを空けないと、
-   画面が低いときに点がボタンの肩から覗いてしまう。 */
-.dots{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(92px,13vh,124px);
-  z-index:5;display:flex;gap:9px}
-.dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.7)}
-.dots i.on{background:var(--sun)}
-
 /* ---- ヒーロー下のボタン ---- */
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 /* ヒーローのボタンだけ写真の下部に重ねる（本文側のボタンは通常配置のまま）。
    弧で切った下端に食い込まないよう、点より下には置かない。 */
-.hero-actions.on-photo{position:absolute;left:0;right:0;bottom:clamp(14px,3vh,26px);z-index:6}
+.hero-actions.on-photo{position:absolute;left:0;right:0;bottom:clamp(26px,5vh,52px);z-index:6}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:14.5px}
 .btn-main{background:var(--cta);color:#fff;box-shadow:0 8px 20px rgba(239,139,76,.36)}
 .btn-main:hover{background:var(--cta-d)}
@@ -287,9 +279,6 @@ h1,h2,h3,p{margin:0}
      下に置いたボタンの端が弧に切り取られる。 */
   .hero{height:clamp(400px,66vh,520px);
     border-bottom-left-radius:52% 40px;border-bottom-right-radius:52% 40px}
-  /* スライドの点は、狭い画面ではボタンと重なる位置しか残らないので出さない
-     ＝操作の見た目だけが残らないようにする */
-  .dots{display:none}
   .hero-actions.on-photo{bottom:64px}
   .hero-actions .btn{padding:12px 20px;font-size:13.5px}
   .brand .mark{height:44px}
@@ -331,7 +320,6 @@ h1,h2,h3,p{margin:0}
   .hero-copy > *:nth-child(1) { animation-delay: .30s; }
   .hero-copy > *:nth-child(2) { animation-delay: .50s; }
   .hero-copy > *:nth-child(3) { animation-delay: .70s; }
-  .dots           { animation: rise .8s cubic-bezier(.2,.7,.3,1) .75s both; }
   .tw             { animation: popIn 1s cubic-bezier(.2,.7,.3,1) .55s both; }
   .hero-actions   { animation: rise .8s cubic-bezier(.2,.7,.3,1) .70s both; }
 
@@ -356,7 +344,7 @@ h1,h2,h3,p{margin:0}
     .anim .parks > *,
     .anim .adm > *,
     .anim .news > * { opacity: 1; }
-    .anim .on, .hero-bg img, .head, .hero-copy > *, .dots, .tw, .hero-actions { animation: none; }
+    .anim .on, .hero-bg img, .head, .hero-copy > *, .tw, .hero-actions { animation: none; }
   }
   @media print {
     .anim .stats > .wrap > *,
@@ -365,7 +353,7 @@ h1,h2,h3,p{margin:0}
     .anim .parks > *,
     .anim .adm > *,
     .anim .news > * { opacity: 1 !important; }
-    .anim .on, .hero-bg img, .head, .hero-copy > *, .dots, .tw, .hero-actions { animation: none !important; }
+    .anim .on, .hero-bg img, .head, .hero-copy > *, .tw, .hero-actions { animation: none !important; }
   }
 </style>
 <script>
@@ -427,8 +415,6 @@ h1,h2,h3,p{margin:0}
     <div class="l1">こどもの「やってみたい」を、</div>
     <div><span class="l2">まんなかに。</span></div>
   </div>
-
-  <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
 
   <div class="hero-actions on-photo">
     <a class="btn btn-main" href="#contact">見学のお申し込み</a>
