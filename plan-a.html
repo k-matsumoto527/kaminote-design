@@ -104,7 +104,10 @@ h1,h2,h3,p{margin:0}
 .hero-copy{overflow:hidden}
 /* 文字にかかる小さな飾り。参考イメージの「文字の中に色が入る」感じを少量で再現 */
 .deco{position:absolute;pointer-events:none}
-.hero-lead{margin-top:26px;font-size:clamp(13px,1.6vw,16px);line-height:2.1;text-shadow:0 1px 10px rgba(255,255,255,.85)}
+.br-sp{display:none}
+/* 白のかぶせを濃くすると写真が飛ぶので、文字まわりの光だけ2枚重ねで稼ぐ（近い距離の濃いもの＋広く薄いもの） */
+.hero-lead{margin-top:26px;font-size:clamp(13px,1.6vw,16px);line-height:2.1;
+  text-shadow:0 0 5px rgba(255,255,255,.95),0 1px 14px rgba(255,255,255,.9)}
 .hero-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
 .hero-tags span{background:rgba(255,255,255,.9);border-radius:999px;padding:6px 15px;font-size:12.5px;font-weight:500}
 .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
@@ -235,6 +238,14 @@ h1,h2,h3,p{margin:0}
   .brand .corp{font-size:9px}
   .head-in{gap:12px;padding:10px 16px}
 }
+
+/* ---- スマホ ---- */
+@media (max-width:560px){
+  /* 見出しは自動折り返しだと「やってみた／い」と語中で割れるので、折り位置を決め打ちする */
+  .br-sp{display:inline}
+  /* コピーが写真の中央（かぶせがいちばん薄いところ）まで伸びるので、その帯だけ白を足す */
+  .hero-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,.42) 42%,rgba(255,255,255,.55) 100%)}
+}
 </style>
 
 <!-- ============ 開いたときの動き（前半：先に隠す） ============
@@ -360,7 +371,7 @@ h1,h2,h3,p{margin:0}
   <div class="hero-copy">
     <span class="hero-eyebrow">岐阜県可児市 ・ かみのて保育園／かみのて今渡保育園</span>
     <h1 class="mincho">
-      <span class="ln">こどもの「やってみたい」を、
+      <span class="ln">こどもの<br class="br-sp">「やってみたい」を、
         <svg class="deco" style="right:3%;top:-14%;width:38px" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4c5 7 8 10 8 14a8 8 0 1 1-16 0c0-4 3-7 8-14Z" fill="#8b7bc8" opacity=".9"/></svg>
       </span>
       <span class="ln">まんなかに。
