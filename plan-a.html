@@ -68,7 +68,8 @@ h1,h2,h3,p{margin:0}
 .brand{display:flex;align-items:center;gap:12px;min-width:0}
 .brand .tx{min-width:0}
 .brand .corp,.brand .name,.brand .en{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.brand .mark{width:46px;height:46px;flex:none}
+/* 実ロゴは横長（313×192）なので height で指定する。width を決め打ちすると潰れる */
+.brand .mark{width:auto;height:52px;flex:none}
 .brand .tx{line-height:1.25}
 .brand .corp{font-size:10px;letter-spacing:.16em;color:var(--ink-soft)}
 .brand .name{font-size:20px;font-weight:700;letter-spacing:.22em}
@@ -219,11 +220,19 @@ h1,h2,h3,p{margin:0}
 .foot-addr{margin-top:16px;line-height:2;color:#a79e94;font-size:12.5px}
 .copy{border-top:1px solid #443c35;margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:#8d857c}
 
-/* ---- スマホ ---- */
-@media (max-width:900px){
+/* ---- ヘッダーを畳む幅 ----
+   実ロゴのマークは仮マーク（46px角）より40px ほど横に広く、1100px を切ると園名が
+   「かみの…」と省略される。省略はここより下のスマホ用ブロック（最大900px）では
+   出ないので、ナビを畳む幅だけを分けて先に上げてある。
+   この崩れは折り返しであって食み出しではないので scrollWidth の検査には出ない。 */
+@media (max-width:1100px){
   .gnav,.rail{display:none}
   .burger{display:block}
   .head-in .cta-pill{display:none}
+}
+
+/* ---- スマホ ---- */
+@media (max-width:900px){
   .split,.parks,.adm,.news,.reasons,.foot-grid{grid-template-columns:minmax(0,1fr)}
   .byoji .split{grid-template-columns:minmax(0,1fr)}
   .byoji-body{padding:32px 24px}
@@ -233,7 +242,7 @@ h1,h2,h3,p{margin:0}
   .hero-cluster{width:110px;right:3%;top:8%}
   .hero-copy{padding:64px 20px}
   /* スマホでは園名を1行に詰め、ハンバーガーの分の幅を確保する */
-  .brand .mark{width:38px;height:38px}
+  .brand .mark{height:38px}
   .brand .name{font-size:16px;letter-spacing:.12em}
   .brand .corp{font-size:9px}
   .head-in{gap:12px;padding:10px 16px}
@@ -323,11 +332,7 @@ h1,h2,h3,p{margin:0}
 <header class="head">
   <div class="head-in">
     <a class="brand" href="#">
-      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M50 4 78 18 92 46 78 74 50 88 22 74 8 46 22 18Z" fill="#5fa8cc"/>
-        <circle cx="34" cy="40" r="6" fill="#fff"/><circle cx="66" cy="40" r="6" fill="#fff"/>
-        <path d="M36 58q14 14 28 0" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
-      </svg>
+      <img class="mark" src="img/logo-mark.png" alt="" width="313" height="192" decoding="async">
       <span class="tx">
         <span class="corp">株式会社 A and K　企業主導型・認可保育園</span>
         <span class="name">かみのて保育園</span>
@@ -590,12 +595,9 @@ h1,h2,h3,p{margin:0}
   <div class="wrap">
     <div class="foot-grid">
       <div>
+        <!-- フッターは地色が濃いので実ロゴを置けない（白抜きのハートと顔に地色が透ける）。
+             仮マークだけ残すとヘッダーと食い違うので、マークは置かず名前だけにする。 -->
         <div class="brand">
-          <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M50 4 78 18 92 46 78 74 50 88 22 74 8 46 22 18Z" fill="#5fa8cc"/>
-            <circle cx="34" cy="40" r="6" fill="#2f2a26"/><circle cx="66" cy="40" r="6" fill="#2f2a26"/>
-            <path d="M36 58q14 14 28 0" stroke="#2f2a26" stroke-width="6" fill="none" stroke-linecap="round"/>
-          </svg>
           <span class="tx"><span class="name">かみのて保育園</span><span class="en">KAMINOTE NURSERY</span></span>
         </div>
         <div class="foot-addr">運営：株式会社 A and K<br>〒509-0207 岐阜県可児市今渡3-11<br>TEL 0574-66-3511</div>

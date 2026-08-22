@@ -56,7 +56,8 @@ h1,h2,h3,p{margin:0}
 .head{position:sticky;top:0;z-index:50;background:rgba(238,247,253,.95)}
 .head-in{max-width:1200px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
 .brand{display:flex;align-items:center;gap:11px;min-width:0}
-.brand .mark{width:46px;height:46px;flex:none}
+/* 実ロゴは横長（313×192）なので height で指定する。width を決め打ちすると潰れる */
+.brand .mark{width:auto;height:52px;flex:none}
 .brand .tx{min-width:0;line-height:1.3}
 .brand .name{display:block;font-size:19px;font-weight:700;letter-spacing:.08em;white-space:nowrap}
 .brand .en{display:block;font-size:9.5px;letter-spacing:.24em;color:var(--ink-soft);font-family:'Baloo 2',sans-serif}
@@ -193,8 +194,15 @@ h1,h2,h3,p{margin:0}
 .foot-addr{margin-top:14px;line-height:2;color:#9fae9e;font-size:12.5px}
 .copy{border-top:1px solid #5c6c5b;margin-top:36px;padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#93a292}
 
-@media (max-width:900px){
+/* ---- ヘッダーを畳む幅 ----
+   実ロゴのマークは仮マーク（46px角）より40px ほど横に広く、990px を切るとナビが
+   2行に折り返して園名に重なる。ナビを畳む幅だけを分けて先に上げてある。
+   この崩れは折り返しであって食み出しではないので scrollWidth の検査には出ない。 */
+@media (max-width:1000px){
   .gnav{display:none}.burger{display:block}.head-in .cta{display:none}
+}
+
+@media (max-width:900px){
   .hero-grid,.split,.parks,.adm,.news,.reasons,.foot-grid{grid-template-columns:minmax(0,1fr)}
   .byoji .split{grid-template-columns:minmax(0,1fr)}
   .byoji-body{padding:32px 24px}
@@ -203,7 +211,7 @@ h1,h2,h3,p{margin:0}
   .recruit,.contact{padding:36px 22px;border-radius:24px}
   .hero{padding-top:28px}
   .brand .name{font-size:16px}
-  .brand .mark{width:38px;height:38px}
+  .brand .mark{height:38px}
 }
 </style>
 <!-- ============ 開いたときの動き（前半：先に隠す） ============
@@ -280,11 +288,7 @@ h1,h2,h3,p{margin:0}
 <header class="head">
   <div class="head-in">
     <a class="brand" href="#">
-      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M50 6c22 0 40 18 40 40 0 26-18 48-40 48S10 72 10 46C10 24 28 6 50 6Z" fill="#5fa8cc"/>
-        <circle cx="36" cy="44" r="5.5" fill="#fff"/><circle cx="64" cy="44" r="5.5" fill="#fff"/>
-        <path d="M38 62q12 12 24 0" stroke="#fff" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-      </svg>
+      <img class="mark" src="img/logo-mark.png" alt="" width="313" height="192" decoding="async">
       <span class="tx"><span class="name">かみのて保育園</span><span class="en">KAMINOTE NURSERY</span></span>
     </a>
     <nav class="gnav">

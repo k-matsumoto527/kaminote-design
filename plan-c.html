@@ -117,6 +117,13 @@ h1,h2,h3,p{margin:0}
 .btn-sub{background:rgba(255,255,255,.92);color:var(--ink)}
 
 /* ============ 以下、本文 ============ */
+/* ロゴの置き場。この案はヘッダーを写真の上に浮かせているので、そこには実ロゴを置けない
+   （白抜きのハートと顔に写真が透けて読めなくなる。試して不採用）。
+   写真のすぐ下に白い面を作り、そこに1枚だけ置いている。次の .stats も白なので段差は出ない。 */
+.logos{background:var(--white);padding:32px 0 4px}
+.logos .wrap{display:flex;justify-content:center}
+.logos img{width:100%;max-width:238px;height:auto}
+@media (max-width:700px){.logos img{max-width:168px}.logos{padding-top:26px}}
 .stats{background:var(--white);padding-top:26px}
 .stats .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:24px;text-align:center}
 .stats .n{font-family:'Baloo 2',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:600}
@@ -347,6 +354,13 @@ h1,h2,h3,p{margin:0}
     <a class="btn btn-sub" href="#admission">入園案内を見る</a>
   </div>
 </section>
+
+<!-- ============ ロゴ ============ -->
+<div class="logos">
+  <div class="wrap">
+    <img src="img/logo.png" alt="かみのて保育園 ロゴ" width="313" height="201" decoding="async">
+  </div>
+</div>
 
 <div class="stats">
   <div class="wrap">
