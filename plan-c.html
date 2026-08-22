@@ -6,20 +6,25 @@
 <meta name="robots" content="noindex,nofollow">
 <title>デザイン案C｜かみのて保育園</title>
 <meta property="og:title" content="デザイン案C｜かみのて保育園">
-<meta property="og:description" content="写真を全画面に敷き、縦書きの言葉と手描きのアイコンでまとめた案です。">
+<meta property="og:description" content="白い帯のヘッダーと、下端を弧で切った写真でまとめた案です。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232c6f92'/><text x='50' y='70' font-size='54' font-weight='bold' text-anchor='middle' font-family='sans-serif' fill='%23fff'>か</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500&family=Baloo+2:wght@500;600&display=swap" rel="stylesheet">
 <style>
 /* ===========================================================
-   デザイン案C「写真を全画面に、言葉は縦書きで」
-   参考イメージ（ひより保育園）の骨格をかみのて用に翻案:
-   ・白い帯のヘッダーを置かず、写真の上にロゴとメニューを浮かせる
-   ・ロゴは中央、メニューは左右に振り分け、上に手描きの白い線画アイコン
-   ・園の言葉は縦書きで写真の中央に置く
-   ・写真の下端をくの字に切り抜き、そこから白い本文へつなぐ
-   ・左端に縦書きのコピーライト、右端にアクセス等の小さなタブ
+   デザイン案C「白い帯のヘッダーと、弧で切った写真」
+   参考イメージ（ひかり幼稚園）の骨格をかみのて用に翻案:
+   ・白い帯のヘッダー。下端をスカラップ（半円の連なり）で切って写真にかぶせる
+   ・ロゴは左、メニューは右。項目のあいだに小さなきらきらを挟む
+   ・右端に丸い「採用情報」バッジ（破線の輪）
+   ・写真は帯の下に全幅で敷き、下端を大きな弧で切って薄い青の面へつなぐ
+   ・見出しは写真の右下に横書きで置き、下に破線を1本ずつ引く
+   ・きらきら（四つ角の星）を少し散らし、スライドの点と矢印を添える
+
+   色は他の2案と同じパステルブルー＋オレンジのまま。
+   参考イメージの黄色は「きらきら・破線・点」だけの差し色にとどめている
+   （黄色を主色にするとご要望のパステルブルーが消えるため）
    =========================================================== */
 *{box-sizing:border-box}
 :root{
@@ -33,6 +38,7 @@
      主色を青にしたので、ボタンだけ暖色にすると押す場所がはっきりする。 */
   --cta:#ef8b4c;
   --cta-d:#d9742f;
+  --sun:#f5c73e;        /* 差し色の黄。きらきらと破線だけに使う */
   --leaf:#6fae86;       /* 副：葉の緑 */
   --ink:#3a352f;
   --ink-soft:#7d766c;
@@ -51,70 +57,104 @@ a{color:inherit;text-decoration:none}
 ul{margin:0;padding:0;list-style:none}
 h1,h2,h3,p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-.mincho{font-family:'Zen Old Mincho',"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:500}
-.note{position:absolute;left:0;right:0;top:0;z-index:60;background:rgba(58,53,47,.86);color:#fff;
-  font-size:12.5px;padding:8px 24px;text-align:center;line-height:1.7}
+.note{background:#3a352f;color:#fff;font-size:12.5px;padding:9px 24px;text-align:center;line-height:1.7}
 .note b{color:#ffd9a8}
 
-/* ============ ヒーロー：写真を全画面に敷く ============ */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
-  background:#cfc7bd;overflow:hidden;
-  /* 下端をくの字に切り抜き、白い本文へつなぐ */
-  clip-path:polygon(0 0,100% 0,100% 88%,50% 100%,0 88%)}
+/* ============ 白い帯のヘッダー ============ */
+.head{position:relative;z-index:20;background:var(--white);padding:12px 0}
+.head-in{max-width:1440px;margin:0 auto;padding:0 clamp(16px,2.4vw,34px);
+  display:flex;align-items:center;gap:clamp(12px,1.8vw,26px)}
+.brand{display:flex;align-items:center;gap:12px;flex:none;min-width:0}
+/* 実ロゴは横長（313×192）なので height で指定する。width を決め打ちすると潰れる */
+.brand .mark{width:auto;height:56px;flex:none}
+.brand .tx{min-width:0;line-height:1.5}
+.brand .corp{display:block;font-size:9.5px;letter-spacing:.16em;color:var(--brand);font-weight:700;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .nm{display:block;font-size:17px;font-weight:700;letter-spacing:.18em;color:var(--brand-d);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .en{display:block;font-size:9px;letter-spacing:.22em;color:var(--brand);
+  font-family:'Baloo 2',sans-serif;white-space:nowrap}
+
+.gnav{margin-left:auto;display:flex;align-items:center;gap:clamp(8px,1.2vw,18px)}
+.gnav a{font-size:13.5px;font-weight:700;letter-spacing:.04em;color:var(--brand-d);white-space:nowrap}
+.gnav a:hover{color:var(--cta-d)}
+/* 項目のあいだの小さなきらきら。参考イメージの菱形にあたる */
+.spark{width:10px;height:10px;flex:none;background:var(--sun);
+  clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%)}
+
+/* 右端の丸い採用バッジ。破線の輪は参考イメージの要 */
+.pill-recruit{flex:none;width:88px;height:88px;border-radius:50%;background:var(--white);
+  border:2px dashed var(--cta);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;color:var(--cta-d);font-size:11px;font-weight:700;letter-spacing:.04em;line-height:1.4}
+.pill-recruit svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.pill-recruit:hover{background:#fff6ef}
+
+.burger{display:none;margin-left:auto;background:var(--white);border:1.6px solid var(--brand);
+  color:var(--brand-d);border-radius:12px;padding:8px 12px;font-family:inherit;font-size:15px;cursor:pointer}
+
+/* ============ ヒーロー：帯の下に写真を敷き、下端を弧で切る ============ */
+/* 弧の外側に見える色。ここを白にすると帯とつながって弧が見えなくなる */
+.hero-zone{background:var(--brand-soft);padding-bottom:clamp(28px,4.6vw,60px)}
+.hero{position:relative;height:clamp(430px,74vh,700px);overflow:hidden;background:#cfe0e6;
+  border-bottom-left-radius:52% 132px;border-bottom-right-radius:52% 132px}
 .hero-bg{position:absolute;inset:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,26,22,.42) 0%,rgba(30,26,22,.16) 34%,rgba(30,26,22,.30) 100%)}
+/* 見出しは右下に置くので、そちら側だけ濃くする。全体を均一に暗くすると写真が沈む */
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(315deg,rgba(18,28,36,.60) 0%,rgba(18,28,36,.30) 34%,rgba(18,28,36,.10) 62%,rgba(18,28,36,.16) 100%)}
 
-/* ---- ロゴとメニュー（写真の上に浮かせる） ---- */
-.topbar{position:relative;z-index:5;padding:46px 24px 0;color:#fff}
-.topline{display:flex;align-items:flex-start;justify-content:center;gap:clamp(18px,3.4vw,48px)}
-.mnav{display:flex;gap:clamp(16px,2.6vw,40px);align-items:flex-start;padding-top:34px}
-.mnav a{display:flex;flex-direction:column;align-items:center;gap:9px;font-size:13.5px;font-weight:500;
-  letter-spacing:.06em;white-space:nowrap;text-shadow:0 1px 6px rgba(0,0,0,.35)}
-.mnav svg{width:38px;height:38px;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.mnav a:hover{opacity:.75}
-.logo{flex:none;text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.35)}
-.logo svg{width:clamp(50px,5.4vw,66px);height:auto;margin:0 auto 12px;display:block;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.logo .nm{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:.1em;line-height:1.3}
-.logo .en{font-size:10.5px;letter-spacing:.24em;font-family:'Baloo 2',sans-serif;opacity:.92}
-.burger{display:none;position:absolute;right:18px;top:52px;z-index:8;background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.6);color:#fff;border-radius:10px;padding:8px 12px;font-family:inherit;cursor:pointer}
+/* 白い帯の下端。半円を横に並べて写真にかぶせる。
+   background-size の幅＝半円の直径、高さ＝半径。円の中心をタイルの上辺に置くと、
+   タイルの左右の端でちょうど高さ0になり、半円どうしがきれいに接する。 */
+.scallop{position:absolute;left:0;right:0;top:0;height:26px;z-index:6;pointer-events:none;
+  background:radial-gradient(circle 26px at 50% 0,var(--white) 99%,transparent 100%) repeat-x;
+  background-size:52px 26px}
 
-/* ---- 縦書きの見出し ---- */
-/* 下の余白は、写真に重ねたボタンの居場所。ここを削ると縦書きの末尾がボタンに隠れる。 */
-.hero-copy{position:relative;z-index:5;flex:1;display:flex;align-items:center;justify-content:center;
-  padding:26px 24px 180px}
-/* 折り返しは <br> で決め打ちする。max-height に任せると「まんなかに。」が
-   「ま／んなかに。」のように語の途中で列が分かれる。 */
-.vtext{writing-mode:vertical-rl;text-orientation:upright;color:#fff;
-  font-size:clamp(21px,2.6vw,30px);letter-spacing:.24em;line-height:1.85;
-  text-shadow:0 2px 14px rgba(0,0,0,.45);max-height:100%}
-.vsub{writing-mode:vertical-rl;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:.2em;
-  margin-right:22px;text-shadow:0 1px 8px rgba(0,0,0,.4);align-self:center}
+/* ---- 見出し（写真の右下・横書き・下に破線） ---- */
+.hero-copy{position:absolute;right:clamp(18px,8vw,124px);bottom:clamp(96px,17vh,150px);
+  z-index:5;text-align:right;max-width:min(88%,760px)}
+.hero-place{font-size:clamp(11px,1.2vw,13px);letter-spacing:.14em;color:rgba(255,255,255,.94);
+  text-shadow:0 1px 8px rgba(0,0,0,.5);margin-bottom:clamp(10px,1.6vw,18px)}
+/* 破線は見出しの下線として引く。少しだけ傾けて手描きの気配を出す */
+.hero-copy .l1,.hero-copy .l2{display:inline-block;color:#fff;font-weight:700;
+  transform:rotate(-1.6deg);transform-origin:right bottom}
+.hero-copy .l1{font-size:clamp(16px,2.1vw,26px);letter-spacing:.1em;padding-bottom:9px;
+  border-bottom:4px dashed var(--sun);text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.hero-copy .l2{margin-top:clamp(16px,2.6vw,30px);font-size:clamp(24px,4.4vw,52px);letter-spacing:.06em;
+  padding-bottom:12px;border-bottom:5px dashed rgba(255,255,255,.92);
+  text-shadow:0 3px 16px rgba(0,0,0,.5)}
 
-/* ---- 左端のコピーライト（縦） ---- */
-.side-copy{position:absolute;left:14px;top:50%;transform:translateY(-50%);z-index:6;
-  writing-mode:vertical-rl;font-size:9.5px;letter-spacing:.24em;color:rgba(255,255,255,.75);
-  font-family:'Baloo 2',sans-serif}
+/* ---- きらきら（写真の上の飾り） ---- */
+.tw{position:absolute;z-index:5;
+  clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%)}
+.tw1{width:30px;height:30px;background:var(--sun);right:46%;bottom:44%}
+.tw2{width:17px;height:17px;background:#7fd3dd;right:52%;bottom:38%}
+.tw3{width:22px;height:22px;background:var(--sun);right:6%;bottom:52%}
+.tw4{width:13px;height:13px;background:var(--cta);right:11%;bottom:58%}
+.tw5{width:15px;height:15px;background:#7fd3dd;right:3%;bottom:46%}
 
-/* ---- 右端の小さなタブ ---- */
-.side-tabs{position:absolute;right:0;top:46%;z-index:7;display:flex;flex-direction:column;gap:10px}
-.side-tabs a{writing-mode:vertical-rl;padding:20px 10px;border-radius:10px 0 0 10px;font-size:12.5px;
-  letter-spacing:.14em;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
-.side-tabs svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7}
-.tab-dark{background:#3a352f;color:#fff}
-.tab-soft{background:var(--brand-soft);color:var(--brand-d);position:relative}
-.tab-soft .new{position:absolute;left:-30px;top:6px;background:#fff;color:var(--brand-d);border-radius:999px;
-  font-size:10px;font-family:'Baloo 2',sans-serif;font-weight:600;padding:3px 9px;box-shadow:0 2px 8px rgba(0,0,0,.14);writing-mode:horizontal-tb}
+/* ---- スライドの点と矢印（参考イメージの見た目に合わせた飾り） ---- */
+/* 点はボタンの上に置く。ボタンの高さ（約50px）＋下の余白ぶんを空けないと、
+   画面が低いときに点がボタンの肩から覗いてしまう。 */
+.dots{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(92px,13vh,124px);
+  z-index:5;display:flex;gap:9px}
+.dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.7)}
+.dots i.on{background:var(--sun)}
+.arrow{position:absolute;top:47%;z-index:5;width:52px;height:52px;border-radius:50%;
+  border:2px dashed rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;color:#fff}
+.arrow svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.arrow.l{left:clamp(8px,2.2vw,32px)}
+.arrow.r{right:clamp(8px,2.2vw,32px)}
 
 /* ---- ヒーロー下のボタン ---- */
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-/* ヒーローのボタンだけ写真の下部に重ねる（本文側のボタンは通常配置のまま） */
-.hero-actions.on-photo{position:absolute;left:50%;transform:translateX(-50%);bottom:min(11vh,100px);z-index:6}
+/* ヒーローのボタンだけ写真の下部に重ねる（本文側のボタンは通常配置のまま）。
+   弧で切った下端に食い込まないよう、点より下には置かない。 */
+.hero-actions.on-photo{position:absolute;left:0;right:0;bottom:clamp(14px,3vh,26px);z-index:6}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:14.5px}
 .btn-main{background:var(--cta);color:#fff;box-shadow:0 8px 20px rgba(239,139,76,.36)}
 .btn-main:hover{background:var(--cta-d)}
-.btn-sub{background:rgba(255,255,255,.92);color:var(--ink)}
+.btn-sub{background:rgba(255,255,255,.94);color:var(--ink)}
 
 /* ============ 以下、本文 ============ */
 /* ロゴの置き場。この案はヘッダーを写真の上に浮かせているので、そこには実ロゴを置けない
@@ -135,8 +175,13 @@ h1,h2,h3,p{margin:0}
 .sec-head{text-align:center;margin-bottom:44px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--brand-d);font-weight:700;margin-bottom:10px}
 .eyebrow svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7}
-.sec-head h2{font-size:clamp(22px,3.2vw,30px);line-height:1.7;font-weight:500;letter-spacing:.06em;
-  font-family:'Zen Old Mincho',serif}
+/* 節の見出しは、ヒーローと同じ「まるゴシック＋下に破線」でそろえる。
+   参考イメージには明朝が1つも出てこないので、この案では明朝を使わない。 */
+.sec-head h2{font-size:clamp(22px,3.2vw,30px);line-height:1.7;font-weight:700;letter-spacing:.06em;
+  color:var(--brand-d)}
+/* 破線は h2 のあとに置く。h2 自体を inline-block にすると、上のラベルと同じ行に回り込む */
+.sec-head h2::after{content:"";display:block;width:min(300px,54%);margin:16px auto 0;
+  border-bottom:4px dashed var(--sun)}
 .sec-head .en{display:block;font-family:'Baloo 2',sans-serif;font-size:11.5px;letter-spacing:.28em;color:var(--ink-soft);margin-top:8px}
 .sec-head p{margin-top:14px;color:var(--ink-soft);font-size:14.5px}
 
@@ -147,7 +192,7 @@ h1,h2,h3,p{margin:0}
 .reason p{font-size:13.5px;color:var(--ink-soft);line-height:2}
 
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
-.ph-round{overflow:hidden;aspect-ratio:4/3;border-radius:0}
+.ph-round{overflow:hidden;aspect-ratio:4/3;border-radius:26px}
 .ph-round img{width:100%;height:100%;object-fit:cover}
 .marks{display:grid;gap:0;margin-top:24px}
 .marks li{display:block;padding:16px 0;border-bottom:1px dashed var(--line);background:none!important}
@@ -157,7 +202,8 @@ h1,h2,h3,p{margin:0}
 .marks span{font-size:13.5px;color:var(--ink-soft);line-height:1.95}
 
 .parks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
-.park{background:var(--white)!important;border:1px solid var(--line);display:flex;flex-direction:column}
+.park{background:var(--white)!important;border:1px solid var(--line);display:flex;flex-direction:column;
+  border-radius:26px;overflow:hidden}
 .park .ph{aspect-ratio:16/10;overflow:hidden}
 .park .ph img{width:100%;height:100%;object-fit:cover}
 .park-body{padding:26px 26px;flex:1;display:flex;flex-direction:column}
@@ -168,34 +214,35 @@ h1,h2,h3,p{margin:0}
 .park dd{margin:0}
 .link-a{margin-top:auto;font-weight:700;font-size:14px;color:var(--brand-d);align-self:flex-start}
 
-.byoji{background:var(--white);border:1px solid var(--line);overflow:hidden}
+.byoji{background:var(--white);border:1px solid var(--line);overflow:hidden;border-radius:28px}
 .byoji .split{gap:0}
-.byoji .ph-round{aspect-ratio:auto;height:100%;min-height:290px}
+.byoji .ph-round{aspect-ratio:auto;height:100%;min-height:290px;border-radius:0}
 .byoji-body{padding:44px 40px}
-.byoji-body h2{font-size:clamp(21px,3vw,28px);line-height:1.7;font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
+.byoji-body h2{font-size:clamp(21px,3vw,28px);line-height:1.7;font-weight:700;margin-bottom:14px;color:var(--brand-d);}
 .byoji-body p{font-size:14.5px;color:var(--ink-soft);line-height:2.05}
 .byoji-body .fine{font-size:13px;margin-top:12px}
 
 .adm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
-.adm-card{background:none!important;border-top:3px solid var(--brand);padding:24px 0 0}
+.adm-card{background:var(--white)!important;border:1px solid var(--line);border-top:5px solid var(--brand);
+  border-radius:24px;padding:26px 26px}
 .adm-card h3{font-size:17.5px;font-weight:700;margin-bottom:12px}
 .adm-card p{font-size:14px;color:var(--ink-soft);line-height:2}
 .steps{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
 .steps li{background:var(--blue-panel);color:var(--brand-d);border-radius:999px;padding:7px 14px;font-size:12.5px}
-.notice{margin-top:26px;background:var(--blue-panel);border:1px dashed var(--line);padding:22px 26px;font-size:13.5px;line-height:2}
+.notice{margin-top:26px;background:var(--blue-panel);border:2px dashed #a9cfe6;border-radius:20px;padding:22px 26px;font-size:13.5px;line-height:2}
 .notice b{display:block}
 
-.recruit{background:var(--ink);color:#fff;padding:52px 44px;text-align:center;border-radius:0}
+.recruit{background:var(--ink);color:#fff;padding:52px 44px;text-align:center;border-radius:30px}
 .recruit .eyebrow{color:#f0b493}
-.recruit h2{font-size:clamp(22px,3.2vw,30px);font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
+.recruit h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:14px}
 .recruit p{color:#cfc7bd;font-size:14.5px;line-height:2.05}
 .rnums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:30px 0}
-.rnums div{background:rgba(255,255,255,.08);border-radius:0;padding:18px 10px}
+.rnums div{background:rgba(255,255,255,.08);border-radius:16px;padding:18px 10px}
 .rnums .n{font-family:'Baloo 2',sans-serif;font-size:24px;font-weight:600;color:#fff}
 .rnums .l{font-size:11.5px;color:#b9b0a5}
 
 .news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.news .ph{aspect-ratio:16/10;overflow:hidden}
+.news .ph{aspect-ratio:16/10;overflow:hidden;border-radius:22px}
 .news .ph img{width:100%;height:100%;object-fit:cover}
 .news .meta{display:flex;gap:10px;align-items:center;margin:13px 0 5px;font-size:12px}
 .news .date{font-family:'Baloo 2',sans-serif;color:var(--ink-soft)}
@@ -203,8 +250,8 @@ h1,h2,h3,p{margin:0}
 .news .tag.d{background:#e6f2ea;color:#3f7a56}
 .news h3{font-size:15.5px;line-height:1.85;font-weight:500}
 
-.contact{background:var(--blue-panel);padding:54px 40px;text-align:center;border-radius:0}
-.contact h2{font-size:clamp(23px,3.4vw,32px);font-weight:500;margin-bottom:14px;font-family:'Zen Old Mincho',serif}
+.contact{background:var(--blue-panel);padding:54px 40px;text-align:center;border-radius:30px}
+.contact h2{font-size:clamp(23px,3.4vw,32px);font-weight:700;margin-bottom:14px;color:var(--brand-d)}
 .contact p{color:#8a6250;font-size:14.5px;line-height:2.05}
 .tel{margin-top:26px;font-family:'Baloo 2',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:600;color:var(--brand-d)}
 .tel small{display:block;font-family:inherit;font-size:12px;color:#9a7b6c;font-weight:400}
@@ -220,17 +267,34 @@ h1,h2,h3,p{margin:0}
 .foot-addr{margin-top:14px;line-height:2;color:#948b81;font-size:12.5px}
 .copy{border-top:1px solid #4d473f;margin-top:38px;padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#8b8278}
 
+/* ---- ヘッダーを畳む幅 ----
+   実ロゴのマークと丸い採用バッジで左右が埋まるので、1180px を切るとメニューが
+   ロゴに重なる。畳む幅だけをスマホ用ブロックと分けてある
+   （まとめると 900〜1180px が1カラムになってしまう）。
+   この崩れは折り返しであって食み出しではないので scrollWidth の検査には出ない。 */
+@media (max-width:1180px){
+  .gnav,.pill-recruit{display:none}
+  .burger{display:block}
+}
+
 @media (max-width:900px){
-  .hero{clip-path:polygon(0 0,100% 0,100% 93%,50% 100%,0 93%)}
-  .mnav,.side-copy,.side-tabs{display:none}
-  .burger{display:block;top:22px}
-  /* 注記はスマホだと3行になり、写真に重ねるとロゴとハンバーガーを隠してしまう。
-     幅が狭いあいだは通常の帯として写真の上に積む。 */
-  .note{position:static}
-  .topbar{padding-top:28px}
-  .hero-copy{padding-bottom:150px}
-  .vtext{font-size:20px}
-  .hero-actions.on-photo{bottom:12vh}
+  /* 弧は幅が狭いほど浅くする。深いままだと写真の左右が大きく削られ、
+     下に置いたボタンの端が弧に切り取られる。 */
+  .hero{height:clamp(400px,66vh,520px);
+    border-bottom-left-radius:52% 40px;border-bottom-right-radius:52% 40px}
+  /* スライドの点は、狭い画面ではボタンと重なる位置しか残らないので出さない
+     （矢印も同じ理由で消している＝操作の見た目だけが残らないようにそろえる） */
+  .dots{display:none}
+  .hero-actions.on-photo{bottom:64px}
+  .hero-actions .btn{padding:12px 20px;font-size:13.5px}
+  .brand .mark{height:44px}
+  .brand .nm{font-size:15px;letter-spacing:.12em}
+  .brand .corp{font-size:9px}
+  .head{padding:10px 0}
+  /* きらきらは狭い画面だと見出しに重なるので、写真の空いている側だけ残す */
+  .tw1,.tw2{display:none}
+  .hero-copy{right:16px;left:16px;bottom:148px;max-width:none}
+  .arrow{display:none}
   .split,.parks,.adm,.news,.reasons,.foot-grid{grid-template-columns:minmax(0,1fr)}
   .byoji .split{grid-template-columns:minmax(0,1fr)}
   .byoji-body{padding:32px 24px}
@@ -256,12 +320,12 @@ h1,h2,h3,p{margin:0}
   /* ヒーローはJSを使わずCSSだけで動かす。JSがクラスを付けるのを待つと、
      待っている間に文字が見えてしまう（環境が遅いほど長く見える）。 */
   .hero-bg img    { animation: zoomOut 1.8s cubic-bezier(.2,.7,.3,1) both; }
-  .topbar         { animation: rise .7s cubic-bezier(.2,.7,.3,1) .10s both; }
+  .head           { animation: rise .7s cubic-bezier(.2,.7,.3,1) .10s both; }
   .hero-copy > *  { animation: rise .9s cubic-bezier(.2,.7,.3,1) both; }
   .hero-copy > *:nth-child(1) { animation-delay: .30s; }
   .hero-copy > *:nth-child(2) { animation-delay: .50s; }
-  .side-copy      { animation: rise .8s cubic-bezier(.2,.7,.3,1) .45s both; }
-  .side-tabs      { animation: rise .8s cubic-bezier(.2,.7,.3,1) .60s both; }
+  .dots, .arrow   { animation: rise .8s cubic-bezier(.2,.7,.3,1) .55s both; }
+  .tw             { animation: popIn 1s cubic-bezier(.2,.7,.3,1) .55s both; }
   .hero-actions   { animation: rise .8s cubic-bezier(.2,.7,.3,1) .70s both; }
 
   /* スクロールで出てくる分だけ、JSがあるとき（.anim）に隠しておく。
@@ -285,7 +349,7 @@ h1,h2,h3,p{margin:0}
     .anim .parks > *,
     .anim .adm > *,
     .anim .news > * { opacity: 1; }
-    .anim .on, .hero-bg img, .topbar, .hero-copy > *, .side-copy, .side-tabs, .hero-actions { animation: none; }
+    .anim .on, .hero-bg img, .head, .hero-copy > *, .dots, .arrow, .tw, .hero-actions { animation: none; }
   }
   @media print {
     .anim .stats > .wrap > *,
@@ -294,7 +358,7 @@ h1,h2,h3,p{margin:0}
     .anim .parks > *,
     .anim .adm > *,
     .anim .news > * { opacity: 1 !important; }
-    .anim .on, .hero-bg img, .topbar, .hero-copy > *, .side-copy, .side-tabs, .hero-actions { animation: none !important; }
+    .anim .on, .hero-bg img, .head, .hero-copy > *, .dots, .arrow, .tw, .hero-actions { animation: none !important; }
   }
 </style>
 <script>
@@ -310,50 +374,64 @@ h1,h2,h3,p{margin:0}
 
 <div class="note">これは<b>デザイン案C</b>です。写真は雰囲気をつかむための<b>イメージ写真</b>、園の情報は現行サイトからの引用です。文章と写真は差し替えます。</div>
 
+<!-- ============ ヘッダー ============ -->
+<header class="head">
+  <div class="head-in">
+    <a class="brand" href="#">
+      <img class="mark" src="img/logo-mark.png" alt="" width="313" height="192" decoding="async">
+      <span class="tx">
+        <span class="corp">株式会社 A and K　企業主導型・認可保育園</span>
+        <span class="nm">かみのて保育園</span>
+        <span class="en">KAMINOTE HOIKUEN</span>
+      </span>
+    </a>
+
+    <nav class="gnav">
+      <a href="#policy">かみのての保育</a><i class="spark"></i>
+      <a href="#parks">園のご紹介</a><i class="spark"></i>
+      <a href="#byoji">病児保育</a><i class="spark"></i>
+      <a href="#admission">入園案内</a><i class="spark"></i>
+      <a href="#news">園の日記</a><i class="spark"></i>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+
+    <a class="pill-recruit" href="#recruit">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.9 3.1-6.4 7-6.4s7 2.5 7 6.4"/></svg>
+      採用情報
+    </a>
+
+    <button class="burger" type="button" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
 <!-- ============ ヒーロー ============ -->
+<div class="hero-zone">
 <section class="hero">
   <div class="hero-bg"><img fetchpriority="high" decoding="async" src="img/hero-toys.jpg" alt="イメージ写真"></div>
 
-  <div class="side-copy">COPYRIGHT © A AND K CO., LTD. ALL RIGHTS RESERVED.</div>
+  <!-- 白い帯の下端。半円を並べて写真にかぶせている（CSSの .scallop 参照） -->
+  <div class="scallop"></div>
 
-  <div class="side-tabs">
-    <a class="tab-dark" href="#parks"><svg viewBox="0 0 24 24"><path d="M4 16h16M6 16v-4l2-4h8l2 4v4"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg>アクセス</a>
-    <a class="tab-soft" href="#news"><span class="new">NEW</span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/></svg>園の日記</a>
-  </div>
+  <i class="tw tw1"></i><i class="tw tw2"></i>
+  <i class="tw tw3"></i><i class="tw tw4"></i><i class="tw tw5"></i>
 
-  <div class="topbar">
-    <button class="burger" type="button" aria-label="メニュー">☰</button>
-    <div class="topline">
-      <nav class="mnav">
-        <a href="#policy"><svg viewBox="0 0 40 40"><path d="M8 32V17l12-8 12 8v15"/><path d="M15 32V23h10v9"/><path d="M6 17 20 7l14 10"/></svg>園のこと</a>
-        <a href="#admission"><svg viewBox="0 0 40 40"><path d="M20 12c-3-3-8-3-11-2v18c3-1 8-1 11 2 3-3 8-3 11-2V10c-3-1-8-1-11 2Z"/><path d="M20 12v18"/></svg>入園案内</a>
-        <a href="#recruit"><svg viewBox="0 0 40 40"><circle cx="14" cy="15" r="5"/><circle cx="26" cy="15" r="5"/><path d="M6 32c0-5 4-8 8-8s8 3 8 8"/><path d="M18 32c0-5 4-8 8-8s8 3 8 8"/></svg>職員紹介</a>
-      </nav>
-
-      <a class="logo" href="#">
-        <svg viewBox="0 0 80 44" aria-hidden="true"><path d="M6 40 40 8l34 32"/><path d="M40 4v8"/><path d="M31 40V27h18v13"/></svg>
-        <div class="nm">かみのて保育園</div>
-        <div class="en">KAMINOTE HOIKUEN</div>
-      </a>
-
-      <nav class="mnav">
-        <a href="#byoji"><svg viewBox="0 0 40 40"><path d="M20 33s-12-7-12-15a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 8-12 15-12 15Z"/><path d="M20 16v8M16 20h8"/></svg>病児保育</a>
-        <a href="#news"><svg viewBox="0 0 40 40"><path d="M9 8h22v24H9z"/><path d="M14 15h12M14 21h12M14 27h7"/></svg>園の日記</a>
-        <a href="#contact"><svg viewBox="0 0 40 40"><rect x="7" y="11" width="26" height="18" rx="2"/><path d="m7 13 13 9 13-9"/></svg>お問い合わせ</a>
-      </nav>
-    </div>
-  </div>
+  <div class="arrow l"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></div>
+  <div class="arrow r"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></div>
 
   <div class="hero-copy">
-    <div class="vtext mincho">こどもの「やってみたい」を、<br>まんなかに。</div>
-    <div class="vsub">岐阜県可児市　かみのて保育園／かみのて今渡保育園</div>
+    <div class="hero-place">岐阜県可児市　かみのて保育園／かみのて今渡保育園</div>
+    <div class="l1">こどもの「やってみたい」を、</div>
+    <div><span class="l2">まんなかに。</span></div>
   </div>
+
+  <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
 
   <div class="hero-actions on-photo">
     <a class="btn btn-main" href="#contact">見学のお申し込み</a>
     <a class="btn btn-sub" href="#admission">入園案内を見る</a>
   </div>
 </section>
+</div>
 
 <!-- ============ ロゴ ============ -->
 <div class="logos">
