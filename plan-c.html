@@ -64,7 +64,9 @@ h1,h2,h3,p{margin:0}
 .head{position:relative;z-index:20;background:var(--white);padding:12px 0}
 .head-in{max-width:1440px;margin:0 auto;padding:0 clamp(16px,2.4vw,34px);
   display:flex;align-items:center;gap:clamp(12px,1.8vw,26px)}
-.brand{display:flex;align-items:center;gap:12px;flex:none;min-width:0}
+/* flex:none にすると縮まないので、狭い画面でハンバーガーを押し出して横あふれになる。
+   縮めるようにしておけば、長い社名は corp の省略記号で吸収される。 */
+.brand{display:flex;align-items:center;gap:12px;flex:0 1 auto;min-width:0}
 /* 実ロゴは横長（313×192）なので height で指定する。width を決め打ちすると潰れる */
 .brand .mark{width:auto;height:56px;flex:none}
 .brand .tx{min-width:0;line-height:1.5}
@@ -285,8 +287,12 @@ h1,h2,h3,p{margin:0}
   .brand .nm{font-size:15px;letter-spacing:.12em}
   .brand .corp{font-size:9px}
   .head{padding:10px 0}
-  /* きらきらは狭い画面だと見出しに重なるので、写真の空いている側だけ残す */
+  /* きらきらは狭い画面だと見出しに重なるので、数を減らして左側へ寄せる。
+     見出しは右下に固まっているので、左は必ず空いている。 */
   .tw1,.tw2{display:none}
+  .tw3{right:auto;left:9%;bottom:58%}
+  .tw4{right:auto;left:22%;bottom:50%}
+  .tw5{right:auto;left:13%;bottom:42%}
   .hero-copy{right:16px;left:16px;bottom:148px;max-width:none}
   .split,.parks,.adm,.news,.reasons,.foot-grid{grid-template-columns:minmax(0,1fr)}
   .byoji .split{grid-template-columns:minmax(0,1fr)}
