@@ -97,12 +97,20 @@ h1,h2,h3,p{margin:0}
 /* ============ ヒーロー：帯の下に写真を敷き、下端を弧で切る ============ */
 /* 弧の外側に見える色。ここを白にすると帯とつながって弧が見えなくなる */
 .hero-zone{background:var(--brand-soft);padding-bottom:clamp(28px,4.6vw,60px)}
-.hero{position:relative;height:clamp(430px,74vh,700px);overflow:hidden;background:#cfe0e6;
+/* 高さは svh で持つ。vh はスマホでアドレスバーが隠れると値が変わり、
+   高さが変わるたびに cover の切り取りが変わって、スクロール中に写真が揺れる。
+   svh は「バーが見えている状態」の高さで固定なので揺れない（1行目は未対応ブラウザ用）。 */
+.hero{position:relative;height:clamp(430px,74vh,700px);height:clamp(430px,74svh,700px);overflow:hidden;background:#cfe0e6;contain:paint;
   border-bottom-left-radius:52% 132px;border-bottom-right-radius:52% 132px}
 .hero-bg{position:absolute;inset:0}
 /* この写真はもともと沈んだ色なので、白のかぶせを足すより写真自体を持ち上げる。
-   白をかぶせて明るくすると、色が抜けて牛乳をかけたようになる。 */
-.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(1.14) saturate(1.06)}
+   白をかぶせて明るくすると、色が抜けて牛乳をかけたようになる。
+   ★スクロールのカクつき対策: 弧の切り抜き（overflow:hidden ＋ 大きな border-radius）の
+     中にある大きな画像に filter がかかっていると、同じ層に居るぶんスクロールのたびに
+     描き直しになる。translateZ(0) で画像を独立した層に上げ、
+     filter を1度だけ焼き付けてあとは合成だけで済ませる。 */
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(1.14) saturate(1.06);
+  transform:translateZ(0);backface-visibility:hidden}
 /* 見出しは右下に置くので、そちら側だけ濃くする。全体を均一に暗くすると写真が沈む。
    濃さは「読めるいちばん薄いところ」に置いてある（.60 は暗すぎた）。
    薄くしたぶんは見出しの text-shadow の2枚重ねで稼ぐ＝帯を置かずに
@@ -279,7 +287,7 @@ h1,h2,h3,p{margin:0}
 @media (max-width:900px){
   /* 弧は幅が狭いほど浅くする。深いままだと写真の左右が大きく削られ、
      下に置いたボタンの端が弧に切り取られる。 */
-  .hero{height:clamp(400px,66vh,520px);
+  .hero{height:clamp(400px,66vh,520px);height:clamp(400px,66svh,520px);
     border-bottom-left-radius:52% 40px;border-bottom-right-radius:52% 40px}
   .hero-actions.on-photo{bottom:64px}
   .hero-actions .btn{padding:12px 20px;font-size:13.5px}
@@ -312,7 +320,8 @@ h1,h2,h3,p{margin:0}
                        to   { opacity: 1; transform: none; } }
   @keyframes riseSp  { from { opacity: 0; transform: translateY(9px); }
                        to   { opacity: 1; transform: none; } }
-  @keyframes zoomOut { from { transform: scale(1.06); } to { transform: none; } }
+  @keyframes zoomOut { from { transform: scale(1.06) translateZ(0); }
+                       to   { transform: translateZ(0); } }
   @keyframes popIn   { from { opacity: 0; transform: scale(.94); }
                        to   { opacity: .95; transform: none; } }
 

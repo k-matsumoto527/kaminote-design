@@ -257,11 +257,28 @@ h1,h2,h3,p{margin:0}
 }
 
 /* ---- スマホ ---- */
+/* 横長の写真を縦長の画面いっぱいに敷くと、object-fit:cover が高さに合わせて拡大するため
+   横幅の3割ほどしか写らない（1800×1201 の写真・高さ760px で34%）。文字の高さぶん
+   ヒーローが伸びるので、後ろに敷いたままではどうやっても寄った絵になる。
+   ★スマホでは写真を上の帯に切り出し、文字は地色の上に置く。帯の高さ300pxなら
+     横幅の8割が写り、写真が何なのか分かるようになる。 */
+@media (max-width:700px){
+  .hero{min-height:0;display:block;background:var(--ground)}
+  .hero-bg{position:relative;height:clamp(230px,38vh,320px)}
+  /* 帯にしたので、文字を読ませるための白かぶせは要らない。上だけ軽く白を残して
+     ヘッダーとの境目をやわらげる */
+  .hero-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 55%)}
+  .hero-copy{padding:30px 20px 46px;background:none;text-align:center}
+  /* 地色の上に置くので、白の光彩はいらない（かえって文字がぼやける） */
+  .hero-copy h1{color:var(--ink);text-shadow:none;font-size:clamp(26px,7.4vw,34px)}
+  .hero-lead{color:var(--ink-soft);text-shadow:none}
+  .hero-eyebrow{background:var(--blue-soft);color:var(--blue-d)}
+  /* 飾りの粒は写真の帯の中に収める */
+  .hero-cluster{width:96px;right:4%;top:14px}
+}
 @media (max-width:560px){
   /* 見出しは自動折り返しだと「やってみた／い」と語中で割れるので、折り位置を決め打ちする */
   .br-sp{display:inline}
-  /* コピーが写真の中央（かぶせがいちばん薄いところ）まで伸びるので、その帯だけ白を足す */
-  .hero-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.46) 42%,rgba(255,255,255,.56) 100%)}
 }
 </style>
 
