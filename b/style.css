@@ -1,0 +1,239 @@
+/* ===========================================================
+   デザイン案B「やわらかい曲線とイラスト」
+   案Aが写真主役・直線的なのに対し、こちらは:
+   ・写真を大きな角丸／円で切り抜き、まわりに余白をとる
+   ・セクションの境目を波線で区切る
+   ・丸ゴシック＋イラスト風のSVGで、いちばん親しみやすく
+   ・クリーム地に若草色を主色（保育園らしい落ち着いた明るさ）
+   =========================================================== */
+*{box-sizing:border-box}
+:root{
+  /* 主色はパステルブルー。いただいた見本 #dcedf8 をいちばん薄い面に使い、
+     文字と線に使える濃い段を足して階調にしている。 */
+  --blue:#5fa8cc;       /* 主色：面と線 */
+  --blue-d:#2c6f92;     /* 文字に使える濃さ */
+  --blue-soft:#dcedf8;  /* 薄い面：いただいた見本の色 */
+  /* CTAはグループ共通のオレンジ。放課後等デイサイトと合わせてある。 */
+  --cta-c:#ef8b4c;
+  --cta-cd:#d9742f;
+  --sun:#f7c948;        /* 副：たまご色 */
+  --peach:#f6a98c;      /* 副：桃 */
+  --ink:#43423c;
+  --ink-soft:#807d73;
+  --line:#e6e2d6;
+  --ground:#eef7fd;   /* 地色：薄い青 */
+  --cream:#dcedf8;    /* カードの面＝いただいた見本そのまま（名前は履歴のまま） */
+  --cream-d:#cbe2f3;  /* ひとつ濃い段 */
+  --white:#fff;
+  --wrap:1080px;
+}
+html,body{margin:0;padding:0}
+body{font-family:'Zen Maru Gothic',"Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;
+  color:var(--ink);background:var(--ground);line-height:1.95;font-size:16px;-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{margin:0;padding:0;list-style:none}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.note{background:#43423c;color:#fff;font-size:13px;padding:9px 24px;text-align:center;line-height:1.7}
+.note b{color:var(--sun)}
+
+/* ---- ヘッダー ---- */
+.head{position:sticky;top:0;z-index:50;background:rgba(238,247,253,.95)}
+.head-in{max-width:1200px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+/* 実ロゴは横長（313×192）なので height で指定する。width を決め打ちすると潰れる */
+.brand .mark{width:auto;height:52px;flex:none}
+.brand .tx{min-width:0;line-height:1.3}
+.brand .name{display:block;font-size:19px;font-weight:700;letter-spacing:.08em;white-space:nowrap}
+.brand .en{display:block;font-size:9.5px;letter-spacing:.24em;color:var(--ink-soft);font-family:'Baloo 2',sans-serif}
+.gnav{display:flex;gap:22px;margin-left:auto;font-size:14px;font-weight:500}
+.gnav a:hover{color:var(--blue-d)}
+.cta{flex:none;background:var(--cta-c);color:#fff;font-weight:700;font-size:14.5px;padding:13px 26px;border-radius:999px;box-shadow:0 5px 14px rgba(239,139,76,.35)}
+.cta:hover{background:var(--cta-cd)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;padding:8px 12px;cursor:pointer;font-family:inherit}
+
+/* ---- ヒーロー：写真を大きな角丸で置き、横にコピー ---- */
+.hero{padding:44px 0 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;align-items:center}
+.hero h1{font-size:clamp(28px,4.6vw,46px);line-height:1.7;font-weight:700;letter-spacing:.02em}
+.hero h1 em{font-style:normal;color:var(--blue-d);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.08em;height:.34em;background:var(--sun);opacity:.45;border-radius:4px;z-index:-1}
+.hero p.lead{margin-top:20px;color:var(--ink-soft);font-size:15px;line-height:2.1}
+.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.hero-tags span{background:var(--white);border:1px solid var(--line);border-radius:999px;padding:6px 15px;font-size:12.5px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:999px;font-weight:700;font-size:15px}
+.btn-main{background:var(--cta-c);color:#fff;box-shadow:0 6px 16px rgba(239,139,76,.35)}
+.btn-main:hover{background:var(--cta-cd)}
+.btn-sub{background:var(--white);border:1px solid var(--line);color:var(--ink)}
+/* 写真をまるく切り抜き、まわりに小さなイラストを置く */
+.hero-photo{position:relative}
+.hero-photo .blob{border-radius:46% 54% 52% 48%/52% 46% 54% 48%;overflow:hidden;aspect-ratio:1/1;box-shadow:0 18px 44px rgba(78,139,77,.18)}
+.hero-photo .blob img{width:100%;height:100%;object-fit:cover}
+.hero-photo .il{position:absolute}
+.wave{display:block;width:100%;height:auto;margin-top:-1px}
+
+/* ---- 数字 ---- */
+.stats{background:var(--white)}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:30px 24px;text-align:center}
+.stats .n{font-family:'Baloo 2',sans-serif;font-size:clamp(23px,3.2vw,32px);font-weight:700}
+.stats .c1{color:var(--blue-d)}.stats .c2{color:var(--peach)}.stats .c3{color:var(--sun)}
+.stats .l{font-size:12px;color:var(--ink-soft);line-height:1.7}
+
+/* ---- セクション ---- */
+.sec{padding:76px 0}
+.sec.white{background:var(--white)}
+.sec-head{text-align:center;margin-bottom:44px}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--blue-d);font-weight:700;margin-bottom:10px}
+.eyebrow svg{width:20px;height:20px}
+.sec-head h2{font-size:clamp(22px,3.3vw,31px);line-height:1.65;font-weight:700}
+.sec-head .en{display:block;font-family:'Baloo 2',sans-serif;font-size:12px;letter-spacing:.28em;color:var(--ink-soft);margin-top:6px}
+.sec-head p{margin-top:14px;color:var(--ink-soft);font-size:14.5px}
+
+/* ---- 3つの理由（丸いカード） ---- */
+.reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.reason{background:var(--cream);border-radius:28px;padding:34px 26px;text-align:center}
+.sec.white .reason{background:var(--cream)}
+.reason .ic{width:82px;height:82px;margin:0 auto 14px}
+.reason h3{font-size:17px;font-weight:700;line-height:1.6;margin-bottom:8px}
+.reason p{font-size:14px;color:var(--ink-soft);line-height:1.95}
+
+/* ---- 保育 ---- */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.ph-round{border-radius:32px;overflow:hidden;aspect-ratio:4/3}
+.ph-round img{width:100%;height:100%;object-fit:cover}
+.marks{display:grid;gap:16px;margin-top:24px}
+.marks li{display:flex;gap:14px;align-items:flex-start;background:var(--white);border-radius:20px;padding:16px 18px}
+.sec.white .marks li{background:var(--cream)}
+.marks .dot{width:38px;height:38px;flex:none}
+.marks b{display:block;font-size:15.5px}
+.marks span{font-size:13.5px;color:var(--ink-soft);line-height:1.9}
+
+/* ---- 2つの園 ---- */
+.parks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.park{background:var(--cream);border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.sec.white .park{background:var(--cream)}
+.park .ph{aspect-ratio:16/10;overflow:hidden}
+.park .ph img{width:100%;height:100%;object-fit:cover}
+.park-body{padding:26px 26px 26px;flex:1;display:flex;flex-direction:column}
+.park h3{font-size:19px;font-weight:700}
+.park .kind{display:inline-block;background:var(--blue-soft);color:var(--blue-d);border-radius:999px;padding:4px 12px;font-size:12px;margin:8px 0 16px}
+.park dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:13.5px;margin:0 0 20px}
+.park dt{color:var(--ink-soft);white-space:nowrap}
+.park dd{margin:0}
+.link-a{margin-top:auto;font-weight:700;font-size:14px;color:var(--blue-d)}
+
+/* ---- 病児保育 ---- */
+.byoji{background:var(--white);border-radius:32px;overflow:hidden}
+.byoji .split{gap:0}
+.byoji .ph-round{border-radius:0;aspect-ratio:auto;height:100%;min-height:290px}
+.byoji-body{padding:44px 40px}
+.byoji-body h2{font-size:clamp(21px,3vw,28px);line-height:1.65;font-weight:700;margin-bottom:14px}
+.byoji-body p{font-size:14.5px;color:var(--ink-soft);line-height:2.05}
+.byoji-body .fine{font-size:13px;margin-top:12px}
+
+/* ---- 入園案内 ---- */
+.adm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.adm-card{background:var(--white);border-radius:28px;padding:34px 30px}
+.adm-card h3{font-size:17.5px;font-weight:700;margin-bottom:12px}
+.adm-card p{font-size:14px;color:var(--ink-soft);line-height:2}
+.steps{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
+.steps li{background:var(--blue-soft);color:var(--blue-d);border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500}
+.notice{margin-top:24px;background:#fff8e2;border-radius:22px;padding:22px 26px;font-size:13.5px;line-height:2}
+.notice b{display:block}
+
+/* ---- 採用 ---- */
+.recruit{background:var(--blue-soft);border-radius:32px;padding:50px 44px;text-align:center}
+.recruit h2{font-size:clamp(22px,3.2vw,30px);font-weight:700;margin-bottom:14px}
+.recruit p{color:#5c6f5b;font-size:14.5px;line-height:2.05}
+.rnums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:30px 0}
+.rnums div{background:var(--white);border-radius:20px;padding:18px 10px}
+.rnums .n{font-family:'Baloo 2',sans-serif;font-size:24px;font-weight:700;color:var(--blue-d)}
+.rnums .l{font-size:11.5px;color:var(--ink-soft)}
+
+/* ---- お知らせ ---- */
+.news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.news .ph{aspect-ratio:16/10;border-radius:24px;overflow:hidden}
+.news .ph img{width:100%;height:100%;object-fit:cover}
+.news .meta{display:flex;gap:10px;align-items:center;margin:13px 0 5px;font-size:12px}
+.news .date{font-family:'Baloo 2',sans-serif;color:var(--ink-soft)}
+.news .tag{background:var(--sun);color:#6a5000;border-radius:999px;padding:2px 10px;font-weight:700;font-size:11px}
+.news .tag.d{background:var(--peach);color:#6b2f18}
+.news h3{font-size:15.5px;line-height:1.8;font-weight:500}
+
+/* ---- お問い合わせ ---- */
+.contact{background:var(--white);border-radius:32px;padding:54px 40px;text-align:center}
+.contact h2{font-size:clamp(23px,3.4vw,32px);font-weight:700;margin-bottom:14px}
+.contact p{color:var(--ink-soft);font-size:14.5px;line-height:2.05}
+.tel{margin-top:26px;font-family:'Baloo 2',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:var(--blue-d)}
+.tel small{display:block;font-family:inherit;font-size:12px;color:var(--ink-soft);font-weight:400}
+
+/* ---- フッター ---- */
+.foot{background:#4a5a49;color:#d6dfd5;padding:54px 0 26px;font-size:13.5px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr));gap:34px}
+.foot h4{color:#fff;font-size:13px;margin-bottom:12px}
+.foot li{margin-bottom:8px}
+.foot a:hover{color:#fff}
+.foot .name{color:#fff;font-size:18px;font-weight:700}
+.foot .en{color:#9fae9e}
+.foot-addr{margin-top:14px;line-height:2;color:#9fae9e;font-size:12.5px}
+.copy{border-top:1px solid #5c6c5b;margin-top:36px;padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#93a292}
+
+/* ---- ヘッダーを畳む幅 ----
+   実ロゴのマークは仮マーク（46px角）より40px ほど横に広く、990px を切るとナビが
+   2行に折り返して園名に重なる。ナビを畳む幅だけを分けて先に上げてある。
+   この崩れは折り返しであって食み出しではないので scrollWidth の検査には出ない。 */
+@media (max-width:1000px){
+  .gnav{display:none}.burger{display:block}.head-in .cta{display:none}
+}
+
+@media (max-width:900px){
+  .hero-grid,.split,.parks,.adm,.news,.reasons,.foot-grid{grid-template-columns:minmax(0,1fr)}
+  .byoji .split{grid-template-columns:minmax(0,1fr)}
+  .byoji-body{padding:32px 24px}
+  .rnums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sec{padding:56px 0}
+  .recruit,.contact{padding:36px 22px;border-radius:24px}
+  .hero{padding-top:28px}
+  .brand .name{font-size:16px}
+  .brand .mark{height:38px}
+}
+
+
+/* ============================================================
+   下層ページに分けた試作（b/）でだけ使う部品
+   1枚もの（plan-b.html）には無いもの。
+   ============================================================ */
+
+/* ---- パンくず（下層ページの先頭） ---- */
+.crumb{max-width:var(--wrap);margin:0 auto;padding:22px 24px 0;font-size:13px;color:var(--ink-soft)}
+.crumb a{color:var(--blue-d);font-weight:700}
+.crumb span{margin:0 .5em;color:var(--line)}
+
+/* ---- トップの入口カード ---- */
+/* トップから中身を出したぶん、ここが道案内になる。
+   3列→2列→1列。文字数がまちまちなので高さは揃えず、リンク行だけ下端に寄せる。 */
+.gates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.gate{background:var(--cream);border-radius:26px;padding:28px 26px;display:flex;flex-direction:column;gap:10px}
+.gate:hover{background:var(--cream-d)}
+.gate b{font-size:17px;font-weight:700;line-height:1.6}
+.gate span{font-size:13.5px;color:var(--ink-soft);line-height:1.95}
+.gate em{margin-top:auto;padding-top:6px;font-style:normal;font-weight:700;font-size:14px;color:var(--blue-d)}
+@media (max-width:900px){.gates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.gates{grid-template-columns:minmax(0,1fr)}}
+
+/* ---- トップのお知らせ（見出しだけの3件） ---- */
+/* 一覧は news.html に置き、トップは新着だけを軽く出す。 */
+.news-list{display:grid;gap:0}
+.news-list li{border-bottom:1px dashed var(--line)}
+.news-list li:first-child{border-top:1px dashed var(--line)}
+.news-list a{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:18px 4px;font-size:15px;line-height:1.7}
+.news-list a:hover{color:var(--blue-d)}
+.news-list .date{font-family:'Baloo 2',sans-serif;color:var(--ink-soft);font-size:13px}
+.news-list .tag{background:var(--blue-soft);color:var(--blue-d);border-radius:999px;padding:2px 10px;font-size:11.5px}
+.news-list .tag.d{background:#e6f2ea;color:#3f7a56}
+@media (max-width:560px){.news-list a{padding:15px 4px;font-size:14px}}
+
+/* ---- 現在地（メニュー） ---- */
+.gnav a[aria-current="page"]{color:var(--blue-d);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
