@@ -8,51 +8,70 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="note">これは<b>デザイン案B</b>を、メニューごとに別ページへ分けたものです。写真は<b>イメージ写真</b>、情報は現行サイトからの引用です。文章と写真は差し替えます。</div>
+<div class="note">これは<b>デザイン案A</b>を、メニューごとに別ページへ分けたものです。写真は<b>イメージ写真</b>、情報は現行サイトからの引用です。文章と写真は差し替えます。</div>
 
+<!-- ============ ヘッダー ============ -->
 
 
 <header class="head">
   <div class="head-in">
     <a class="brand" href="index.html">
       <img class="mark" src="../img/logo-mark.png" alt="" width="313" height="192" decoding="async">
-      <span class="tx"><span class="name">かみのて保育園</span><span class="en">KAMINOTE NURSERY</span></span>
+      <span class="tx">
+        <span class="corp">株式会社 A and K　企業主導型・認可保育園</span>
+        <span class="name">かみのて保育園</span>
+        <span class="en">KAMINOTE NURSERY</span>
+      </span>
     </a>
     <nav class="gnav"><a href="index.html#reasons">3つの理由</a><a href="policy.html">かみのての保育</a><a href="parks.html">園のご紹介</a><a href="byoji.html">病児保育</a><a href="admission.html">入園案内</a><a href="recruit.html">採用情報</a><a href="news.html">お知らせ</a></nav>
-    <a class="cta" href="contact.html">見学・ご相談</a>
+    <a class="cta-pill" href="contact.html">見学・ご相談</a>
     <button class="burger" type="button" aria-label="メニュー">☰</button>
   </div>
 </header>
 
-<!-- ============ ヒーロー ============ -->
+<!-- ============ 左の縦レール ============ -->
 
 
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>こどもの<em>「やってみたい」</em>を、<br>まんなかに。</h1>
-      <p class="lead">朝も夕方も、体調をくずした日も。<br>はたらくご家庭のとなりで、こどもの一日をあずかります。</p>
-      <div class="hero-tags"><span>2園＋病児保育室</span><span>企業主導型＋認可</span><span>多言語対応</span></div>
-      <div class="hero-actions">
-        <a class="btn btn-main" href="contact.html">見学のお申し込み</a>
-        <a class="btn btn-sub" href="admission.html">入園案内を見る</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <div class="blob"><img fetchpriority="high" decoding="async" src="../img/hero-toys.jpg" alt="イメージ写真"></div>
-      <svg class="il" style="left:-4%;top:6%;width:76px" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="#f7c948" opacity=".9"/></svg>
-      <svg class="il" style="right:-2%;bottom:8%;width:64px" viewBox="0 0 80 60" aria-hidden="true"><path d="M8 42q10-16 20 0t20 0 24 0" stroke="#8ec9dd" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
-      <svg class="il" style="right:6%;top:-2%;width:52px" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 6c8 12 14 18 14 26a14 14 0 1 1-28 0c0-8 6-14 14-26Z" fill="#f6a98c"/></svg>
+  <div class="hero-bg"><img fetchpriority="high" decoding="async" src="../img/hero-toys.jpg" alt="イメージ写真"></div>
+
+  <!-- 右上の飾り群（参考イメージの花・粒のかたまり） -->
+  <svg class="hero-cluster" viewBox="0 0 200 200" aria-hidden="true">
+    <g opacity=".9">
+      <circle cx="60" cy="38" r="15" fill="#f5b301"/><circle cx="104" cy="30" r="9" fill="#f2856a"/>
+      <circle cx="142" cy="52" r="13" fill="#8b7bc8"/><circle cx="46" cy="82" r="10" fill="#3fa39a"/>
+      <circle cx="92" cy="74" r="17" fill="#f7c9bb"/><circle cx="136" cy="98" r="8" fill="#f5b301"/>
+      <circle cx="66" cy="122" r="12" fill="#a8d5cf"/><circle cx="110" cy="128" r="9" fill="#f2856a"/>
+      <circle cx="150" cy="140" r="6" fill="#8b7bc8"/><circle cx="88" cy="164" r="7" fill="#f5b301"/>
+    </g>
+  </svg>
+
+  <div class="hero-copy">
+    <span class="hero-eyebrow">岐阜県可児市 ・ かみのて保育園／かみのて今渡保育園</span>
+    <h1 class="mincho">
+      <span class="ln"><span>こどもの</span><br class="br-sp"><span>「やってみたい」を、
+        </span><svg class="deco" style="right:3%;top:-14%;width:38px" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4c5 7 8 10 8 14a8 8 0 1 1-16 0c0-4 3-7 8-14Z" fill="#8b7bc8" opacity=".9"/></svg>
+      </span>
+      <span class="ln"><span>まんなかに。
+        </span><svg class="deco" style="left:14%;bottom:-4%;width:46px" viewBox="0 0 60 30" aria-hidden="true"><path d="M4 20q8-12 16 0t16 0 16 0" stroke="#f5b301" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        <svg class="deco" style="right:16%;top:-10%;width:28px" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="#f2856a" opacity=".85"/></svg>
+      </span>
+    </h1>
+    <p class="hero-lead">朝も夕方も、体調をくずした日も。<br>はたらくご家庭のとなりで、こどもの一日をあずかります。</p>
+    <div class="hero-tags"><span>2園＋病児保育室</span><span>企業主導型＋認可</span><span>多言語対応</span></div>
+    <div class="hero-actions">
+      <a class="btn btn-main" href="contact.html">見学のお申し込み</a>
+      <a class="btn btn-sub" href="admission.html">入園案内を見る</a>
     </div>
   </div>
-  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46c180 40 360 40 540 12s360-40 540-12 240 34 360 20v34H0Z" fill="#fff"/></svg>
 </section>
 
+<!-- ============ 数字の帯 ============ -->
 
 
 <div class="stats">
@@ -66,25 +85,25 @@
 <!-- ============ 3つの理由 ============ -->
 
 
-<section class="sec white" id="reasons">
+<section class="sec" id="reasons">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow"><svg viewBox="0 0 24 24"><path d="M12 4c3 5 5 7 5 10a5 5 0 1 1-10 0c0-3 2-5 5-10Z" fill="#7bb87a"/></svg><span>かみのての3つの安心</span></span>
+      <span class="eyebrow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#f5b301"/></svg><span>かみのての3つの安心</span></span>
       <h2><span>かみのてが選ばれている、3つの理由</span><span class="en">THREE REASONS</span></h2>
     </div>
     <div class="reasons">
       <div class="reason">
-        <svg class="ic" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="#fdf3d3"/><circle cx="50" cy="50" r="27" fill="none" stroke="#f7c948" stroke-width="5"/><path d="M50 34v17l11 8" stroke="#f7c948" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        <svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#fdf0d2"/><circle cx="32" cy="32" r="18" fill="none" stroke="#f5b301" stroke-width="3"/><path d="M32 22v11l7 5" stroke="#f5b301" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
         <h3>朝は7時台から、夜7時半・8時まで</h3>
         <p>かみのて保育園は7:00〜20:00、かみのて今渡保育園は7:30〜19:30。早番も遅番も、ご家庭のはたらき方に合わせてお預かりします。</p>
       </div>
       <div class="reason">
-        <svg class="ic" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="#fbe7de"/><path d="M50 70S28 58 28 44a11 11 0 0 1 22-8 11 11 0 0 1 22 8c0 14-22 26-22 26Z" fill="#f6a98c"/></svg>
+        <svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#e6f4f2"/><path d="M32 44s-12-7-12-15a7 7 0 0 1 12-5 7 7 0 0 1 12 5c0 8-12 15-12 15Z" fill="#3fa39a"/></svg>
         <h3>熱が出た日も、あずかります</h3>
         <p>かみのて保育園に併設した病児保育室で、生後6ヵ月から小学校6年生までお預かりします。他の園や小学校に通うお子さまも利用できます。</p>
       </div>
       <div class="reason">
-        <svg class="ic" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="#e3f1f6"/><circle cx="50" cy="50" r="26" fill="none" stroke="#8ec9dd" stroke-width="5"/><path d="M24 50h52M50 24c9 11 9 41 0 52M50 24c-9 11-9 41 0 52" stroke="#8ec9dd" stroke-width="4" fill="none"/></svg>
+        <svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#efeaf9"/><circle cx="32" cy="32" r="17" fill="none" stroke="#8b7bc8" stroke-width="3"/><path d="M15 32h34M32 15c6 7 6 27 0 34M32 15c-6 7-6 27 0 34" stroke="#8b7bc8" stroke-width="2.4" fill="none"/></svg>
         <h3>いろんな言葉で、迎えます</h3>
         <p>英語・タガログ語・ビサヤ語・ポルトガル語に対応。外国にルーツのあるご家庭も安心して通えるよう、文化のちがいを前提にした保育をしています。</p>
       </div>
@@ -168,21 +187,38 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="name">かみのて保育園</div><div class="en">KAMINOTE NURSERY</div>
+        <!-- フッターは地色が濃いので実ロゴを置けない（白抜きのハートと顔に地色が透ける）。
+             仮マークだけ残すとヘッダーと食い違うので、マークは置かず名前だけにする。 -->
+        <div class="brand">
+          <span class="tx"><span class="name">かみのて保育園</span><span class="en">KAMINOTE NURSERY</span></span>
+        </div>
         <div class="foot-addr">運営：株式会社 A and K<br>〒509-0207 岐阜県可児市今渡3-11<br>TEL 0574-66-3511</div>
       </div>
       <div>
         <h4>園について</h4>
-        <ul><li><a href="policy.html">かみのての保育</a></li><li><a href="parks.html">園のご紹介</a></li><li><a href="byoji.html">病児保育のご案内</a></li><li><a href="#">園での生活</a></li><li><a href="admission.html">入園案内・保育料</a></li><li><a href="news.html">お知らせ・園の日記</a></li></ul>
+        <ul>
+          <li><a href="policy.html">かみのての保育</a></li>
+          <li><a href="parks.html">園のご紹介</a></li>
+          <li><a href="byoji.html">病児保育のご案内</a></li>
+          <li><a href="#">園での生活</a></li>
+          <li><a href="admission.html">入園案内・保育料</a></li>
+          <li><a href="news.html">お知らせ・園の日記</a></li>
+        </ul>
       </div>
       <div>
         <h4>グループの事業</h4>
-        <ul><li><a href="#">放課後等デイサービス</a><br><span style="font-size:12px;color:#93a292">かみのてKIDS・かみのてSMILE</span></li><li><a href="recruit.html">採用情報</a></li><li><a href="https://www.aandkcorp.com/">会社案内</a></li></ul>
+        <ul>
+          <li><a href="#">放課後等デイサービス</a><br><span style="font-size:12px;color:#8d857c">かみのてKIDS・かみのてSMILE</span></li>
+          <li><a href="recruit.html">採用情報</a></li>
+          <li><a href="https://www.aandkcorp.com/">会社案内</a></li>
+        </ul>
       </div>
     </div>
     <div class="copy"><span>© 2026 A and K Co., Ltd.</span><a href="#">プライバシーポリシー</a></div>
   </div>
 </footer>
+
+
 
 <!-- ============ 開いたときの動き（後半：順に出す） ============
      隠す指定と対象の並びは <head> 側にある。ここでは出す順番だけを決める。 -->

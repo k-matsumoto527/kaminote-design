@@ -8,23 +8,33 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500&family=Baloo+2:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="note">これは<b>デザイン案B</b>を、メニューごとに別ページへ分けたものです。写真は<b>イメージ写真</b>、情報は現行サイトからの引用です。文章と写真は差し替えます。</div>
+<div class="note">これは<b>デザイン案C</b>を、メニューごとに別ページへ分けたものです。写真は<b>イメージ写真</b>、情報は現行サイトからの引用です。文章と写真は差し替えます。</div>
 
+<!-- ============ ヘッダー ============ -->
 
 
 <header class="head">
   <div class="head-in">
     <a class="brand" href="index.html">
       <img class="mark" src="../img/logo-mark.png" alt="" width="313" height="192" decoding="async">
-      <span class="tx"><span class="name">かみのて保育園</span><span class="en">KAMINOTE NURSERY</span></span>
+      <span class="tx">
+        <span class="corp">株式会社 A and K　企業主導型・認可保育園</span>
+        <span class="nm">かみのて保育園</span>
+        <span class="en">KAMINOTE HOIKUEN</span>
+      </span>
     </a>
-    <nav class="gnav"><a href="index.html#reasons">3つの理由</a><a href="policy.html">かみのての保育</a><a href="parks.html">園のご紹介</a><a href="byoji.html">病児保育</a><a href="admission.html">入園案内</a><a href="recruit.html">採用情報</a><a href="news.html">お知らせ</a></nav>
-    <a class="cta" href="contact.html">見学・ご相談</a>
+
+    <nav class="gnav"><a href="index.html#reasons">3つの理由</a><a href="policy.html">かみのての保育</a><a href="parks.html">園のご紹介</a><a href="byoji.html">病児保育</a><a href="admission.html">入園案内</a><a href="news.html">お知らせ</a></nav>
+    <a class="pill-recruit" href="recruit.html">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.9 3.1-6.4 7-6.4s7 2.5 7 6.4"/></svg><span>
+      採用情報
+    </span></a>
+
     <button class="burger" type="button" aria-label="メニュー">☰</button>
   </div>
 </header>
@@ -33,25 +43,40 @@
 
 
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>こどもの<em>「やってみたい」</em>を、<br>まんなかに。</h1>
-      <p class="lead">朝も夕方も、体調をくずした日も。<br>はたらくご家庭のとなりで、こどもの一日をあずかります。</p>
-      <div class="hero-tags"><span>2園＋病児保育室</span><span>企業主導型＋認可</span><span>多言語対応</span></div>
-      <div class="hero-actions">
-        <a class="btn btn-main" href="contact.html">見学のお申し込み</a>
-        <a class="btn btn-sub" href="admission.html">入園案内を見る</a>
-      </div>
-    </div>
-    <div class="hero-photo">
-      <div class="blob"><img fetchpriority="high" decoding="async" src="../img/hero-toys.jpg" alt="イメージ写真"></div>
-      <svg class="il" style="left:-4%;top:6%;width:76px" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="#f7c948" opacity=".9"/></svg>
-      <svg class="il" style="right:-2%;bottom:8%;width:64px" viewBox="0 0 80 60" aria-hidden="true"><path d="M8 42q10-16 20 0t20 0 24 0" stroke="#8ec9dd" stroke-width="7" fill="none" stroke-linecap="round"/></svg>
-      <svg class="il" style="right:6%;top:-2%;width:52px" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 6c8 12 14 18 14 26a14 14 0 1 1-28 0c0-8 6-14 14-26Z" fill="#f6a98c"/></svg>
-    </div>
+  <div class="hero-bg"><img fetchpriority="high" decoding="async" src="../img/hero-toys-c.jpg" alt="イメージ写真"></div>
+
+  <!-- 下端の弧。border-radius で切り抜くとスクロールが重いので、塗りでかぶせている -->
+  <svg class="arc" viewBox="0 0 1440 132" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0 Q720 264 1440 0 V132 H0 Z"/>
+  </svg>
+
+  <!-- 白い帯の下端。半円を並べて写真にかぶせている（CSSの .scallop 参照） -->
+  <div class="scallop"></div>
+
+  <i class="tw tw1"></i><i class="tw tw2"></i>
+  <i class="tw tw3"></i><i class="tw tw4"></i><i class="tw tw5"></i>
+
+  <div class="hero-copy">
+    <div class="hero-place">岐阜県可児市　かみのて保育園／かみのて今渡保育園</div>
+    <div class="l1">こどもの「やってみたい」を、</div>
+    <div><span class="l2">まんなかに。</span></div>
   </div>
-  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46c180 40 360 40 540 12s360-40 540-12 240 34 360 20v34H0Z" fill="#fff"/></svg>
+
+  <div class="hero-actions on-photo">
+    <a class="btn btn-main" href="contact.html">見学のお申し込み</a>
+    <a class="btn btn-sub" href="admission.html">入園案内を見る</a>
+  </div>
 </section>
+</div>
+
+<!-- ============ ロゴ ============ -->
+
+
+<div class="logos">
+  <div class="wrap">
+    <img src="../img/logo.png" alt="かみのて保育園 ロゴ" width="313" height="201" decoding="async">
+  </div>
+</div>
 
 
 
@@ -66,7 +91,7 @@
 <!-- ============ 3つの理由 ============ -->
 
 
-<section class="sec white" id="reasons">
+<section class="sec alt" id="reasons">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow"><svg viewBox="0 0 24 24"><path d="M12 4c3 5 5 7 5 10a5 5 0 1 1-10 0c0-3 2-5 5-10Z" fill="#7bb87a"/></svg><span>かみのての3つの安心</span></span>
