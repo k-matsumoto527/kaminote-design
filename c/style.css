@@ -563,6 +563,35 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
   background:var(--x-accent);opacity:.55}
 .ev-ph{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
 
+/* ---- 保育理念 ---- */
+/* 理念は1文しかないので、面を大きく取って1枚の板に見せる。
+   ★見出しの書体は案ごとに違う（案Aは明朝、案B・Cはまるゴシック）ので指定しない。
+     大きさと余白だけで効かせる。 */
+.creed{background:var(--white);border:1px solid var(--line);border-radius:28px;
+  padding:clamp(32px,5vw,56px);text-align:center}
+.creed-label{display:inline-block;background:var(--x-accent);color:#fff;border-radius:999px;
+  padding:5px 16px;font-size:12px;font-weight:700;letter-spacing:.1em}
+.creed-t{margin:22px 0 0;font-size:clamp(22px,3.6vw,34px);line-height:1.75;font-weight:700;
+  letter-spacing:.04em}
+.creed-d{max-width:640px;margin:20px auto 0;font-size:14px;color:var(--ink-soft);line-height:2.1}
+/* ★スマホでは板の左右の余白を削り、理念の1行目（14字）が1行に収まる大きさに落とす。
+   落とさないと「こどもの「やってみたい」／を、／まんなかに。」と「を、」だけが行に残る。 */
+@media (max-width:560px){
+  .creed{padding:28px 16px}
+  .creed-t{font-size:20px;letter-spacing:.02em}
+}
+
+/* 保育目標は4つ並ぶので2列に。3点の並び（.x-points）を流用する */
+.goals{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+@media (max-width:760px){.goals{grid-template-columns:minmax(0,1fr)}}
+
+/* ---- 園長メッセージ ---- */
+.msg{max-width:720px;margin:0 auto;background:var(--white);border:1px solid var(--line);
+  border-radius:24px;padding:clamp(28px,4vw,44px)}
+.msg p{font-size:14.5px;line-height:2.15;color:var(--ink)}
+.msg p + p{margin-top:18px}
+.msg-sign{margin-top:26px;text-align:right;font-weight:700;font-size:14px}
+
 /* ---- 募集要項などの表（dl） ---- */
 /* 見出しの列は狭い画面では上に回す。表のまま縮めると項目名が縦に潰れる。 */
 .x-dl{display:grid;grid-template-columns:auto minmax(0,1fr);
