@@ -61,7 +61,10 @@ h1,h2,h3,p{margin:0}
 .note b{color:var(--sun)}
 
 /* ---- ヘッダー ---- */
-.head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+/* ★参考イメージ（Green House 新大阪園）に寄せた:
+   ヘッダーの下に線を引かず、ヒーローの上端に白い雲形をつなげて一続きに見せる。
+   スクロールで content の上に来たときだけ影で分ける。 */
+.head{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.05)}
 .head-in{max-width:1280px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:26px}
 /* 園名は letter-spacing が広いので、狭い画面では縮められるようにしておく
    （flex:none のままだと押し広げて横スクロールが出る） */
@@ -92,8 +95,32 @@ h1,h2,h3,p{margin:0}
 .rail svg{width:15px;height:15px}
 
 /* ---- ヒーロー ---- */
-.hero{position:relative;min-height:min(86vh,760px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#efe9e0}
+.hero{position:relative;min-height:min(86vh,760px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--ground)}
 .hero-bg{position:absolute;inset:0}
+/* ---- 写真の上下を雲形で切る（参考イメージのブロブ） ----
+   ★border-radius で「切り抜く」のではなく、同じ形の面を上にかぶせて切れて見せる。
+     大きな写真を四角でない形で切り抜くと、画面を通過するあいだ合成し直しになって
+     スクロールが重くなる（案Cで実際に踏んだ）。塗るだけなら安い。 */
+.hero-edge{position:absolute;left:0;width:100%;z-index:3;pointer-events:none;display:block}
+.hero-edge.t{top:-1px;height:clamp(52px,7.5vw,104px)}
+.hero-edge.b{bottom:-1px;height:clamp(52px,8vw,110px)}
+.hero-edge.t path{fill:#fff}
+.hero-edge.b path{fill:var(--ground)}
+/* ---- 左下のイラスト（木） ---- */
+.hero-trees{position:absolute;left:2.5%;bottom:13%;width:min(250px,25vw);z-index:3;pointer-events:none}
+/* ---- 右端の縦に並ぶボタン（参考イメージの「園見学予約」「病児保育」） ---- */
+.side-cta{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:45;
+  display:flex;flex-direction:column;gap:8px}
+.side-cta a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  width:74px;padding:16px 8px;border-radius:16px 0 0 16px;color:#fff;font-size:12.5px;font-weight:700;
+  line-height:1.5;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.side-cta a:hover{filter:brightness(1.06)}
+.side-cta .s1{background:linear-gradient(160deg,#f8b478,#ef8b4c)}
+.side-cta .s2{background:linear-gradient(160deg,#5fbdb2,#3fa39a)}
+.side-cta svg{width:18px;height:18px}
+/* ★1200px を切ると本文（最大1120px＋余白）に重なるので出さない。
+   900px で消すと 901〜1200px で文字の上に乗る。 */
+@media (max-width:1200px){.side-cta{display:none}}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
 /* 全面の白かぶせ。中央（42%）を薄くして写真を主役に見せる案なので、ここは控えめに。
    そのぶん、文字が乗るところだけ .hero-copy 側でもう一段白を足す。
@@ -249,6 +276,10 @@ h1,h2,h3,p{margin:0}
   .recruit,.contact{padding:38px 24px;border-radius:20px}
   .hero-cluster{width:110px;right:3%;top:8%}
   .hero-copy{padding:64px 20px}
+  /* 右端の縦ボタンは、狭い画面では本文を覆うので出さない
+     （下のメニューとCTAから同じところへ行ける） */
+  .side-cta{display:none}
+  .hero-trees{width:130px;left:1%;bottom:2%}
   /* スマホでは園名を1行に詰め、ハンバーガーの分の幅を確保する */
   .brand .mark{height:38px}
   .brand .name{font-size:16px;letter-spacing:.12em}
@@ -269,6 +300,9 @@ h1,h2,h3,p{margin:0}
      ヘッダーとの境目をやわらげる */
   .hero-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 55%)}
   .hero-copy{padding:30px 20px 46px;background:none;text-align:center}
+  /* 帯にしたので、雲形は写真の下端（＝帯の下端）に来る。木は帯の中だと窮屈なので出さない */
+  .hero-edge.b path{fill:var(--ground)}
+  .hero-trees{display:none}
   /* 地色の上に置くので、白の光彩はいらない（かえって文字がぼやける） */
   .hero-copy h1{color:var(--ink);text-shadow:none;font-size:clamp(26px,7.4vw,34px)}
   .hero-lead{color:var(--ink-soft);text-shadow:none}
@@ -463,6 +497,20 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
   </div>
 </header>
 
+<!-- 右端に貼りつく縦のボタン（参考イメージの「園見学予約」「病児・病後児保育」）
+     ★文言は既にある鍵を使い回している（k019 / k006）。新しい鍵を足すと
+       i18n_mark.py を掛け直したときに番号がずれるため。 -->
+<div class="side-cta">
+  <a class="s1" href="#contact">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v15H5z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M9 3v4M15 3v4M5 10h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-i18n="k019">見学のお申し込み</span>
+  </a>
+  <a class="s2" href="#byoji">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6c0 4.8-7 9.4-7 9.4Z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span data-i18n="k006">病児保育</span>
+  </a>
+</div>
+
 <!-- ============ 左の縦レール ============ -->
 <div class="rail">
   <a href="#news"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 9h8M8 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="k010">お知らせ</span></a>
@@ -471,7 +519,28 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
 
 <!-- ============ ヒーロー ============ -->
 <section class="hero">
-  <div class="hero-bg"><img fetchpriority="high" decoding="async" src="img/hero-toys.jpg" alt="イメージ写真"></div>
+  <div class="hero-bg">
+    <img fetchpriority="high" decoding="async" src="img/hero-toys.jpg" alt="イメージ写真">
+    <!-- 写真の上下を雲形で切る。★切り抜きではなく「同じ色の面をかぶせて」いる（軽いので） -->
+    <svg class="hero-edge t" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0H1440V34q-70 40-150 6-70 34-170 4-80 44-190 2-90 40-200 6-80 36-180 2-90 42-200 4-80 38-180 6-70 34-170 4Z"/>
+    </svg>
+    <svg class="hero-edge b" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 100H1440V66q-70-40-150-6-70-34-170-4-80-44-190-2-90-40-200-6-80-36-180-2-90-42-200-4-80-38-180-6-70-34-170-4Z"/>
+    </svg>
+  </div>
+
+  <!-- 左下のイラスト（参考イメージの木立） -->
+  <svg class="hero-trees" viewBox="0 0 240 200" aria-hidden="true">
+    <g>
+      <path d="M62 34c26 0 44 20 44 42 0 10-4 18-11 25 5 6 8 13 8 21 0 20-18 34-41 34s-41-14-41-34c0-8 3-15 8-21-7-7-11-15-11-25 0-22 18-42 44-42Z" fill="#8cc36b"/>
+      <path d="M58 152h8v34h-8z" fill="#7a5b3e"/>
+      <g fill="#f5df7a"><circle cx="42" cy="70" r="3.4"/><circle cx="76" cy="60" r="3"/><circle cx="60" cy="96" r="3.4"/><circle cx="34" cy="112" r="3"/><circle cx="84" cy="108" r="3.4"/></g>
+      <path d="M164 44 200 96h-22l30 44h-88l30-44h-22Z" fill="#3fa39a"/>
+      <path d="M160 140h8v42h-8z" fill="#7a5b3e"/>
+      <g fill="#f5df7a"><circle cx="152" cy="104" r="3.4"/><circle cx="180" cy="92" r="3"/><circle cx="168" cy="126" r="3.4"/><circle cx="140" cy="128" r="3"/></g>
+    </g>
+  </svg>
 
   <!-- 右上の飾り群（参考イメージの花・粒のかたまり） -->
   <svg class="hero-cluster" viewBox="0 0 200 200" aria-hidden="true">

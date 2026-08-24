@@ -34,11 +34,48 @@
   </div>
 </header>
 
+<!-- 右端に貼りつく縦のボタン（参考イメージの「園見学予約」「病児・病後児保育」）
+     ★文言は既にある鍵を使い回している（k019 / k006）。新しい鍵を足すと
+       i18n_mark.py を掛け直したときに番号がずれるため。 -->
+
+
+<div class="side-cta">
+  <a class="s1" href="contact.html">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v15H5z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M9 3v4M15 3v4M5 10h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>見学のお申し込み</span>
+  </a>
+  <a class="s2" href="byoji.html">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.4A4 4 0 0 1 12 8a4 4 0 0 1 7 2.6c0 4.8-7 9.4-7 9.4Z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span>病児保育</span>
+  </a>
+</div>
+
 <!-- ============ 左の縦レール ============ -->
 
 
 <section class="hero">
-  <div class="hero-bg"><img fetchpriority="high" decoding="async" src="../img/hero-toys.jpg" alt="イメージ写真"></div>
+  <div class="hero-bg">
+    <img fetchpriority="high" decoding="async" src="../img/hero-toys.jpg" alt="イメージ写真">
+    <!-- 写真の上下を雲形で切る。★切り抜きではなく「同じ色の面をかぶせて」いる（軽いので） -->
+    <svg class="hero-edge t" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0H1440V34q-70 40-150 6-70 34-170 4-80 44-190 2-90 40-200 6-80 36-180 2-90 42-200 4-80 38-180 6-70 34-170 4Z"/>
+    </svg>
+    <svg class="hero-edge b" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 100H1440V66q-70-40-150-6-70-34-170-4-80-44-190-2-90-40-200-6-80-36-180-2-90-42-200-4-80-38-180-6-70-34-170-4Z"/>
+    </svg>
+  </div>
+
+  <!-- 左下のイラスト（参考イメージの木立） -->
+  <svg class="hero-trees" viewBox="0 0 240 200" aria-hidden="true">
+    <g>
+      <path d="M62 34c26 0 44 20 44 42 0 10-4 18-11 25 5 6 8 13 8 21 0 20-18 34-41 34s-41-14-41-34c0-8 3-15 8-21-7-7-11-15-11-25 0-22 18-42 44-42Z" fill="#8cc36b"/>
+      <path d="M58 152h8v34h-8z" fill="#7a5b3e"/>
+      <g fill="#f5df7a"><circle cx="42" cy="70" r="3.4"/><circle cx="76" cy="60" r="3"/><circle cx="60" cy="96" r="3.4"/><circle cx="34" cy="112" r="3"/><circle cx="84" cy="108" r="3.4"/></g>
+      <path d="M164 44 200 96h-22l30 44h-88l30-44h-22Z" fill="#3fa39a"/>
+      <path d="M160 140h8v42h-8z" fill="#7a5b3e"/>
+      <g fill="#f5df7a"><circle cx="152" cy="104" r="3.4"/><circle cx="180" cy="92" r="3"/><circle cx="168" cy="126" r="3.4"/><circle cx="140" cy="128" r="3"/></g>
+    </g>
+  </svg>
 
   <!-- 右上の飾り群（参考イメージの花・粒のかたまり） -->
   <svg class="hero-cluster" viewBox="0 0 200 200" aria-hidden="true">
