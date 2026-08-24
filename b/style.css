@@ -475,10 +475,23 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
   .x-dl dd{padding:4px 16px 14px}
 }
 
-/* ---- 並べて置くボタン（窓口を分けるところ） ---- */
-/* .btn は余白を持たないので、2つ並べるとくっつく。<p> の中にも置けるよう
-   要素側で余白を持たせる（div で囲むと <p> の中に入れられない）。 */
-.x-b{margin:6px 12px 6px 0}
+/* ---- 窓口のボタン（採用＝新卒／中途） ----
+   ふつうの丸ボタンだと、ページの主役なのに他のリンクと同じ重さに見える。
+   ★2段（見出し＋対象の説明）にして面を大きく取り、押す場所だと分かるようにする。
+   ★案Aでは <p> の中に置かれるので、grid や div で囲めない。
+     インライン要素のまま横に並べ、狭い画面では自然に折り返させる。 */
+.x-door{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;
+  min-width:min(100%,290px);padding:18px 26px;border-radius:18px;margin:8px 14px 8px 0;
+  font-size:16px;line-height:1.6;box-shadow:0 8px 22px rgba(0,0,0,.16)}
+.x-door .t{font-size:17px;font-weight:700;letter-spacing:.02em}
+.x-door .s{font-size:12.5px;font-weight:500;opacity:.82}
+.x-door:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.22)}
+/* 白いほうも「押せる面」に見せる。線を入れないと、濃いボタンの添え物に見える */
+.x-door.btn-sub{border:2px solid var(--x-accent);color:var(--ink)}
+.x-door.btn-sub .s{color:var(--ink-soft);opacity:1}
+@media (max-width:560px){
+  .x-door{width:100%;margin:8px 0 0;padding:16px 20px}
+}
 
 /* ---- よくあるご質問（開閉は <details>。JSは足さない） ---- */
 .faq-h{font-size:16px;font-weight:700;line-height:1.7;margin:38px 0 14px;
