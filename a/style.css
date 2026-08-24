@@ -442,6 +442,18 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
 .gnav a[aria-current="page"]{color:var(--x-accent);text-decoration:underline;
   text-underline-offset:6px;text-decoration-thickness:2px}
 
+/* ---- メニューを畳む幅（分割版だけ一段広く） ----
+   独立ページを足したぶん項目が増えたので、1枚ものの指定より先に畳む。
+   1枚もの側（案A1100/案B1000/案C1180）はそのままにしてあり、この指定は
+   それを含む広いほうの範囲なので、重ねても矛盾しない。
+   ★案ごとに隠すものが違う（案A .rail と .cta-pill／案B .cta／案C .pill-recruit）ので、
+     ここでは3案ぶんまとめて指定する。無いものを指定しても害はない。 */
+@media (max-width:1209px){
+  .gnav,.rail,.pill-recruit{display:none}
+  .burger{display:block}
+  .head-in .cta-pill,.head-in .cta{display:none}
+}
+
 /* ============================================================
    独立ページ（pages/*.html）で使う部品
    ★3案・2サイトで使い回すので、色は --x-accent と薄い黒だけで作る。
