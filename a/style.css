@@ -526,6 +526,25 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
   background:var(--x-accent);opacity:.55}
 .ev-ph{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
 
+/* ---- 募集要項などの表（dl） ---- */
+/* 見出しの列は狭い画面では上に回す。表のまま縮めると項目名が縦に潰れる。 */
+.x-dl{display:grid;grid-template-columns:auto minmax(0,1fr);
+  background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin:0}
+.x-dl dt{padding:15px 20px;font-size:13.5px;font-weight:700;line-height:1.8;white-space:nowrap;
+  background:rgba(0,0,0,.035);border-bottom:1px solid var(--line)}
+.x-dl dd{margin:0;padding:15px 20px;font-size:13.5px;line-height:1.95;border-bottom:1px solid var(--line)}
+.x-dl dt:nth-last-of-type(1),.x-dl dd:nth-last-of-type(1){border-bottom:0}
+@media (max-width:560px){
+  .x-dl{grid-template-columns:minmax(0,1fr)}
+  .x-dl dt{border-bottom:0;background:none;padding:14px 16px 0;color:var(--x-accent)}
+  .x-dl dd{padding:4px 16px 14px}
+}
+
+/* ---- 並べて置くボタン（窓口を分けるところ） ---- */
+/* .btn は余白を持たないので、2つ並べるとくっつく。<p> の中にも置けるよう
+   要素側で余白を持たせる（div で囲むと <p> の中に入れられない）。 */
+.x-b{margin:6px 12px 6px 0}
+
 /* ---- よくあるご質問（開閉は <details>。JSは足さない） ---- */
 .faq-h{font-size:16px;font-weight:700;line-height:1.7;margin:38px 0 14px;
   padding-left:12px;border-left:4px solid var(--x-accent)}
