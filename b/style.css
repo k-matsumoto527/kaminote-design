@@ -456,6 +456,35 @@ html:not([lang="ja"]) .sec-head h2{letter-spacing:.01em}
 .ev-m ul li::before{content:"";position:absolute;left:0;top:.8em;width:5px;height:5px;border-radius:50%;
   background:var(--x-accent);opacity:.55}
 .ev-ph{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+
+/* ---- よくあるご質問（開閉は <details>。JSは足さない） ---- */
+.faq-h{font-size:16px;font-weight:700;line-height:1.7;margin:38px 0 14px;
+  padding-left:12px;border-left:4px solid var(--x-accent)}
+.faq-h:first-of-type{margin-top:0}
+.faq{display:grid;gap:12px}
+.qa{background:var(--white);border:1px solid var(--line);border-radius:18px}
+.qa > summary{display:flex;gap:12px;align-items:flex-start;cursor:pointer;list-style:none;
+  padding:17px 22px;font-size:15.5px;font-weight:700;line-height:1.8}
+.qa > summary::-webkit-details-marker{display:none}
+/* Q/A の丸。文字は Baloo 2（3案とも読み込んでいる） */
+.qa > summary::before,.qa .a::before{content:"Q";flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--x-accent);color:#fff;font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;margin-top:3px}
+.qa .a::before{content:"A";background:rgba(0,0,0,.08);color:var(--ink)}
+/* 右端の山かた。開くと反転する */
+.qa > summary::after{content:"";flex:none;margin-left:auto;width:9px;height:9px;margin-top:9px;
+  border-right:2px solid var(--x-accent);border-bottom:2px solid var(--x-accent);
+  transform:rotate(45deg);transition:transform .2s}
+.qa[open] > summary::after{transform:rotate(-135deg);margin-top:13px}
+.qa > summary:hover{color:var(--x-accent)}
+.qa .a{display:flex;gap:12px;padding:0 22px 20px;font-size:14px;color:var(--ink-soft);line-height:2}
+.qa .a b{color:var(--ink)}
+.qa .a .link-a{display:inline-block;margin-top:8px}
+@media (max-width:560px){
+  .qa > summary{padding:15px 16px;font-size:14.5px;gap:10px}
+  .qa .a{padding:0 16px 18px;gap:10px;font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){.qa > summary::after{transition:none}}
 @media (max-width:1000px){.ev{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:700px){
   .ev{grid-template-columns:repeat(2,minmax(0,1fr))}
