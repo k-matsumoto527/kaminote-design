@@ -5,7 +5,7 @@
 
 - 実体は `index.html` 1枚のみ。ビルド不要でそのまま開ける。
 - 画像は `img/` 配下（内訳は後述の「写真」を参照）。
-- 公開先: https://k-matsumoto527.github.io/kaminote-design/
+- 公開先: https://easywebcraft.github.io/kaminote-design/
 
 ## 前提（2026-08-02 確定）
 
@@ -219,7 +219,7 @@ Edge ヘッドレスで検証。横スクロールは 390 / 489 / 768 / 1200px �
 「トップのボリュームが多い」という指摘を受けて、**保育園・案Bだけ**を
 メニューごとの独立ページに分けた試作。`b/` 以下に8ページある。
 
-- 公開: https://k-matsumoto527.github.io/kaminote-design/b/
+- 公開: https://easywebcraft.github.io/kaminote-design/b/
 - **1枚もの（`plan-b.html`）には手を入れていない。** 3案の見比べはそのまま残す。
   試作はあくまで「分けるとどうなるか」を見せるためのもの。
 
